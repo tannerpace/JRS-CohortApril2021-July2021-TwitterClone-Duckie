@@ -1,0 +1,118 @@
+Tasks to do for the Duckie project:
+
+0. Create the 'feed' page 
+    a) display all tweets that you follow ordered by most recent
+    b) add buttons to 'RT' 'like' and 'comment' - Implement later
+        i) implement RT
+        ii) implement like
+        iii) implement comment
+
+1. Create a 'home' page - the page of 'your' profile
+    a) design HTML of profile page
+    b) CSS for profile page
+    c) use Input for profile page so that the page generates
+            based on some user
+            @Input user: User;
+    d) define routes to navigate to a user via the routing module
+    e) if the page is of the logged in user - display an 'edit profile' option
+
+2. Create a nav bar with nav icons
+    a) home - link to your feed
+    b) search/explore - if time permits
+    c) messages - if time permits - unlikely
+    d) profile - link to your profile with your tweets
+    e) compose - link to create a new tweet
+    f) log out
+
+3. Implement a SQL Rest API
+    a) create base level server that listens on port 8080
+    b) add multiple request routes
+        1) get tweets by user
+        2) get comments by user
+        3) get likes by user
+        4) get all followed tweets by user
+        
+        5) get user
+        6) edit user (put)
+        7) delete user
+        8) create user
+
+        9) create tweet
+        10) delete tweet
+        11) get tweet ??? - maybe
+        12) 'edit' tweet - increment like count or rt count
+
+        13) get all followed by user id
+        14) get all following by user id
+
+        15) login user
+
+4. Implement a way for a user to login
+    a) make login page
+    b) make login form
+
+5. Implement a way to create a new account/user
+    **** depends on task 4.b ****
+    a) add an option to create new user instead of signing in
+
+6. Create a 'quack card' component to display one tweet/quack
+    a) show tweet body
+    b) show user info
+    c) have like button
+    d) have RT button
+    e) have a comment button
+    f) show date/time
+
+7. Create Tweets - Tweets/replies - Media - Likes pages
+    a) create something on the user page to select different options
+        to display tweets in the tweets area / feed
+
+8. Implement a way to RT and Like other tweets
+    *** See tast 6.c and 6.d ***
+
+9. Implement a way to create a new tweet/quack
+    a) create a compose tweet component
+    b) add a form to insert text(/images)
+    c) add button to submit tweet
+
+10. Implement a way to edit user information
+    *** Depends on tast 1.e ***
+    a) create a component that will display the user's
+        info in a form that you can edit and click save/apply
+        1) edit screen Name, pics, bio, and website
+        2) CANNOT edit password, user name, birthday, or date joined
+
+11. search bar - if time permits
+    a) big input box to type in. When you press enter
+        display a bunch of tweets that contain that substring
+
+12. Populate the server with Users, tweets, and other data
+    *** depends on whole project working ***
+
+13. Create css variables to keep a consistent look and feel
+    a) add variables to the styles.css of colors, fonts, measurements, etc.
+
+List of components to make
+    Main page
+    profile page
+    feed - the actual list of tweets - either your followed tweets, 
+        your own tweets, your media, your likes, etc.
+    nav bar
+    login page
+        login window comp ???
+    compose tweet page
+        compose tweet form
+    edit profile 
+
+List of services 
+    User service
+        login - get other users - create a new user - get active user
+    
+    TweetAPIService
+        make tweet - delete tweet - get tweets
+            get tweets:
+                by user
+                by users
+                by liked
+                by 'reply by' - all replies of one user
+                by media - by user
