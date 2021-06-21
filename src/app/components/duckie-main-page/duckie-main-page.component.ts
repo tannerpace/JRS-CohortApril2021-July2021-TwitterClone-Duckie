@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'duckie-main-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DuckieMainPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  buttonClicked() {
+    let user = {username: "blake", screenName: "screen name"}
+    console.log("clicked");
+    this.router.navigate(['/user', user.username]);
+  }
 }

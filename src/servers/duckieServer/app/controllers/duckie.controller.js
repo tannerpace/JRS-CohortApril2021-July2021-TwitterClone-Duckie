@@ -9,6 +9,11 @@ exports.welcome = (req, res) => {
     })
 }
 
+exports.getUser = (req, res) => {
+    console.log(req.params)
+    res.send({userName: req.params.username, screenName: 'test name'})
+}
+
 exports.createUser = (req,res) => {
     res.send("it's working!")
 };
