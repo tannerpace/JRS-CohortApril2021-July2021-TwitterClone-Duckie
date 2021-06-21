@@ -1,5 +1,5 @@
 // username and password are your username and password for your mysql connection
 exports.host = 'localhost';
-exports.user = 'root';
-exports.password = 'passtanner';
+exports.user = '';
+exports.password = '';
 exports.database = 'duckie';
