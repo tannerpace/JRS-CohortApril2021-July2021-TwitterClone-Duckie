@@ -3,10 +3,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const bcrypt = require("bcrypt");
-const saltRounds = 10;
-// basically how many rolls through the encryption are we gonna do
+const saltRounds = 10; // how many rolls through the encryptions are going to do 
 
-const mysql = require('mysql');
+var mysql = require('mysql');
 
 const app = express();
 
@@ -15,19 +14,19 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-// parse requests of content-type - application/json
 app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//assign db connection
 
 const db = mysql.createConnection({
     host: 'localhost',
-    user: '',
+    user: 'root',
     password: '',
-    database: ''
+    database: 'duckie'
 });
+
+//connect to server
 
 db.connect((err) => {
     if (err) {
@@ -42,5 +41,5 @@ db.connect((err) => {
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
+    console.log("\n\tServer running on port" + `${PORT}\n`)
 });
