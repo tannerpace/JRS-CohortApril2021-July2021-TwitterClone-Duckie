@@ -1,8 +1,9 @@
+drop schema if exists duckie;
 drop schema if exists twitter;
-CREATE SCHEMA `twitter` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA `duckie` DEFAULT CHARACTER SET utf8 ;
 
--- make the users table (without 'pinnedtweet')
-CREATE TABLE `twitter`.`users` (
+-- make the users table (without 'pinnedQuack')
+CREATE TABLE `duckie`.`users` (
     id int unique not null auto_increment,
     userName varchar(25) unique not null,
     password varchar(255) not null,
@@ -11,14 +12,14 @@ CREATE TABLE `twitter`.`users` (
     website varchar(255),
     birthDate Date not null,
     dateJoined Datetime not null DEFAULT (current_date()),
-    tweetCount int not null default 0,
+    quackCount int not null default 0,
     -- profile pi img 
     -- banner img
     primary key (id)
 );
 
--- make the 'tweets' table
-CREATE TABLE `twitter`.`tweets` (
+-- make the 'quacks' table
+CREATE TABLE `duckie`.`quacks` (
     id int unique not null auto_increment,
     body varchar(140) not null,
     userId int not null,
@@ -31,40 +32,40 @@ CREATE TABLE `twitter`.`tweets` (
 
     primary key (id),
     foreign key (userId) references users(id),
-    foreign key (replyTo) references tweets(id)
+    foreign key (replyTo) references quacks(id)
 );
-    -- append the 'pinned tweet' col to users
-    -- pinnedTweet int -> foreign key in tweet table
-alter table twitter.users 
-add pinnedTweet int;
+    -- append the 'pinned quack' col to users
+    -- pinnedQuack int -> foreign key in quack table
+alter table duckie.users 
+add pinnedQuack int;
 
-alter table twitter.users
-add foreign key (pinnedTweet) references tweets(id);
+alter table duckie.users
+add foreign key (pinnedQuack) references quacks(id);
 
 -- make the likes table 
-CREATE TABLE `twitter`.`likes` (
+CREATE TABLE `duckie`.`likes` (
     id int unique not null auto_increment,
     userId int not null,
-    tweetId int not null,
+    quackId int not null,
 
     primary key (id),
     foreign key (userId) references users(id),
-    foreign key (tweetId) references tweets(id)
+    foreign key (quackId) references quacks(id)
 );
 
 -- make the RT table
-CREATE TABLE `twitter`.`reposts` (
+CREATE TABLE `duckie`.`reposts` (
     id int unique not null auto_increment,
     userId int not null,
-    tweetId int not null,
+    quackId int not null,
 
     primary key (id),
     foreign key (userId) references users(id),
-    foreign key (tweetId) references tweets(id)
+    foreign key (quackId) references quacks(id)
 );
 
 -- make the follows tabls
-CREATE TABLE `twitter`.`follows` (
+CREATE TABLE `duckie`.`follows` (
     id int unique not null auto_increment,
     followerId int not null,
     followingId int not null,
