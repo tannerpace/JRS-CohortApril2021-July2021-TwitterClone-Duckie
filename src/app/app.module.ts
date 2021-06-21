@@ -12,8 +12,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { EditUserFormComponent } from './components/edit-user-form/edit-user-form.component';
 import { NewQuackFormComponent } from './components/new-quack-form/new-quack-form.component';
 import { QuackFeedComponent } from './components/quack-feed/quack-feed.component';
-import { QuackAPIComponent } from './services/quack-api/quack-api.component';
-import { UserComponent } from './services/user/user.component';
+
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NewQuackPageComponent } from './components/new-quack-page/new-quack-page.component';
 
@@ -27,8 +26,8 @@ import { NewQuackPageComponent } from './components/new-quack-page/new-quack-pag
     EditUserFormComponent,
     NewQuackFormComponent,
     QuackFeedComponent,
-    QuackAPIComponent,
-    UserComponent,
+ 
+
     NavBarComponent,
     NewQuackPageComponent
   ],
