@@ -1,0 +1,11 @@
+.top_bar {
+    
+        width: 50%;
+        position: fixed;   
+        background: #333;
+        padding-left: 1em;
+        padding-top: 1em;
+        top: 0;
+        color: #fff;
+}
+
