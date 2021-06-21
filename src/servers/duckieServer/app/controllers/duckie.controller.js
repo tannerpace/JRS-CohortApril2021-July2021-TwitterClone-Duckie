@@ -11,7 +11,14 @@ exports.welcome = (req, res) => {
 
 exports.getUser = (req, res) => {
     console.log(req.params)
-    res.send({userName: req.params.username, screenName: 'test name'})
+    let uName = req.params.userName
+    if (uName != 'blake') {
+        res.status(404).send({message: 'User not found'});
+        return;
+    } else {
+        res.send({userName: req.params.username, screenName: 'test name'})
+        return;
+    }
 }
 
 exports.createUser = (req,res) => {

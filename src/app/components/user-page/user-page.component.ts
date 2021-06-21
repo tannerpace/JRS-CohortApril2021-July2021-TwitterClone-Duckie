@@ -16,8 +16,12 @@ export class UserPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.data
       .subscribe(data => {
-        this.user = data[0]
-        console.log(data[0])
+        if(data[0]) {
+          this.user = data[0]
+          console.log(data[0])
+        } else {
+          this.user = null;
+        }
       },
         error => {
           this.user = null;

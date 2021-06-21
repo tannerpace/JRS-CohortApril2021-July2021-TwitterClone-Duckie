@@ -10,6 +10,8 @@ const routes: Routes = [
   {path: "", component: DuckieMainPageComponent},
   {path: "login", component: LoginPageComponent},
   {path: "compose", component: NewQuackPageComponent},
+  {path: "compose", component: NewQuackPageComponent},
+  {path: "user_not_found", component: UserPageComponent}, // make 'notFoundPage'
   {path: "user/:username", component: UserPageComponent, resolve: [PreloadGuard]},
   {path: "**", redirectTo: ""}
 ];
