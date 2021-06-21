@@ -36,10 +36,10 @@ db.connect((err) => {
     }
 });
 
-// require("./app/routes/pepper.routes")(app);
+require("./app/routes/duckie.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 app.listen(PORT, () => {
-    console.log("\n\tServer running on port" + `${PORT}\n`)
+    console.log(`\n\tServer running on port ${PORT}\n`);
 });
