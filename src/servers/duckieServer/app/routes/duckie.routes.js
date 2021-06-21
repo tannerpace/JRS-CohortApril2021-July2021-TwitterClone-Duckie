@@ -3,5 +3,4 @@ module.exports = app => {
 
     app.get("/", duckie.welcome);
     app.get("/api/createUser", duckie.createUser);
-
 };
