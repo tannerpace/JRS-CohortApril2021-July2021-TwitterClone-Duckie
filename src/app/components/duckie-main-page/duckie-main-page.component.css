@@ -5,13 +5,12 @@
   }
   
   .left {
-    background-color: grey;
     width: 25%;
     }
 
   .right {
       width: 50%;
-      background-color: lightcoral;
+      border: black solid 3px;
       overflow-y: scroll;
   }
   

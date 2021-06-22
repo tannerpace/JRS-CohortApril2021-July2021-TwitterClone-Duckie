@@ -3,3 +3,7 @@
 :root {
     /* variables go here */
 }
+
+body{
+    margin: 0;
+}
