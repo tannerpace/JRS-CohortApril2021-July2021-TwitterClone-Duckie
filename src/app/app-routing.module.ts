@@ -6,15 +6,20 @@ import { NewQuackPageComponent } from './components/compose/new-quack-page/new-q
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { PreloadGuard } from './guards/preload.guard';
 import { EditUserPageComponent } from './components/edit-user/edit-user-page/edit-user-page.component';
+import { QuackFeedComponent } from './components/quack-feed/quack-feed.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
-  {path: "", component: DuckieMainPageComponent},
+  // childern used because it parents the main page to all children
+  {path: "", component: DuckieMainPageComponent, children: [
+    {path: "home", component: QuackFeedComponent},
+    {path: "compose", component: NewQuackPageComponent},
+    {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
+    {path: ":username", component: UserPageComponent, resolve: [PreloadGuard]},
+    {path: ":username/edit", component: EditUserPageComponent},
+  ]},
   {path: "login", component: LoginPageComponent},
-  {path: "compose", component: NewQuackPageComponent},
-  {path: "user_not_found", component: UserPageComponent}, // make 'notFoundPage'
-  {path: "user/:username", component: UserPageComponent, resolve: [PreloadGuard]},
-  {path: "user/:username/edit", component: EditUserPageComponent},
-  {path: "**", redirectTo: ""}
+  {path: "**", redirectTo: "not_found"}
 ];
 
 @NgModule({

@@ -1,6 +1,5 @@
 const db = require("../models/index");
 const User = require("../models/user.model.js")
-const { query } = require("@angular/animations");
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
