@@ -3,7 +3,7 @@ const User = require("../models/user.model.js")
 const { query } = require("@angular/animations");
 
 const bcrypt = require("bcrypt");
-const saltRounds = 4;
+const saltRounds = 10;
 
 exports.welcome = (req, res) => {
     console.log("welcome")
@@ -13,53 +13,40 @@ exports.welcome = (req, res) => {
     })
 }
 
-exports.createUser = (req, res) => {
+exports.createUser = async (req, res) => {
 
     console.log(req.body)
 
     const userName = req.body.userName;
-    const password = req.body.password;
     const screenName = req.body.screenName;
     const birthDate = req.body.birthDate;
+
+    const encryptedPassword = await bcrypt.hash(req.body.password, saltRounds);
 
     let query = "INSERT INTO users (userName, password, screenName, birthDate) \
     VALUES (?,?,?,?);"
 
-    // INSERT INTO users (`userName`, `password`, `screenName`, `birthDate`) 
-    // VALUES ( ?, ?, ?, ?);
-
-    db.query(query, [userName, password, screenName, birthDate], (err, results) => {
+    db.query(query, [userName, encryptedPassword, screenName, birthDate], (err, results) => {
         if (err) {
             if (err.code == 'ER_DUP_ENTRY') {
-                res.status(409).send()
+                res.status(409).send({ message: "user already exists!" })
             }
-            console.log(err)
-            //this is the error for duplicate user    
-            // {
-            //     code: 'ER_DUP_ENTRY',
-            //     errno: 1062,
-            //     sqlMessage: "Duplicate entry 'mruser2' for key 'users.userName'",
-            //     sqlState: '23000',
-            //     index: 0,
-            //     sql: "INSERT INTO users (userName, password, screenName, birthDate)     VALUES ('mruser2','mrpassword3','testScreen','1990-02-02');"
-            //   }
+
+            console.error(err)
             res.status(500).send()
             return
         } else {
-
             console.log(results)
             res.send("make user")
         }
     })
-
-
 };
 
 exports.getUser = (req, res) => {
 
     let userName = req.params.userName
 
-    query = "SELECT * FROM users where userName = ?;"
+    query = "SELECT * FROM users where userName = ?;"              // select user by userName
 
     db.query(query, [userName], (err, results) => {
         if (err) {
@@ -67,7 +54,7 @@ exports.getUser = (req, res) => {
             return
         } else {
             if (results.length == 0) {
-                res.status(404).send("user not found")
+                res.status(404).send({ message: "user not found" })        //no user found
                 return
             }
             res.send(results[0])
@@ -78,20 +65,27 @@ exports.getUser = (req, res) => {
 
 exports.editUser = (req, res) => {
 
-    let id = req.params.id;
     let userName = req.params.userName;
-    let screenName = req.params.screenName;
-    let bio = req.params.bio;
-    let website = req.params.website;
 
-    // "INSERT INTO users \
-    // (userName, password, screenName, birthDate) \
-    // VALUES (?,?,?,?);"
+    let newUserName = req.body.userName;
+    let screenName = req.body.screenName;
+    let bio = req.body.bio;
+    let website = req.body.website;
 
-    // query = "UPDATE users \
-    // SET (userName, password, screenName, `bio` = '?', `website` = '?' WHERE (`userName` = '?');"
+    let query = "UPDATE users \
+    SET userName = ?, screenName = ?, bio = ?, website = ? \
+    WHERE userName = ?;"
 
-    // res.send("edituser")
+    db.query(query, [newUserName, screenName, bio, website, userName], (err, results) => {
+        if (err) {
+            console.error(err)
+            res.status(500).send()
+            return
+        } else {
+
+            res.send(results[0])
+        }
+    })
 };
 
 exports.deleteUser = (req, res) => {
@@ -107,7 +101,7 @@ exports.deleteUser = (req, res) => {
         } else {
 
             if (results.length == 0) {
-                res.status(404).send("can not remove an empty user")
+                res.status(404).send({ message: "can not remove an empty user" })
                 return
             }
             res.send(results[0])
