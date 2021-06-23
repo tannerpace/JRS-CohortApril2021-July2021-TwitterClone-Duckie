@@ -5,13 +5,16 @@
   }
   
   .left {
-    width: 25%;
+    position: fixed;
+    width: 10rem;
     }
 
   .right {
       width: 50%;
-      border: black solid 3px;
+      min-width: 400px;
+      border: var(--border);
       overflow-y: scroll;
+      margin-left: 10rem;
   }
   
   

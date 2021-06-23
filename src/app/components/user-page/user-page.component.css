@@ -95,7 +95,7 @@ h2 {
   padding: 0.5em;
 }
 
-.link_bar {
+.link-bar {
   position: sticky;
   top: 65px;
   font-family: var(--text);
@@ -107,4 +107,9 @@ h2 {
   padding: 1em;
   border-bottom: var(--border);
   background-color: white;
+}
+
+.link-bar { 
+    background-color: rgb(255, 247, 158);
+
 }
