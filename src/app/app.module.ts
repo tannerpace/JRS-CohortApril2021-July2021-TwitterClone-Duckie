@@ -16,6 +16,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NewQuackPageComponent } from './components/compose/new-quack-page/new-quack-page.component';
 import { CreateUserFormComponent } from './components/login/create-user-form/create-user-form.component';
 import { EditUserPageComponent } from './components/edit-user/edit-user-page/edit-user-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { QuackCardComponent } from './components/quack-card/quack-card.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { EditUserPageComponent } from './components/edit-user/edit-user-page/edi
     QuackFeedComponent,
     NavBarComponent,
     NewQuackPageComponent,
-    EditUserPageComponent
+    EditUserPageComponent,
+    NotFoundComponent,
+    QuackCardComponent
   ],
   imports: [
     BrowserModule,
