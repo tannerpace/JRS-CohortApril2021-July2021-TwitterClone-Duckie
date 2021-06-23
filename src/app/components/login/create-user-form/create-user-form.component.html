@@ -1,0 +1,22 @@
+<div>
+    <!-- TODO add #form -> copy from budget calculator to make this an actual ng form -->
+    <form>
+        <!-- TODO: add 'name' to all input tags -->
+        <!-- TODO: add anModel to all input tags -->
+        <div>
+
+        <input type="text" placeholder="username" name="username" [(ngModel)]="user.userName">
+        <input type="text" placeholder="screen name">
+        <div>
+        <input type="date" id="birthday" name="birthday">
+       </div>
+        <input type="text" placeholder="password">
+        <input type="text" placeholder="confirm password">
+    </div>
+
+        <!-- TODO make a submit button that will submit the form -->
+        <button type="submit">create user</button>
+
+        <button type="button" (click)="myFunction()">login</button>
+    </form>
+</div>

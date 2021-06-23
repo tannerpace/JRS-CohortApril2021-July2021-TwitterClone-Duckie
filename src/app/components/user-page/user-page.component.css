@@ -1,11 +1,115 @@
-.top_bar {
-    
-        width: 50%;
-        position: fixed;   
-        background: #333;
-        padding-left: 1em;
-        padding-top: 1em;
-        top: 0;
-        color: #fff;
+.container {
+  position: relative;
+  margin-top: 0;
 }
 
+.container > * {
+    box-sizing: border-box;
+}
+
+.top-bar {
+  display: flex;
+  width: 100%;
+  --top-height: 65px;
+  height: var(--top-height);
+  position: sticky;
+  background: white;
+  border: var(--border);
+  padding-left: 1em;
+  padding-bottom: 0.5em;
+  top: 0;
+  z-index: 1000; /* keeps the header in front of profile pic*/
+}
+
+.top-bar-contents {
+  line-height: 5px;
+}
+
+h2 {
+  font-family: var(--text);
+}
+
+#quack-count {
+  font-family: var(--text);
+  font-size: 1em;
+  color: var(--grey-text);
+}
+
+.banner {
+  background-color: lightgray;
+  width: 100%;
+  height: 200px;
+  padding-top: var(--top-height);
+  border: var(--border);
+}
+
+.profile-box {
+  padding: 1em;
+  border-top: var(--border);
+}
+
+.profile-edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: -50px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.profile-pic {
+  position: relative;
+  top: -65px;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background-color: rgb(202, 34, 34);
+  border: white solid 3px;
+}
+
+.screen-name {
+  font-family: var(--text);
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.user-name,
+.bio,
+.user-info {
+  font-family: var(--text);
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.user-name,
+.user-info {
+  color: var(--grey-text);
+}
+
+.bio {
+  flex-wrap: wrap;
+  padding: 0.5em;
+}
+
+.link-bar {
+  position: sticky;
+  top: 65px;
+  font-family: var(--text);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: large;
+  padding: 1em;
+  border-bottom: var(--border);
+  background-color: white;
+}
+
+.link-bar { 
+    background-color: rgb(255, 247, 158);
+
+}

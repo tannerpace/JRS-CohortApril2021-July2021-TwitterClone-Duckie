@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuackAPIComponent } from './quack-api.component';
+import { CreateUserFormComponent } from './create-user-form.component';
 
-describe('QuackAPIComponent', () => {
-  let component: QuackAPIComponent;
-  let fixture: ComponentFixture<QuackAPIComponent>;
+describe('CreateUserFormComponent', () => {
+  let component: CreateUserFormComponent;
+  let fixture: ComponentFixture<CreateUserFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuackAPIComponent ]
+      declarations: [ CreateUserFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuackAPIComponent);
+    fixture = TestBed.createComponent(CreateUserFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

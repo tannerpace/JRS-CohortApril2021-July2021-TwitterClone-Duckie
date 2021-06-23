@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent implements OnInit {
 
+  showLoginForm: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.showLoginForm = true;
   }
 
+  //TODO control when to display the login form and the create user form
+  toggleLoginCreateUser() {
+    this.showLoginForm = !this.showLoginForm;
+  }
 }
