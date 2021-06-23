@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { User } from '../../../models/user.model';
+
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class CreateUserFormComponent implements OnInit {
 
   //TODO: create a user object and user ngModel to link that
-  user //: User;
+  user: User;
   // user's properties to the html inputs
   //  interface User {
   //  username : string;
@@ -18,7 +20,7 @@ export class CreateUserFormComponent implements OnInit {
   //  password: any;
   //  confirmpassword: any;
   // }
- 
+
 
   showCreateInputs: boolean;
 
@@ -27,8 +29,8 @@ export class CreateUserFormComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.user = {username: '', password: ''}
-    // this.user = new User();
+    this.user = { userName: '', password: '' }
+    this.user = new User(this.user);
   }
 
   myFunction() {
@@ -37,6 +39,6 @@ export class CreateUserFormComponent implements OnInit {
   }
 
   createUser() {
-    // this.userService.createUser(this.user);
+    this.userService.createNewUser(this.user);
   }
 }
