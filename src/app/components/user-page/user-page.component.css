@@ -14,7 +14,7 @@
   height: var(--top-height);
   position: sticky;
   background: white;
-  border: var(--border);
+  border-bottom: var(--border);
   padding-left: 1em;
   padding-bottom: 0.5em;
   top: 0;
@@ -40,7 +40,6 @@ h2 {
   width: 100%;
   height: 200px;
   padding-top: var(--top-height);
-  border: var(--border);
 }
 
 .profile-box {
@@ -59,6 +58,7 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .profile-pic {
@@ -67,15 +67,40 @@ h2 {
   width: 130px;
   height: 130px;
   border-radius: 50%;
-  background-color: rgb(202, 34, 34);
-  border: white solid 3px;
+  display: flex;
+  align-items: center;
+  background-color: #fceb6b;
+  border: white solid 3px; 
 }
+
+.profile-pic svg{
+    width: 80%;
+    height: 80%;
+    fill:#fda300;
+  }
+
+  .pic{
+      display: flex;
+      justify-content: center;
+  }
 
 .screen-name {
   font-family: var(--text);
   font-size: 20px;
   line-height: 24px;
 }
+
+.edit-button button {
+        border: #024089 solid 2px;;
+        color: #024089;
+        padding: .25em 1em;
+        border-radius: 1.5em;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1em;
+        cursor: pointer;
+      }
 
 .user-name,
 .bio,
@@ -90,6 +115,10 @@ h2 {
   color: var(--grey-text);
 }
 
+.user-info a{
+    text-decoration: none;
+}
+
 .bio {
   flex-wrap: wrap;
   padding: 0.5em;
@@ -100,16 +129,30 @@ h2 {
   top: 65px;
   font-family: var(--text);
   display: flex;
+  justify-content: space-around;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-around;
-  font-size: large;
-  padding: 1em;
+  font-size: medium;
   border-bottom: var(--border);
   background-color: white;
-}
-
-.link-bar { 
-    background-color: rgb(255, 247, 158);
 
 }
+
+.link-bar a {
+    text-decoration:var(--grey-text) ;
+    text-align: center;
+    padding: .5em;
+    flex-grow: 1;
+    text-decoration: none;
+    color: black;
+    
+  }
+
+  .link-bar a:hover{
+      background-color: #fceb6b;
+      border-bottom:#fda300 solid 4px;
+      border-radius: 2px;
+  }
+    
+
+
