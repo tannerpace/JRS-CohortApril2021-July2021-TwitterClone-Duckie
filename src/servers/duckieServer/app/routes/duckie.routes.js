@@ -9,7 +9,7 @@ module.exports = app => {
     app.put("/api/user/:userName", duckie.editUser);
     app.delete("/api/user/:id", duckie.deleteUser);
 
-    
+    app.post("/api/getlikes", duckie.getLikes)
     app.post("/api/tweet/", duckie.createQuack);
     app.put('/api/tweet/like', duckie.addLike);
     app.put('/api/tweet/repost', duckie.addRepost)
