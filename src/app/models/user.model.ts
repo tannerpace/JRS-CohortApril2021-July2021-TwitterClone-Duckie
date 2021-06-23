@@ -6,8 +6,8 @@ export class User {
     public userName?: string;
     public screenName?: string;
 
-    public birthDate?: Date;
-    public dateJoined?: Date;
+    public birthDate?: string;
+    public dateJoined?: string;
 
     public bio?: string;
     public website?: string;

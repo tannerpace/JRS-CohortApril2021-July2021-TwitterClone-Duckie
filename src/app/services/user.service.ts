@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpService } from './http.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ import { HttpService } from './http.service';
 export class UserService {
 
   private baseURL: string;
-  public activeUser:User;
+  public activeUser: User;
 
   public newActiveUser$: Subject<User> = new Subject<User>();
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.baseURL = HttpService.SERVER_URL;
   }
 
@@ -21,7 +22,7 @@ export class UserService {
 
   }
 
-  setActiveUser(user: User){
+  setActiveUser(user: User) {
     this.activeUser = user;
     this.newActiveUser$.next(this.activeUser);
   }
@@ -30,24 +31,24 @@ export class UserService {
     return this.activeUser
   }
 
-  getUserById(id: number) {
-
+  getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.baseURL}/api/user/${id}`);
   }
 
-  getUserByUserName(userName: string) {
-
+  getUserByUserName(userName: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/api/user/${userName}`);
   }
 
-  createNewUser(newUser: User) {
-
+  createNewUser(newUser: User): Observable<any> {
+    return this.http.post(`${this.baseURL}/api/user`, newUser);
   }
 
-  editUserById(id: number, updatedUserData: User) {
-
+  editUserInfo(id: number, updatedUserData: User): Observable<any> {
+    return this.http.put(`${this.baseURL}/api/user/${id}`, updatedUserData)
   }
 
-  deleteUser(user: User) {
-
+  deleteUser(id: number) {
+    return this.http.delete(`${this.baseURL}/api/user/${id}`)
   }
 
   getUsersFollowedBy(user: User) {

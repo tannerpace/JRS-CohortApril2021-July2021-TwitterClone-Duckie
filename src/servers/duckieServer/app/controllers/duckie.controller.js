@@ -14,7 +14,6 @@ exports.welcome = (req, res) => {
 }
 
 exports.createUser = async (req, res) => {
-
     console.log(req.body)
 
     const userName = req.body.userName;
@@ -46,37 +45,63 @@ exports.getUser = (req, res) => {
 
     let userName = req.params.userName
 
-    query = "SELECT * FROM users where userName = ?;"              // select user by userName
+    // select user by userName
+    let query = "SELECT * FROM users where userName = ?;"
 
     db.query(query, [userName], (err, results) => {
         if (err) {
+            console.error(err)
             res.status(500).send()
             return
         } else {
             if (results.length == 0) {
-                res.status(404).send({ message: "user not found" })        //no user found
+                //no user found
+                res.status(404).send({ message: "user not found" })
                 return
             }
             res.send(results[0])
         }
     })
-
 };
 
-exports.editUser = (req, res) => {
+exports.getUserById = (req, res) => {
 
-    let userName = req.params.userName;
+    let id = req.params.id
 
-    let newUserName = req.body.userName;
+    // select user by id
+    let query = "SELECT * FROM users where id = ?;"
+
+    db.query(query, [id], (err, results) => {
+        console.log(results)
+        if (err) {
+            console.error(err)
+            res.status(500).send()
+            return
+        } else {
+            if (results.length == 0) {
+                //no user found
+                res.status(404).send({ message: "user id not found" })
+                return
+            }
+            res.send(results[0])
+        }
+    })
+};
+
+exports.editUserInfo = (req, res) => {
+
+    let id = req.params.id;
+
+    //******** WARNING: do not update userName in this query? ********
     let screenName = req.body.screenName;
     let bio = req.body.bio;
     let website = req.body.website;
 
     let query = "UPDATE users \
     SET userName = ?, screenName = ?, bio = ?, website = ? \
-    WHERE userName = ?;"
+    WHERE id = ?;"
 
-    db.query(query, [newUserName, screenName, bio, website, userName], (err, results) => {
+    db.query(query, [newUserName, screenName, bio, website, id], (err, results) => {
         if (err) {
             console.error(err)
             res.status(500).send()
@@ -92,7 +117,7 @@ exports.deleteUser = (req, res) => {
 
     let id = req.params.id;
 
-    query = "DELETE FROM users where id = ?;"
+    let query = "DELETE FROM users where id = ?;"
 
     db.query(query, [id], (err, results) => {
         if (err) {
@@ -109,6 +134,7 @@ exports.deleteUser = (req, res) => {
     })
 
 };
+
 exports.createQuack = (req, res) => { //takes an object with userId and quack paramaters 
 
     console.log(req.body)
