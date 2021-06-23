@@ -1,20 +1,18 @@
+.column {
+  float: left;
+  height: 100vh;
+}
 
-  .column {
-    float: left;
-    height: 100vh;
-  }
-  
-  .left {
-    position: fixed;
-    width: 10rem;
-    }
+.left {
+  position: fixed;
+}
 
-  .right {
-      width: 50%;
-      min-width: 400px;
-      border: var(--border);
-      overflow-y: scroll;
-      margin-left: 10rem;
-  }
-  
-  
+.right {
+  width: 50%;
+  min-width: 400px;
+  border: var(--border);
+  border-top: none;
+  overflow-y: scroll;
+  margin-left: 7rem;
+}
+ 
