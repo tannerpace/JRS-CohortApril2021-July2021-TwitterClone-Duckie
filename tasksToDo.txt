@@ -25,7 +25,7 @@ Tasks to do for the Duckie project:
     f) log out
 
 3. Implement a SQL Rest API
-    a) create base level server that listens on port 8080
+    a) create base level server that listens on port 8080 ✅
     b) add multiple request routes
         1) get tweets by user
         2) get comments by user
