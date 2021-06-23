@@ -3,18 +3,16 @@ module.exports = app => {
 
     app.get("/", duckie.welcome);
    
-    // make a user
+    // users
     app.post("/api/user", duckie.createUser); 
-    
-    //get a user
     app.get("/api/user/:userName", duckie.getUser);
-    
-    //edit a user
     app.put("/api/user/:userName", duckie.editUser);
-    
-    //delete a user
     app.delete("/api/user/:id", duckie.deleteUser);
 
     
-    
+    app.post("/api/tweet/", duckie.createQuack);
+    app.put('/api/tweet/like', duckie.addLike);
+    app.put('/api/tweet/repost', duckie.addRepost)
+    app.delete("/api/tweet/:id", duckie.deleteQuack);
+
 };

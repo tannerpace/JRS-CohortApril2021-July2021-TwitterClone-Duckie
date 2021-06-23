@@ -1,6 +1,7 @@
 export class User {
     private id?: number;
-    private password?: string;
+    
+    public password?: string;
 
     public userName?: string;
     public screenName?: string;
