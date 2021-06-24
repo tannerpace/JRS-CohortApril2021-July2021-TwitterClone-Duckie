@@ -12,8 +12,9 @@ export class User {
     public bio?: string;
     public website?: string;
     public quackCount?: number;
-    // public profilePic: string;
-    // public banner: string;
+    
+    public profilePic?: string;
+    public banner?: string;
 
     constructor(obj: User) {
       Object.assign(this, obj);

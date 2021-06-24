@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { User } from '../../../models/user.model';
-
+import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,21 +10,13 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CreateUserFormComponent implements OnInit {
 
-  //TODO: create a user object and user ngModel to link that
   user: User;
-  // user's properties to the html inputs
-  //  interface User {
-  //  username : string;
-  //  screenname: string;
-  //  birthday: number ;
-  //  password: any;
-  //  confirmpassword: any;
-  // }
-
+  confirmedPassword: string;
 
   showCreateInputs: boolean;
 
   @Output() toggleForms = new EventEmitter<void>();
+
 
   constructor(private userService: UserService) { }
 
@@ -33,12 +25,42 @@ export class CreateUserFormComponent implements OnInit {
     this.user = new User(this.user);
   }
 
-  myFunction() {
-    console.log('button clicked')
+  toggleForm() {
     this.toggleForms.next();
   }
 
-  createUser() {
-    this.userService.createNewUser(this.user);
+  onSubmit(form: NgForm) {
+
+    // /^[a-zA-Z0-9_.]*$/.test(this.username)
+    // console.log(/^[a-zA-Z0-9_.]*$/.test("!@#%"))
+
+    console.log("creating user start")
+
+    if (this.user.password != this.confirmedPassword) {
+      console.log("password mismatch")
+      return;
+
+    } else if (!/^[a-zA-Z0-9_]*$/.test(this.user.userName)) {
+      console.log("invalid username")
+      return;
+    } else {
+
+      console.log("user form validated")
+
+      this.userService.createNewUser(this.user)
+        .subscribe(
+          data => {
+            if(!data) {
+              console.log("ERROR Create User Faild")
+            }
+            console.log(data)
+            console.log("New User Created Successfully")
+
+          },
+          error => {
+            console.error("ERROR logging in: ", error)
+          }
+        );
+    }
   }
 }
