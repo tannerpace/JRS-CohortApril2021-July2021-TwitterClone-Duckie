@@ -18,44 +18,62 @@ export class UserService {
     this.baseURL = HttpService.SERVER_URL;
   }
 
-  loginUser() {
-
+  public loginUser(userName: string, password: string) {
+    let body = {
+      userName: userName,
+      password: password
+    }
+    console.log(body)
+    return this.http.post(`${this.baseURL}/api/user/login`, body)
   }
 
-  setActiveUser(user: User) {
-    this.activeUser = user;
-    this.newActiveUser$.next(this.activeUser);
+  public isValid() {
+    return JSON.parse(localStorage.getItem("activeUser")) != null;
   }
 
-  getActiveUser(): User {
-    return this.activeUser
+  public setActiveUser(user: User) {
+    localStorage.setItem("activeUser", JSON.stringify(user));
+    this.newActiveUser$.next(user);
   }
 
-  getUserById(id: number): Observable<any> {
+  public logoutActiveUser() {
+    localStorage.removeItem("activeUser");
+  }
+
+  public getActiveUser(): User {
+    let user: User = JSON.parse(localStorage.getItem("activeUser"));
+    if (user) {
+      // logged in so return the user
+      return user;
+    }
+    return null;
+  }
+
+  public getUserById(id: number): Observable<any> {
     return this.http.get(`${this.baseURL}/api/user/${id}`);
   }
 
-  getUserByUserName(userName: string): Observable<any> {
+  public getUserByUserName(userName: string): Observable<any> {
     return this.http.get(`${this.baseURL}/api/user/${userName}`);
   }
 
-  createNewUser(newUser: User): Observable<any> {
+  public createNewUser(newUser: User): Observable<any> {
     return this.http.post(`${this.baseURL}/api/user`, newUser);
   }
 
-  editUserInfo(id: number, updatedUserData: User): Observable<any> {
+  public editUserInfo(id: number, updatedUserData: User): Observable<any> {
     return this.http.put(`${this.baseURL}/api/user/${id}`, updatedUserData)
   }
 
-  deleteUser(id: number) {
+  public deleteUser(id: number) {
     return this.http.delete(`${this.baseURL}/api/user/${id}`)
   }
 
-  getUsersFollowedBy(user: User) {
+  public getUsersFollowedBy(user: User) {
 
   }
 
-  getAllUsersFollowing(user: User) {
+  public getAllUsersFollowing(user: User) {
 
   }
 };

@@ -8,8 +8,8 @@ Tasks to do for the Duckie project:
         iii) implement comment
 
 1. Create a 'home' page - the page of 'your' profile
-    a) design HTML of profile page
-    b) CSS for profile page
+    a) design HTML of profile page ✅
+    b) CSS for profile page ✅
     c) use Input for profile page so that the page generates
             based on some user
             @Input user: User;
@@ -17,39 +17,40 @@ Tasks to do for the Duckie project:
     e) if the page is of the logged in user - display an 'edit profile' option
 
 2. Create a nav bar with nav icons
-    a) home - link to your feed
-    b) search/explore - if time permits
+    a) home - link to your feed ✅
+    b) search/explore - if time permits ✅
     c) messages - if time permits - unlikely
-    d) profile - link to your profile with your tweets
-    e) compose - link to create a new tweet
-    f) log out
+    d) profile - link to your profile with your tweets ✅
+    e) compose - link to create a new tweet ✅
+    f) log out ✅
 
 3. Implement a SQL Rest API
     a) create base level server that listens on port 8080 ✅
     b) add multiple request routes
-        1) get tweets by user
+        1) get tweets by user ✅
         2) get comments by user
-        3) get likes by user
+        3) get likes by user ✅
         4) get all followed tweets by user
         
-        5) get user
-        6) edit user (put)
-        7) delete user
-        8) create user
+        5) get user ✅
+        6) edit user (put) ✅
+        7) delete user ✅
+        8) create user ✅
 
-        9) create tweet
-        10) delete tweet
-        11) get tweet ??? - maybe
-        12) 'edit' tweet - increment like count or rt count
+        9) create tweet ✅
+        10) delete tweet ✅
+        11) get tweet ??? - maybe ✅
+        12) 'edit' tweet - increment like count or rt count ✅
 
-        13) get all followed by user id
-        14) get all following by user id
+        13) get all followed-users by user id 
+        14) get all following-users by user id
 
-        15) login user
+        15) login user 
 
 4. Implement a way for a user to login
-    a) make login page
-    b) make login form
+    a) make login page ✅
+    b) make login form 
+    c) make create-user form
 
 5. Implement a way to create a new account/user
     **** depends on task 4.b ****
@@ -116,3 +117,17 @@ List of services
                 by liked
                 by 'reply by' - all replies of one user
                 by media - by user
+
+
+TODO for Blake
+
+    router lazy load users
+    force login
+        talk with Jazmin
+            either change nav to only show login icon
+            or force reroute to login page on page load
+
+        save logged in user in session variables
+
+    font awesome in angular:
+        https://www.angularjswiki.com/angular/how-to-use-font-awesome-icons-in-angular-applications/

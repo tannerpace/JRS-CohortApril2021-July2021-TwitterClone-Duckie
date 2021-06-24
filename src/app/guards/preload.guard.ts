@@ -20,7 +20,7 @@ export class PreloadGuard implements Resolve<any> {
     ): Observable<any> {
       const username = route.paramMap.get('username')
       const baseUrl = HttpService.SERVER_URL;
-      console.log("username in guard: ", username)
+      
       return this.http.get(`${baseUrl}/api/user/${username}`)
         .pipe(
           tap( // Log the result or error
