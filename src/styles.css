@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+
 :root {
     --grey-text: rgb(110, 118, 125);
     --text: helvetica;

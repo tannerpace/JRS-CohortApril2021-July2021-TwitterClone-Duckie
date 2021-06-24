@@ -12,6 +12,7 @@ module.exports = app => {
 
     app.post("/api/user/login", duckie.login);
 
+    app.post("/api/getQuacks", duckie.getQuacksByUser)
     app.post("/api/getqb", duckie.getReposts)
     app.post("/api/getlikes", duckie.getLikes)
     app.post("/api/tweet/", duckie.createQuack);
@@ -19,7 +20,8 @@ module.exports = app => {
     app.put('/api/tweet/repost', duckie.addRepost)
     app.delete("/api/tweet/:id", duckie.deleteQuack);
 
-    app.post("/api/following", duckie.getFollowing);
-    app.post("/api/followers", duckie.getFollowers);
+    app.post("/api/followedquacks",duckie.getFollowingQuacks);
+    app.post("/api/following", duckie.getFollowingUser);
+    app.post("/api/followers", duckie.getFollowersUser);
 
 };

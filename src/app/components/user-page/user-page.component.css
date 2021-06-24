@@ -1,6 +1,10 @@
 .container {
+  
   position: relative;
-  margin-top: 0;
+  --top-height: 65px;
+  overflow-y: scroll;
+  height: calc(100% - var(--top-height));
+  width:100%;
 }
 
 .container > * {
@@ -9,8 +13,6 @@
 
 .top-bar {
   display: flex;
-  width: 100%;
-  --top-height: 65px;
   height: var(--top-height);
   position: sticky;
   background: white;
@@ -18,7 +20,7 @@
   padding-left: 1em;
   padding-bottom: 0.5em;
   top: 0;
-  z-index: 1000; /* keeps the header in front of profile pic*/
+  
 }
 
 .top-bar-contents {
@@ -63,7 +65,7 @@ h2 {
 
 .profile-pic {
   position: relative;
-  top: -65px;
+  top: calc(var(--top-height) * -1);
   width: 130px;
   height: 130px;
   border-radius: 50%;
@@ -91,8 +93,8 @@ h2 {
 }
 
 .edit-button button {
-        border: #024089 solid 2px;;
-        color: #024089;
+        border: var(--blue) solid 2px;;
+        color: var(--blue) ;
         padding: .25em 1em;
         border-radius: 1.5em;
         text-align: center;
@@ -126,7 +128,7 @@ h2 {
 
 .link-bar {
   position: sticky;
-  top: 65px;
+  top: 0;
   font-family: var(--text);
   display: flex;
   justify-content: space-around;
@@ -134,24 +136,29 @@ h2 {
   flex-direction: row;
   font-size: medium;
   border-bottom: var(--border);
+  border-top: var(--border);
   background-color: white;
 
 }
 
 .link-bar a {
-    text-decoration:var(--grey-text) ;
+
     text-align: center;
-    padding: .5em;
+    padding: .75em;
     flex-grow: 1;
+    color: var(--grey-text);
     text-decoration: none;
-    color: black;
+    border-bottom: 4px solid transparent;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
     
   }
 
   .link-bar a:hover{
-      background-color: #fceb6b;
-      border-bottom:#fda300 solid 4px;
-      border-radius: 2px;
+      background-color: var(--yellow);
+      border-bottom: var(--orange) solid 4px;
+      color:var(--blue)
   }
     
 
