@@ -4,6 +4,11 @@
     --grey-text: rgb(110, 118, 125);
     --text: helvetica;
     --border:rgb(230, 230, 230) solid 1px;
+    --blue:#024089;
+    --yellow:#fef6b7;
+    --orange:#fda300;
+    --ltblue:#0077ff;;
+    --ltyellow:#fef6b7;
 }
 
 body{
