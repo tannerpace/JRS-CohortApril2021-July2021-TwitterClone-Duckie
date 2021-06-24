@@ -1,4 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'login-form',
@@ -7,32 +11,52 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class LoginFormComponent implements OnInit {
 
-  //TODO: create an output to control when create user form 
-  // is displayed
   @Output() toggleForms = new EventEmitter<void>();
   @Output() newLogin = new EventEmitter<any>();
 
-  //TODO: create a user object and user ngModel to link that
-  // user's properties to the html inputs
-  user = {username: '', password: ''}; //: User; // {username, screenname, password, bio, website}
+  userName: string;
+  password: string;
 
 
-  constructor() { }
+  constructor(private userService: UserService, private router:Router) { }
 
   ngOnInit(): void {
+    this.userName = "";
+    this.password = "";
   }
 
-  login() {
-
-    // call service.login
-  }
-
-  //TODO: write function will OUTPUT the create form control output
-  myFunction() {
+  toggleForm() {
     this.toggleForms.next();
   }
 
-  createUser() {
-    //later -> this.service.createuser();
+  onSubmit(form: NgForm) {
+
+    console.log("login form submitted")
+    this.userService.loginUser(this.userName, this.password)
+      .subscribe(
+        data => { 
+          if(!data){
+            console.log("password mismatch")
+            //password did not match
+            // do something
+            return;
+          }
+          console.log("login successful")
+          // do something later
+          console.log(data)
+
+          let user = new User({
+            userName: data[0].userName,
+            screenName: data[0].screenName,
+            birthDate: data[0].birthDate
+          });
+
+          this.userService.setActiveUser(user);
+           this.router.navigate([""]);          
+        },
+        error => {
+          console.error("ERROR loggin in: ", error)
+         }
+      );
   }
 }

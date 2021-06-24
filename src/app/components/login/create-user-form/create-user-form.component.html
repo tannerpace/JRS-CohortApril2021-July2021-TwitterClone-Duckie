@@ -1,22 +1,22 @@
 <div>
-    <!-- TODO add #form -> copy from budget calculator to make this an actual ng form -->
-    <form>
-        <!-- TODO: add 'name' to all input tags -->
-        <!-- TODO: add anModel to all input tags -->
+    <form #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm)">
         <div>
 
-        <input type="text" placeholder="username" name="username" [(ngModel)]="user.userName">
-        <input type="text" placeholder="screen name">
-        <div>
-        <input type="date" id="birthday" name="birthday">
-       </div>
-        <input type="text" placeholder="password">
-        <input type="text" placeholder="confirm password">
-    </div>
+            <!-- TODO: add 'name' to all input tags -->
+            <!-- TODO: add an ngModel to all input tags -->
+            <!-- make all the inputs required -->
+            <input type="text" placeholder="Username" required name="username" [(ngModel)]="user.userName">
+            <input type="text" placeholder="Screen Name" required name="screenNname" [(ngModel)]="user.screenName">
+            <div>
+                <input type="date" id="Birth Date" required name="birthDate" [(ngModel)]="user.birthDate">
+            </div>
+            <input type="text" placeholder="Password" required  name="password" [(ngModel)]="user.password">
+            <input type="text" placeholder="Confirm Password" required name="confirmedPassword" [(ngModel)]="confirmedPassword">
+        </div>
 
-        <!-- TODO make a submit button that will submit the form -->
-        <button type="submit">create user</button>
+        <input type="submit" [disabled]="!itemForm.valid">
 
-        <button type="button" (click)="myFunction()">login</button>
+        <br>
+        <button type="button" (click)="toggleForm()">Login</button>
     </form>
 </div>
