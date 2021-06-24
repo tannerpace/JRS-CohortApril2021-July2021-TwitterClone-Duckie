@@ -164,11 +164,13 @@ exports.login = (req, res) => {
 
 
 exports.createQuack = (req, res) => { //takes an object with userId and quack paramaters 
-    let user = req.body.uId
+    let user = req.body.id
     let countQuery = "select * FROM `duckie`.`users` where id=?"
     db.query(countQuery, [user], (err, data, fields) => {
         if (err) {
             res.status(500).send({ err, message: "unable to get user" })
+        } else if(data.length==0){
+            res.status(200).send({data, message:"there was a problem"})
         } else {
             let quackCount = (data[0].quackCount + 1)
             let quack = req.body.quack
@@ -273,16 +275,18 @@ exports.getReposts = (req, res) => {//get reposts by user; returns array of repo
 
 }
 exports.addLike = (req, res) => {//needs userId, and quackId
-
+console.log(req.body)
     let likeCount
-    let uId = req.body.uId
+    let uId = req.body.uid
 
-    let qId = req.body.quackId
+    let qId = req.body.quackid
 
     let query = "select * from `quacks` WHERE `id`=?;"
     db.query(query, [qId], (err, data, fields) => {
-        if (data[0].affectedRows == 0 || err) {
+        if (err) {
             res.status(500).send({ err, message: "error updating likes" })
+        } else if (data.length==0){
+            res.status(200).send({data, message:"couldn't find like"})
         } else {//data.likecount+1
             console.log(data)
             likeCount = data[0].likeCount + 1
@@ -317,8 +321,8 @@ exports.deleteQuack = (req, res) => {// delete Quack by id
     const id = req.params.id
 
     let query = "DELETE FROM `duckie`.`quacks` WHERE `id` = ?;"
-    db.query(query, [id], (data, err, fields) => {
-        if (err.affectedRows == 0) {
+    db.query(query, [id], (err, data, fields) => {
+        if (err) {
             res.status(500).send({ err, message: "no tweet with id " + id })
 
         } else {
@@ -358,16 +362,18 @@ exports.getFollowingQuacks = (req, res) => {//Given an id will return an array o
     })
 }
 exports.addRepost = (req, res) => {//needs userId, and quackId
-
+console.log(req.body)
     let qbCount
     let uId = req.body.uId
 
-    let qId = req.body.quackId
+    let qId = req.body.qId
 
     let query = "select * from `quacks` WHERE `id`=?;"
     db.query(query, [qId], (err, data, fields) => {
         if (data.affectedRows == 0 || err) {
             res.status(500).send({ err, message: "error updating qb" })
+        } else if (data.length==0){
+            res.status(200).send({data, message:"couldnt find quack"})
         } else {//data.likecount+1
             console.log(data)
             qbCount = data[0].repostCount + 1
