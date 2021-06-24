@@ -28,17 +28,25 @@ export class UserService {
   }
 
   public isValid() {
-    console.log("user is: " + this.activeUser != null)
-    return this.activeUser != null;
+    return JSON.parse(localStorage.getItem("activeUser")) != null;
   }
 
   public setActiveUser(user: User) {
-    this.activeUser = user;
-    this.newActiveUser$.next(this.activeUser);
+    localStorage.setItem("activeUser", JSON.stringify(user));
+    this.newActiveUser$.next(user);
+  }
+
+  public logoutActiveUser() {
+    localStorage.removeItem("activeUser");
   }
 
   public getActiveUser(): User {
-    return this.activeUser
+    let user: User = JSON.parse(localStorage.getItem("activeUser"));
+    if (user) {
+      // logged in so return the user
+      return user;
+    }
+    return null;
   }
 
   public getUserById(id: number): Observable<any> {
