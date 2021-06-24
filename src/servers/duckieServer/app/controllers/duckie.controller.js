@@ -134,29 +134,67 @@ exports.deleteUser = (req, res) => {
 
 };
 
-exports.createQuack = (req, res) => { //takes an object with userId and quack paramaters 
+exports.login= (req, res) => {
+    let password = req.body.password
+    let userName = req.body.userName
+    let query = "Select * from users Where userName=?;"
 
-    console.log(req.body)
-
-    let quack = req.body.quack
-
-    console.log(quack)
-    if (quack.length > 140) {//check if the tweet is too large here for detailed error hanfling 
-        res.status(400).send({ message: "quack too large" })
-    } else {
-
-    }
-
-    let user = req.body.userId
-    let query = "INSERT INTO `duckie`.`quacks`(`body`,`userId`) \
-                VALUES(?,?);"
-
-    db.query(query, [quack, user], (err, data, fields) => {
+    db.query(query, [userName], async (err, data) => {
         if (err) {
-            res.status(500).send({ message: "error adding quack" })
+            res.status(500).send({ message: "error orrcured" })
+        } else if (data && data.length == 0) {
+            //empty request 
+            res.status(400).send({ message: "Username not found" })
+            return
+        } else {
+            const comparison = await bcrypt.compare(password, data[0].password)
+            if (comparison) {
+                console.log("password successs")
+                res.send(data)
+
+            } else {
+                res.status(204).send({ message: "passord doesnt match" })
+            }
+
         }
-        res.send(data)
     })
+}
+
+exports.createQuack = (req, res) => { //takes an object with userId and quack paramaters 
+    let user = req.body.uId
+    let countQuery = "select * FROM `duckie`.`users` where id=?"
+    db.query(countQuery, [user], (err, data, fields) => {
+        if (err) {
+            res.status(500).send({ err, message: "unable to get user" })
+        } else {
+            let quackCount = (data[0].quackCount + 1)
+            let quack = req.body.quack
+            let query = "INSERT INTO `duckie`.`quacks`(`body`,`userId`) \
+            VALUES(?,?);"
+
+            db.query(query, [quack, user], (err, data, fields) => {
+                if (err) {
+                    res.status(500).send({ message: "error adding quack" })
+                } else {
+                    let addQuery = "UPDATE `duckie`.`users` SET `quackCount` = ? WHERE `id` = ?"
+                    db.query(addQuery, [quackCount, user], (err, data, fields) => {
+                        if (err) {
+                            res.status(500).send({ err, mesage: "unable to add quack count" })
+                        } else {
+                            res.status(200).send(data)
+                        }
+                    })
+                }
+
+            })
+        }
+    })
+
+
+
+
+
+
 }
 
 exports.getLikes = (req, res) => {//get likes by user; returns array of liked quacks
@@ -167,11 +205,13 @@ exports.getLikes = (req, res) => {//get likes by user; returns array of liked qu
     db.query(query, [uId], (err, dta, fields) => {
         if (err) {
             res.status(500).send({ err, message: "could not get likes" })
+        } else if (dta.length == 0) {
+            res.status(200).send({ message: "no likes" })
         } else {
             let quacks = []
-            let stop = dta.length 
+            let stop = dta.length
             let otherQuery = "select * from `quacks` WHERE `id`=?"
-            for (let i = 0; i <stop; i++) {
+            for (let i = 0; i < stop; i++) {
                 db.query(otherQuery, [dta[i].quackId], (err, data, fields) => {
                     if (err) {
                         res.status(500).send({ err, message: "could not get quacks" })
@@ -195,11 +235,13 @@ exports.getReposts = (req, res) => {//get reposts by user; returns array of repo
     db.query(query, [uId], (err, dta, fields) => {
         if (err) {
             res.status(500).send({ err, message: "could not get reposts" })
+        } else if (dta.length == 0) {
+            res.status(200).send({ message: "no Quackbacks" })
         } else {
             let quacks = []
-            let stop = dta.length 
+            let stop = dta.length
             let otherQuery = "select * from `quacks` WHERE `id`=?"
-            for (let i = 0; i <stop; i++) {
+            for (let i = 0; i < stop; i++) {
                 db.query(otherQuery, [dta[i].quackId], (err, data, fields) => {
                     if (err) {
                         res.status(500).send({ err, message: "could not get quacks" })
@@ -216,36 +258,36 @@ exports.getReposts = (req, res) => {//get reposts by user; returns array of repo
 }
 exports.addLike = (req, res) => {//needs userId, and quackId
 
-    let likeCount 
+    let likeCount
     let uId = req.body.uId
 
     let qId = req.body.quackId
 
-     let query = "select * from `quacks` WHERE `id`=?;"
+    let query = "select * from `quacks` WHERE `id`=?;"
     db.query(query, [qId], (err, data, fields) => {
-        if (data.affectedRows == 0 || err) {
+        if (data[0].affectedRows == 0 || err) {
             res.status(500).send({ err, message: "error updating likes" })
         } else {//data.likecount+1
-           console.log(data)
-            likeCount=data[0].likeCount+1
-          
-            let secondQuery= "UPDATE `duckie`.`quacks` SET `likeCount` = ? WHERE `id` = ?;"
-            db.query(secondQuery, [likeCount,qId], (err,data,fields)=>{
-                if(err){
-                    res.status(500).send({err,message:"could not update like count"})
-                } else{
-                    let thridQuery= "INSERT INTO `duckie`.`likes` (`userId`, `quackId`) VALUES (?,?);"
-                    db.query(thridQuery,[uId,qId], (err,data,fields)=>{
-                        if (err){
-                            res.status(500).send({err,message:"error adding to like table"})
-                        } else{
+            console.log(data)
+            likeCount = data[0].likeCount + 1
+
+            let secondQuery = "UPDATE `duckie`.`quacks` SET `likeCount` = ? WHERE `id` = ?;"
+            db.query(secondQuery, [likeCount, qId], (err, data, fields) => {
+                if (err) {
+                    res.status(500).send({ err, message: "could not update like count" })
+                } else {
+                    let thridQuery = "INSERT INTO `duckie`.`likes` (`userId`, `quackId`) VALUES (?,?);"
+                    db.query(thridQuery, [uId, qId], (err, data, fields) => {
+                        if (err) {
+                            res.status(500).send({ err, message: "error adding to like table" })
+                        } else {
                             res.status(200).send(data)
                         }
                     })
                 }
             })
-            
-          
+
+
         }
 
     })
@@ -273,35 +315,35 @@ exports.deleteQuack = (req, res) => {// delete Quack by id
 
 exports.addRepost = (req, res) => {//needs userId, and quackId
 
-    let qbCount 
+    let qbCount
     let uId = req.body.uId
 
     let qId = req.body.quackId
 
-     let query = "select * from `quacks` WHERE `id`=?;"
+    let query = "select * from `quacks` WHERE `id`=?;"
     db.query(query, [qId], (err, data, fields) => {
         if (data.affectedRows == 0 || err) {
             res.status(500).send({ err, message: "error updating qb" })
         } else {//data.likecount+1
-           console.log(data)
-            qbCount=data[0].repostCount+1
-            let secondQuery= "UPDATE `duckie`.`quacks` SET `repostCount` = ? WHERE `id` = ?;"
-            db.query(secondQuery, [qbCount,qId], (err,data,fields)=>{
-                if(err){
-                    res.status(500).send({err,message:"could not update repost count"})
-                } else{
-                    let thridQuery= "INSERT INTO `duckie`.`reposts` (`userId`, `quackId`) VALUES (?,?);"
-                    db.query(thridQuery,[uId,qId], (err,data,fields)=>{
-                        if (err){
-                            res.status(500).send({err,message:"error adding to repost table"})
-                        } else{
+            console.log(data)
+            qbCount = data[0].repostCount + 1
+            let secondQuery = "UPDATE `duckie`.`quacks` SET `repostCount` = ? WHERE `id` = ?;"
+            db.query(secondQuery, [qbCount, qId], (err, data, fields) => {
+                if (err) {
+                    res.status(500).send({ err, message: "could not update repost count" })
+                } else {
+                    let thridQuery = "INSERT INTO `duckie`.`reposts` (`userId`, `quackId`) VALUES (?,?);"
+                    db.query(thridQuery, [uId, qId], (err, data, fields) => {
+                        if (err) {
+                            res.status(500).send({ err, message: "error adding to repost table" })
+                        } else {
                             res.status(200).send(data)
                         }
                     })
                 }
             })
-            
-          
+
+
         }
 
     })
@@ -309,3 +351,63 @@ exports.addRepost = (req, res) => {//needs userId, and quackId
 
 
 }
+exports.getFollowers = (req, res) => {//returns array of a certain Id's followers
+    let id = req.body.uId
+    let query = "SELECT * FROM duckie.follows WHERE followingId=?;"
+    let followers = []
+    db.query(query, [id], (err, dta, fields) => {
+        if (err) {
+            res.status(500).send({ err, message: "unable to get followers" })
+        } else if (dta.length == 0) {
+            res.status(200).send({ mesage: "no followers" })
+        } else {
+            let followers = []
+            let stop = dta.length
+            let otherQuery = "select * from `users` WHERE `id`=?"
+            for (let i = 0; i < stop; i++) {
+                db.query(otherQuery, [dta[i].followerId], (err, data, fields) => {
+                    if (err) {
+                        res.status(500).send({ err, message: "could not get quacks" })
+                    } else {
+                        followers.push(data)
+                    } if (followers.length == stop) {
+                        res.send(followers)
+                    }
+                })
+            }
+        }
+
+    })
+}
+exports.getFollowing = (req, res) => {//returns array of who a certain id id is following
+    let id = req.body.uId
+    let query = "SELECT * FROM duckie.follows WHERE followerId=?;"
+    db.query(query, [id], (err, dta, fields) => {
+        if (err) {
+            res.status(500).send({ err, message: "unable to get following" })
+        } else if (dta.length == 0) {
+            res.status(200).send({ message: "no following" })
+        } {
+            let following = []
+            let stop = dta.length
+            let otherQuery = "select * from `users` WHERE `id`=?"
+            for (let i = 0; i < stop; i++) {
+                db.query(otherQuery, [dta[i].followingId], (err, data, fields) => {
+                    if (err) {
+                        res.status(500).send({ err, message: "could not get quacks" })
+                    } else {
+
+                        following.push(data)
+                    } if (following.length == stop) {
+                        res.send(following)
+                    }
+                })
+            }
+        }
+
+    })
+}
+
+
+
+

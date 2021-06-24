@@ -18,8 +18,13 @@ export class UserService {
     this.baseURL = HttpService.SERVER_URL;
   }
 
-  loginUser() {
-
+  loginUser(userName: string, password: string) {
+    let body = {
+      userName: userName,
+      password: password
+    }
+    console.log(body)
+    return this.http.post(`${this.baseURL}/api/user/login`, body)
   }
 
   setActiveUser(user: User) {
