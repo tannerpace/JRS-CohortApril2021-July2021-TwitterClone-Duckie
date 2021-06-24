@@ -91,8 +91,8 @@ h2 {
 }
 
 .edit-button button {
-        border: #024089 solid 2px;;
-        color: #024089;
+        border: var(--blue) solid 2px;;
+        color: var(--blue) ;
         padding: .25em 1em;
         border-radius: 1.5em;
         text-align: center;
@@ -139,19 +139,23 @@ h2 {
 }
 
 .link-bar a {
-    text-decoration:var(--grey-text) ;
+
     text-align: center;
-    padding: .5em;
+    padding: .75em;
     flex-grow: 1;
-    text-decoration: none;
     color: black;
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+
     
   }
 
   .link-bar a:hover{
-      background-color: #fceb6b;
-      border-bottom:#fda300 solid 4px;
-      border-radius: 2px;
+      background-color: var(--yellow);
+      border-bottom: var(--orange) solid 4px;
+      color:var(--blue)
   }
     
 
