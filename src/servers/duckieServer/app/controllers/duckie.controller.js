@@ -134,7 +134,7 @@ exports.deleteUser = (req, res) => {
 
 };
 
-exports.login= (req, res) => {
+exports.login = (req, res) => {
     let password = req.body.password
     let userName = req.body.userName
     let query = "Select * from users Where userName=?;"
@@ -159,6 +159,9 @@ exports.login= (req, res) => {
         }
     })
 }
+
+
+
 
 exports.createQuack = (req, res) => { //takes an object with userId and quack paramaters 
     let user = req.body.uId
@@ -195,6 +198,19 @@ exports.createQuack = (req, res) => { //takes an object with userId and quack pa
 
 
 
+}
+exports.getQuacksByUser = (req,res)=>{
+    let user= req.body.uId;
+    let query = "select * from `duckie`.`quacks` WHERE (userId=?)"
+    db.query(query,[user],(err,data)=>{
+        if(err){
+            res.status(500).send({err,message:"error getting quacks"})
+        }else if (data.length==0){
+            res.status(200).send({mesage:"user has no Quacks"})
+        }else{
+            res.status(200).send(data)
+        }
+    })
 }
 
 exports.getLikes = (req, res) => {//get likes by user; returns array of liked quacks
@@ -296,6 +312,7 @@ exports.addLike = (req, res) => {//needs userId, and quackId
 
 }
 
+
 exports.deleteQuack = (req, res) => {// delete Quack by id
     const id = req.params.id
 
@@ -312,7 +329,34 @@ exports.deleteQuack = (req, res) => {// delete Quack by id
     })
 
 }
+exports.getFollowingQuacks = (req, res) => {//Given an id will return an array of quacks from who they follow
+    let id = req.body.uId
+    let query = "SELECT * FROM duckie.follows WHERE followerId=?;"
+    db.query(query, [id], (err, dta, fields) => {
+        if (err) {
+            res.status(500).send({ err, message: "unable to get following" })
+        } else if (dta.length == 0) {
+            res.status(200).send({ message: "no following" })
+        } {
+            let quacks = []
+            let stop = dta.length
+            let otherQuery = "select * from `quacks` WHERE `userId`=?"
+            for (let i = 0; i < stop; i++) {
+                db.query(otherQuery, [dta[i].followingId], (err, data, fields) => {
+                    if (err) {
+                        res.status(500).send({ err, message: "could not get quacks" })
+                    } else {
 
+                        quacks.push(data)
+                    } if (quacks.length == stop) {
+                        res.send(quacks)
+                    }
+                })
+            }
+        }
+
+    })
+}
 exports.addRepost = (req, res) => {//needs userId, and quackId
 
     let qbCount
@@ -351,7 +395,7 @@ exports.addRepost = (req, res) => {//needs userId, and quackId
 
 
 }
-exports.getFollowers = (req, res) => {//returns array of a certain Id's followers
+exports.getFollowersUser = (req, res) => {//returns array of a certain Id's followers
     let id = req.body.uId
     let query = "SELECT * FROM duckie.follows WHERE followingId=?;"
     let followers = []
@@ -379,7 +423,7 @@ exports.getFollowers = (req, res) => {//returns array of a certain Id's follower
 
     })
 }
-exports.getFollowing = (req, res) => {//returns array of who a certain id id is following
+exports.getFollowingUser = (req, res) => {//returns array of who a certain id id is following
     let id = req.body.uId
     let query = "SELECT * FROM duckie.follows WHERE followerId=?;"
     db.query(query, [id], (err, dta, fields) => {
