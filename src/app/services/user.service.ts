@@ -18,7 +18,7 @@ export class UserService {
     this.baseURL = HttpService.SERVER_URL;
   }
 
-  loginUser(userName: string, password: string) {
+  public loginUser(userName: string, password: string) {
     let body = {
       userName: userName,
       password: password
@@ -27,40 +27,45 @@ export class UserService {
     return this.http.post(`${this.baseURL}/api/user/login`, body)
   }
 
-  setActiveUser(user: User) {
+  public isValid() {
+    console.log("user is: " + this.activeUser != null)
+    return this.activeUser != null;
+  }
+
+  public setActiveUser(user: User) {
     this.activeUser = user;
     this.newActiveUser$.next(this.activeUser);
   }
 
-  getActiveUser(): User {
+  public getActiveUser(): User {
     return this.activeUser
   }
 
-  getUserById(id: number): Observable<any> {
+  public getUserById(id: number): Observable<any> {
     return this.http.get(`${this.baseURL}/api/user/${id}`);
   }
 
-  getUserByUserName(userName: string): Observable<any> {
+  public getUserByUserName(userName: string): Observable<any> {
     return this.http.get(`${this.baseURL}/api/user/${userName}`);
   }
 
-  createNewUser(newUser: User): Observable<any> {
+  public createNewUser(newUser: User): Observable<any> {
     return this.http.post(`${this.baseURL}/api/user`, newUser);
   }
 
-  editUserInfo(id: number, updatedUserData: User): Observable<any> {
+  public editUserInfo(id: number, updatedUserData: User): Observable<any> {
     return this.http.put(`${this.baseURL}/api/user/${id}`, updatedUserData)
   }
 
-  deleteUser(id: number) {
+  public deleteUser(id: number) {
     return this.http.delete(`${this.baseURL}/api/user/${id}`)
   }
 
-  getUsersFollowedBy(user: User) {
+  public getUsersFollowedBy(user: User) {
 
   }
 
-  getAllUsersFollowing(user: User) {
+  public getAllUsersFollowing(user: User) {
 
   }
 };
