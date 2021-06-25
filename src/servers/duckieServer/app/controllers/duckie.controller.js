@@ -149,9 +149,9 @@ exports.login = (req, res) => {
       const comparison = await bcrypt.compare(password, data[0].password);
       if (comparison) {
         console.log("password successs");
-        res.send(data);
+        res.send(data[0]);
       } else {
-        res.status(204).send({ message: "passord doesnt match" });
+        res.status(204).send({ message: "password doesnt match" });
       }
     }
   });

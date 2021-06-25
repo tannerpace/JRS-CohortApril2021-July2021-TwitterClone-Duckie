@@ -1,8 +1,8 @@
-<a routerLink="/">home</a>
-
-<div class="main">
+<div class="root">
     <div class="form">
-        <login-form *ngIf="showLoginForm" (toggleForms)="toggleLoginCreateUser()"></login-form>
-        <create-user-form *ngIf="!showLoginForm" (toggleForms)="toggleLoginCreateUser()"></create-user-form>
+        <login-form *ngIf="showLoginForm"
+                    (toggleForms)="toggleLoginCreateUser()"></login-form>
+        <create-user-form *ngIf="!showLoginForm"
+                          (toggleForms)="toggleLoginCreateUser()"></create-user-form>
     </div>
 </div>

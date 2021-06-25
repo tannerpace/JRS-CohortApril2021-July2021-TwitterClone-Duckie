@@ -47,6 +47,15 @@ export class UserService {
     return null;
   }
 
+  updateActiveUser() {
+    this.getUserById(this.getActiveUser().id)
+      .subscribe(data => {
+        this.setActiveUser(data);
+      }, error => {
+        this.setActiveUser(null)
+      })
+  }
+
   public getUserById(id: number): Observable<any> {
     return this.http.get(`${this.baseURL}/api/user/${id}`);
   }
