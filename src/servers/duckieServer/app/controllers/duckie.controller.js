@@ -195,6 +195,52 @@ exports.createQuack = (req, res) => { //takes an object with userId and quack pa
 
 
 }
+exports.addRepost = (req, res) => {//needs userId, and quackId
+    console.log(req.body)
+    let qbCount
+    let uId = req.body.uId
+    let qId = req.body.qId
+    let checkQuery = "SELECT * FROM duckie.reposts WHERE `userId` = ? AND `quackId`= ?"
+    db.query(checkQuery, [uId, qId], (err, data) => {
+        if (err) {
+            res.status(500).send({ err, message: "error finding stuff" })
+        } else if (data.length == 0) {
+            let query = "select * from `quacks` WHERE `id`=?;"
+            db.query(query, [qId], (err, data, fields) => {
+                if (err) {
+                    res.status(500).send({ err, message: "error updating qb" })
+                } else if (data.length == 0) {
+                    res.status(200).send({ data, message: "couldnt find quack" })
+                } else {
+                    console.log(data)
+                    qbCount = data[0].repostCount + 1
+                    let secondQuery = "UPDATE `duckie`.`quacks` SET `repostCount` = ? WHERE `id` = ?;"
+                    db.query(secondQuery, [qbCount, qId], (err, data, fields) => {
+                        if (err) {
+                            res.status(500).send({ err, message: "could not update repost count" })
+                        } else {
+                            let thridQuery = "INSERT INTO `duckie`.`reposts` (`userId`, `quackId`) VALUES (?,?);"
+                            db.query(thridQuery, [uId, qId], (err, data, fields) => {
+                                if (err) {
+                                    res.status(500).send({ err, message: "error adding to repost table" })
+                                } else {
+                                    res.status(200).send(data)
+                                }
+                            })
+                        }
+                    })
+
+
+                }
+
+            })
+        } else {
+            res.status(200).send({ message: "already reposted" })
+        }
+    })
+
+}
+
 
 
 exports.quackReply = (req, res) => {
@@ -398,8 +444,6 @@ exports.getLikes = (req, res) => {
     }
   });
 };
-
-
 
 
 exports.getFollowersUser = (req, res) => {//returns array of a certain Id's followers
