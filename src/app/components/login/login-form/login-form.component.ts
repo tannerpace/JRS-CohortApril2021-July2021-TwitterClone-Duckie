@@ -53,12 +53,7 @@ export class LoginFormComponent implements OnInit {
           // do something later
           console.log(data)
 
-          let user = new User({
-            id: data[0].id,
-            userName: data[0].userName,
-            screenName: data[0].screenName,
-            birthDate: data[0].birthDate
-          });
+          let user = new User(data[0]);
 
           this.userService.setActiveUser(user);
            this.router.navigate([""]);          

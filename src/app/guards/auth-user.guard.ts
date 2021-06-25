@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +9,24 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthUserGuard implements CanActivate {
 
   constructor(public router: Router,
-    public jwtHelper: JwtHelperService) {}
+    public userService: UserService) {}
 
-  canActivate(): boolean {
-    if (!this.isAuthenticated()) {
-      this.router.navigate(['login']);
+  canActivate(
+    route: ActivatedRouteSnapshot
+  ): boolean {
+
+    const username = route.paramMap.get('username');
+    if (!this.isAuthenticated(username)) {
+      this.router.navigate([username]);
       return false;
+    } else {
+      return true;
     }
-    return true;
   }
   
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    // Check whether the token is expired and return
-    // true or false
-    console.log(!this.jwtHelper.isTokenExpired(token))
-    return !this.jwtHelper.isTokenExpired(token);
+  public isAuthenticated(username: string): boolean {
+    // the signed in user is allowed to access their own pages
+    return username == this.userService.getActiveUser().userName;
   }
   
 }

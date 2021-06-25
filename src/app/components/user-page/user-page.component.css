@@ -1,14 +1,14 @@
 .container {
-  
-  position: relative;
   --top-height: 65px;
   overflow-y: scroll;
   height: calc(100% - var(--top-height));
-  width:100%;
+  border-right: var(--border)
+
 }
 
 .container > * {
     box-sizing: border-box;
+
 }
 
 .top-bar {
@@ -17,6 +17,7 @@
   position: sticky;
   background: white;
   border-bottom: var(--border);
+  border-right: var(--border);
   padding-left: 1em;
   padding-bottom: 0.5em;
   top: 0;
