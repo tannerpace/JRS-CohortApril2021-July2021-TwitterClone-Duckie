@@ -21,7 +21,7 @@ const routes: Routes = [
     {path: "compose", component: NewQuackPageComponent},
     {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
     {path: ":username", component: UserPageComponent, resolve: [PreloadGuard]},
-    {path: ":username/edit", component: EditUserPageComponent, canActivate: [AuthUserGuard]},
+    {path: ":username/edit", component: EditUserPageComponent, resolve: [PreloadGuard], canActivate: [AuthUserGuard]},
   ]},
   {path: "**", redirectTo: "not_found"}
 ];

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-edit-user-page',
@@ -11,11 +11,21 @@ export class EditUserPageComponent implements OnInit {
 
   @Input() user: User;
 
-  constructor(    private userService: UserService    ) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.user = this.activeUser;
-    this.user = this.userService.getActiveUser();
+    this.route.data
+      .subscribe(data => {
+        if(data[0]) {
+          this.user = data[0]
+          console.log(data[0])
+        } else {
+          this.user = null;
+        }
+      },
+      error => {
+        this.user = null;
+      });
   }
 
 }
