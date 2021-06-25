@@ -15,7 +15,6 @@ export class ForceLoginGuard implements CanActivate {
       return true;
     } else {
       console.log("forcing login")
-      console.log(this.router.getCurrentNavigation())
       this.router.navigate(['login']);
       return false;
     }
