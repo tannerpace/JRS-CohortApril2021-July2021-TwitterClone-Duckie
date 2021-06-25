@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Quack } from 'src/app/models/quack.model';
+import { QuackApiService } from 'src/app/services/quack-api.service';
 
 @Component({
   selector: 'quack-card',
@@ -8,11 +9,31 @@ import { Quack } from 'src/app/models/quack.model';
 })
 export class QuackCardComponent implements OnInit {
 
-  @Input() quack: Quack;
-  
-  constructor() { }
+  @Input() quack;
+  screenName
+
+  constructor(private quackApi: QuackApiService) { }
 
   ngOnInit(): void {
+    this.quackApi.getUserById(this.quack.userId).subscribe((response) => {
+      this.screenName = response
+    })
+  }
+
+  addRepost() {
+    this.quackApi.repostQuack(this.quack.id).subscribe((response) => {
+      window.location.reload()
+    }, (err) => {
+
+    })
+  }
+  addLike() {
+    console.log(this.quack)
+    this.quackApi.likeQuack(this.quack.id).subscribe((response) => {
+      window.location.reload()
+    }, (err) => {
+      console.log(err)
+    })
   }
 
 }

@@ -20,6 +20,7 @@ module.exports = app => {
     app.put('/api/tweet/repost', duckie.addRepost)
     app.delete("/api/tweet/:id", duckie.deleteQuack);
 
+    app.post("/api/quack/reply", duckie.quackReply)
     app.post("/api/followedquacks",duckie.getFollowingQuacks);
     app.post("/api/following", duckie.getFollowingUser);
     app.post("/api/followers", duckie.getFollowersUser);

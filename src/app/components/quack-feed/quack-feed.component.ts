@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Quack } from 'src/app/models/quack.model';
+import { QuackApiService } from 'src/app/services/quack-api.service';
 
 @Component({
   selector: 'quack-feed',
@@ -8,21 +9,18 @@ import { Quack } from 'src/app/models/quack.model';
 })
 export class QuackFeedComponent implements OnInit {
 
-  public quacks: Quack[];
+  public quacks;
 
-  constructor() { }
+  constructor(private quackApi: QuackApiService) { }
 
   ngOnInit(): void {
-    this.quacks = []
-    for(let i = 0; i < 5; i++) {
-      this.quacks.push({
-        userId: i, 
-        body: 
-          "Yar Pirate Ipsum \
-            Prow scuttle parrel provost Sail ho \
-            shrouds spirits boom mizzenmast yardarm."
-      })
-    }
+ this.quackApi.getFollowedQuacks().subscribe((response)=>{
+   this.quacks=response
+ },(err)=>{
+   console.log(err)
+ })
+
+
   }
 
 }
