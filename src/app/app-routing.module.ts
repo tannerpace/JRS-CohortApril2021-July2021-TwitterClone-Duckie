@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: "login", component: DuckieMainPageComponent, children: [
     {path: "", component: LoginPageComponent}
   ]},
-  {path: "", component: DuckieMainPageComponent, canActivate: [ForceLoginGuard],  children: [
+  {path: "", component: DuckieMainPageComponent, canActivate: [ForceLoginGuard], children: [
     {path: "home", component: QuackFeedComponent},
     {path: "compose", component: NewQuackPageComponent},
     {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
