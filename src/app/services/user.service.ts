@@ -5,10 +5,9 @@ import { HttpService } from './http.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   private baseURL: string;
   public activeUser: User;
 
@@ -21,27 +20,26 @@ export class UserService {
   public loginUser(userName: string, password: string) {
     let body = {
       userName: userName,
-      password: password
-    }
-    console.log(body)
-    return this.http.post(`${this.baseURL}/api/user/login`, body)
+      password: password,
+    };
+    return this.http.post(`${this.baseURL}/api/user/login`, body);
   }
 
   public isValid() {
-    return JSON.parse(localStorage.getItem("activeUser")) != null;
+    return JSON.parse(localStorage.getItem('activeUser')) != null;
   }
 
   public setActiveUser(user: User) {
-    localStorage.setItem("activeUser", JSON.stringify(user));
+    localStorage.setItem('activeUser', JSON.stringify(user));
     this.newActiveUser$.next(user);
   }
 
   public logoutActiveUser() {
-    localStorage.removeItem("activeUser");
+    localStorage.removeItem('activeUser');
   }
 
   public getActiveUser(): User {
-    let user: User = JSON.parse(localStorage.getItem("activeUser"));
+    let user: User = JSON.parse(localStorage.getItem('activeUser'));
     if (user) {
       // logged in so return the user
       return user;
@@ -62,18 +60,28 @@ export class UserService {
   }
 
   public editUserInfo(id: number, updatedUserData: User): Observable<any> {
-    return this.http.put(`${this.baseURL}/api/user/${id}`, updatedUserData)
+    return this.http.put(`${this.baseURL}/api/user/${id}`, updatedUserData);
   }
 
   public deleteUser(id: number) {
-    return this.http.delete(`${this.baseURL}/api/user/${id}`)
+    return this.http.delete(`${this.baseURL}/api/user/${id}`);
   }
 
-  public getUsersFollowedBy(user: User) {
+  public getUsersFollowedBy(user: User) {}
 
+  public getAllUsersFollowing(user: User) {}
+
+  public followUser(followerUser: User, userToFollow: User) {
+    let followerId = followerUser.id;
+    let userToFollowId = userToFollow.id;
+
+    return this.http.post(`${this.baseURL}/api/${followerId}/follow/${userToFollowId}`, null)
   }
 
-  public getAllUsersFollowing(user: User) {
+  public unfollowUser(followerUser: User, userToUnfollow: User) {
+    let followerId = followerUser.id;
+    let userToUnfollowId = userToUnfollow.id;
 
+    return this.http.delete(`${this.baseURL}/api/${followerId}/unfollow/${userToUnfollowId}`)
   }
-};
+}

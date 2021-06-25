@@ -1,4 +1,3 @@
-
 <div class="top-bar">
   <div class="top-bar-contents">
     <h2>user.screenName</h2>
@@ -6,8 +5,6 @@
   </div>
 </div>
 <div class="container">
-  
-
   <div class="banner">{{ user.banner }}</div>
   <div class="profile-box">
     <div class="profile-edit">
@@ -35,9 +32,15 @@
         </a>
       </div>
       <div class="edit-button">
-        <a routerLink="{{user.userName}}/edit">
+        <a routerLink="{{ user.userName }}/edit">
           <button>Edit Profile</button>
         </a>
+      </div>
+      <div class="follow-button" *ngIf="user.userName != activeUser.userName">
+        <button type="button" (click)="followClicked()">Follow</button>
+      </div>
+      <div class="unfollow-button" *ngIf="user.userName != activeUser.userName">
+        <button type="button" (click)="unfollowClicked()">Unfollow</button>
       </div>
     </div>
 
