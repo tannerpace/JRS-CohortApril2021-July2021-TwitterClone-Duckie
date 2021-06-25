@@ -1,16 +1,16 @@
 <div class="root" *ngIf="user">
 
     <label for="screenName">Screen Name:</label>
-    <input type="text" class="form-control" name="screenName" [(ngModel)]="user.screenName">
+    <input type="text" class="form-control" name="screenName" [(ngModel)]="user.screenName" required>
     <br>
 
     <label for="bio" class="bio">Bio:</label>
     <textarea placeholder="Describe yourself here..." type="text" id="bio" class="form-control bio" name="bio"
-        [(ngModel)]="user.bio" hint="Update Your bio"></textarea>
+        [(ngModel)]="user.bio" hint="Update Your bio" required></textarea>
     <br>
 
     <label for="website">Website:</label>
-    <input type="text" class="form-control" id="website" name="website" [(ngModel)]="user.website">
+    <input type="text" class="form-control" id="website" name="website" [(ngModel)]="user.website" required>
     <br>
 
     <div id="buttonParent">
