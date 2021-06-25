@@ -4,8 +4,8 @@ module.exports = app => {
     app.get("/", duckie.welcome);
 
     // users
+    app.get("/api/user/id/:id", duckie.getUserById);
     app.get("/api/user/:userName", duckie.getUser);
-    app.get("/api/user/:id", duckie.getUserById);
     app.post("/api/user", duckie.createUser);
     app.put("/api/user/:id", duckie.editUserInfo);
     app.delete("/api/user/:id", duckie.deleteUser);
