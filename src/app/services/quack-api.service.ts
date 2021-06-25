@@ -34,7 +34,7 @@ export class QuackApiService {
       quackid: id,
       uid: user.id
     }
-   return this.http.put(`${this.baseURL}/api/tweet/like`, body)
+    return this.http.put(`${this.baseURL}/api/tweet/like`, body)
   }
 
   repostQuack(id: number): Observable<any> {
@@ -43,7 +43,7 @@ export class QuackApiService {
       qId: id,
       uId: user.id
     }
-   return this.http.put(`${this.baseURL}/api/tweet/repost`, body)
+    return this.http.put(`${this.baseURL}/api/tweet/repost`, body)
   }
 
   getQuacksByUser(id: number) {
@@ -60,17 +60,29 @@ export class QuackApiService {
     }
     return this.http.post(`${this.baseURL}/api/getlikes`, body)
   }
-getFollowedQuacks():Observable<any>{
-  let body= {
-    uId: this.userService.getActiveUser().id
+  getFollowedQuacks(): Observable<any> {
+    let body = {
+      uId: this.userService.getActiveUser().id
+    }
+    return this.http.post(`${this.baseURL}/api/followedquacks`, body)
   }
-  return this.http.post(`${this.baseURL}/api/followedquacks`,body)
-}
+  getUserById(id) {
+
+    return this.http.get(`${this.baseURL}/api/user/id/${id}"`)
+  }
+  replyQuack(data){
+    let body={
+      qId: "" ,
+      uId: "",
+      text: ""
+    }
+    this.http.post(`${this.baseURL}/api/quack/reply`, body)
+  }
 
   getFollowersUsersByUser(user) {
-let body={
-  uId: user.id
-}
-return this.http.post(`${this.baseURL}/api/followers`, body)
+    let body = {
+      uId: user.id
+    }
+    return this.http.post(`${this.baseURL}/api/followers`, body)
   }
 }

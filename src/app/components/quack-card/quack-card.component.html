@@ -1,9 +1,8 @@
 <!-- <img> profile pic -->
 <!-- option to delete quack -->
-<p>username : screen name</p>
-<p>*userId*: {{quack.userId}}</p>
+<p>username : {{screenName.screenName}}</p>
 <p>{{quack.body}}</p>
-
+<p>🔃:{{quack.repostCount}}   ❤️:{{quack.likeCount}} </p>
 <button>comment</button>
-<button>repost</button>
-<button>like</button>
+<button (click)="addRepost()">repost</button>
+<button (click)="addLike()">like</button>
