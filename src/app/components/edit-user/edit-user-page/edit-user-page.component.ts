@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-edit-user-page',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditUserPageComponent implements OnInit {
 
-  constructor() { }
+  @Input() user: User;
+
+  constructor(    private userService: UserService    ) { }
 
   ngOnInit(): void {
+    // this.user = this.activeUser;
+    this.user = this.userService.getActiveUser();
   }
 
 }
