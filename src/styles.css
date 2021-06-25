@@ -5,14 +5,15 @@
 
 
 :root {
-    --grey-text: rgb(110, 118, 125);
-    --text: helvetica;
     --border:rgb(230, 230, 230) solid 1px;
+
+    --text: helvetica;
+    --grey-text: rgb(110, 118, 125);
     --blue:#024089;
+    --ltblue:#0077ff;
     --yellow:#fef6b7;
-    --orange:#fda300;
-    --ltblue:#0077ff;;
     --ltyellow:#fef6b7;
+    --orange:#fda300;
 }
 
 body{

@@ -1,18 +1,25 @@
 .column {
-  float: left;
   height: 100vh;
 }
 
 .left {
-  position: fixed;
+  z-index: 1;
+  float: left;
+  width: 7em;
+  border-right:var(--border)
 }
 
 .right {
+  padding-left: 7em; 
   width: 50%;
-  min-width: 400px;
-  border: var(--border);
   border-top: none;
-  overflow-y: scroll;
-  margin-left: 7rem;
+  
 }
- 
+
+.left:hover {
+  width: 16em;
+}
+
+.left:hover ~ .right {
+  padding-left: 16em;
+}

@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'edit-user-form',
@@ -10,9 +13,24 @@ export class EditUserFormComponent implements OnInit {
 
   @Input() user: User;
 
-  constructor() { }
+  constructor(private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.user = this.userService.getActiveUser();
   }
 
+  onSubmit() {
+    this.userService.editUserInfo(this.user.id, this.user)
+      .subscribe(data => {
+        this.router.navigate([this.user.userName])
+      }, error => {
+        console.error(error)
+        alert("Error updating user data")
+        this.router.navigate([this.user.userName])
+      });
+  }
+  cancel() {
+    this.router.navigate([this.user.userName])
+  }
 }
