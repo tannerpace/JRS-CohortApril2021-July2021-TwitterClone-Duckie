@@ -60,6 +60,12 @@ export class QuackApiService {
     }
     return this.http.post(`${this.baseURL}/api/getlikes`, body)
   }
+getFollowedQuacks():Observable<any>{
+  let body= {
+    uId: this.userService.getActiveUser().id
+  }
+  return this.http.post(`${this.baseURL}/api/followedquacks`,body)
+}
 
   getFollowersUsersByUser(user) {
 let body={

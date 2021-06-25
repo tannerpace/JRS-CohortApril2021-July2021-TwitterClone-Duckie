@@ -28,6 +28,14 @@ export class LoginFormComponent implements OnInit {
   toggleForm() {
     this.toggleForms.next();
   }
+  showPass(){
+    var x = <HTMLInputElement>document.getElementById('login')
+    if (x.type == "password") {
+      x.type = "text";
+    } else {
+      x.type = "password"
+    }
+  }
 
   onSubmit(form: NgForm) {
 
