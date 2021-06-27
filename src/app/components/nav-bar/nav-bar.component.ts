@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
+
   @Input() user: User;
 
   constructor() {}

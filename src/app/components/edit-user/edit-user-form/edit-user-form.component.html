@@ -1,23 +1,20 @@
-<div class="container" *ngIf="user">hello
+<div class="root" *ngIf="user">
 
-    <p>Edit {{user.userName}}:</p>
-    <!-- <form #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm)"> -->
-    <div class="inputs">
+    <label for="screenName">Screen Name:</label>
+    <input type="text" class="form-control" name="screenName" [(ngModel)]="user.screenName" required>
+    <br>
 
-        <label for="screenName">Screen Name</label>
-        <input type="text" class="form-control" name="screenName" [(ngModel)]="user.screenName">
-        <br>
+    <label for="bio" class="bio">Bio:</label>
+    <textarea placeholder="Describe yourself here..." type="text" id="bio" class="form-control bio" name="bio"
+        [(ngModel)]="user.bio" hint="Update Your bio" required></textarea>
+    <br>
 
-        <label for="bio">Bio</label>
-        <input type="text" class="form-control" name="bio" [(ngModel)]="user.bio">
-        <br>
-        
-        <label for="website">Website</label>
-        <input type="text" class="form-control" id="website" name="website" [(ngModel)]="user.website">
-        <br>
-        <!-- <input type="submit"> -->
+    <label for="website">Website:</label>
+    <input type="text" class="form-control" id="website" name="website" [(ngModel)]="user.website" required>
+    <br>
+
+    <div id="buttonParent">
         <button (click)="onSubmit()" class="submitButton">Update Profile</button>
-        <button (click)="cancel()">Cancel</button>
+        <button (click)="cancel()" class="cancelButton">Cancel</button>
     </div>
-    <!-- </form> -->
 </div>

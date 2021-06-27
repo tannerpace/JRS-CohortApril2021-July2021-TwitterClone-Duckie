@@ -42,8 +42,8 @@ export class LoginFormComponent implements OnInit {
     console.log("login form submitted")
     this.userService.loginUser(this.userName, this.password)
       .subscribe(
-        data => { 
-          if(!data){
+        user => { 
+          if(!user){
             console.log("password mismatch")
             //password did not match
             // do something
@@ -51,11 +51,11 @@ export class LoginFormComponent implements OnInit {
           }
           console.log("login successful")
           // do something later
-          console.log(data)
+          console.log(user)
 
-          let user = new User(data[0]);
+          let activeUser = new User(user);
 
-          this.userService.setActiveUser(user);
+          this.userService.setActiveUser(activeUser);
            this.router.navigate([""]);          
         },
         error => {
