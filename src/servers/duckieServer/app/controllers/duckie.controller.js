@@ -650,5 +650,5 @@ exports.unfollowUser = (req, res) => {
       res.send("User unfollowed successfully");
       return;
     }
-  });
+  })
 };
