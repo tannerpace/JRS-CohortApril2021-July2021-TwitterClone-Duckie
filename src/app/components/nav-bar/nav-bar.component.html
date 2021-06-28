@@ -25,7 +25,7 @@
       </a>
     </li>
 
-    <!--  -->
+    <!-- home -->
     <li class="nav-item">
       <a routerLink="home" title="Home" class="nav-link">
         <svg
@@ -47,7 +47,7 @@
       </a>
     </li>
 
-    <!--  -->
+    <!-- Explore/Search -->
     <li class="nav-item">
       <a routerLink="/" title="Explore" class="nav-link">
         <svg
@@ -69,9 +69,13 @@
       </a>
     </li>
 
-    <!--  -->
+    <!-- Profile -->
     <li class="nav-item">
-      <a routerLink="{{ user.userName }}" title="Profile" class="nav-link">
+      <a
+        routerLink="{{ user.userName }}"
+        title="Profile"
+        class="nav-link"
+      >
         <svg
           aria-hidden="true"
           focusable="false"
@@ -91,6 +95,7 @@
       </a>
     </li>
 
+    <!-- New Quack -->
     <li class="nav-item">
       <a routerLink="compose" title="NewQuack" class="nav-link">
         <svg
@@ -112,6 +117,7 @@
       </a>
     </li>
 
+    <!-- Login -->
     <li class="nav-item">
       <a routerLink="login" title="login" class="nav-link">
         <svg
@@ -132,6 +138,7 @@
       </a>
     </li>
 
+    <!-- Log-out -->
     <li class="nav-item">
       <a href="" title="logout" class="nav-link">
         <img src="user . profilePic" alt="Profile Pic" />

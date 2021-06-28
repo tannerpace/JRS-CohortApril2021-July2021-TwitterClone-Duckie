@@ -29,11 +29,11 @@
 }
 
 h2 {
-  font-family: var(--text);
+  font-family: var(--font);
 }
 
 #quack-count {
-  font-family: var(--text);
+  font-family: var(--font);
   font-size: 1em;
   color: var(--grey-text);
 }
@@ -88,7 +88,7 @@ h2 {
   }
 
 .screen-name {
-  font-family: var(--text);
+  font-family: var(--font);
   font-size: 20px;
   line-height: 24px;
 }
@@ -103,12 +103,13 @@ h2 {
         display: inline-block;
         font-size: 1em;
         cursor: pointer;
+  
       }
 
 .user-name,
 .bio,
 .user-info {
-  font-family: var(--text);
+  font-family: var(--font);
   font-size: 15px;
   line-height: 24px;
 }
@@ -130,7 +131,7 @@ h2 {
 .link-bar {
   position: sticky;
   top: 0;
-  font-family: var(--text);
+  font-family: var(--font);
   display: flex;
   justify-content: space-around;
   flex-wrap: nowrap;
@@ -162,5 +163,9 @@ h2 {
       color:var(--blue)
   }
     
+   button:hover {
+    background: #c8e5fc;
+  
+  }
 
 

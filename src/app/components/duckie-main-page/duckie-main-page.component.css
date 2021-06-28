@@ -6,14 +6,17 @@
   z-index: 1;
   float: left;
   width: 7em;
-  border-right:var(--border)
+  border-right:var(--border);
+
+  
 }
 
 .right {
   padding-left: 7em; 
-  width: 50%;
+  /* width: 50%; */
   border-top: none;
   
+  border: solid green 1px;
 }
 
 .left:hover {

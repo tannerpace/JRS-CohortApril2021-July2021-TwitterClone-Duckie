@@ -7,7 +7,7 @@
 :root {
     --border:rgb(230, 230, 230) solid 1px;
 
-    --text: helvetica;
+    --font: helvetica;
     --grey-text: rgb(110, 118, 125);
     --blue:#024089;
     --ltblue:#9cc5e7;
@@ -17,4 +17,9 @@
 
 body{
     margin: 0;
+    font-family: var(--font);
+}
+
+.blue-box {
+  box-shadow: 12px 12px 2px 1px var(--ltblue);
 }

@@ -6,7 +6,6 @@
   width: fit-content;
   border-radius: 2em;
   font-family: Arial, Helvetica, sans-serif;
-  box-shadow: 12px 12px 2px 1px var(--ltblue);
 }
 
 .profile-pic {
@@ -53,7 +52,6 @@ textarea {
   resize: none;
   border: none;
   border-bottom: var(--grey-text) solid 1px;
-  /* border-top: var(--grey-text) solid 1px; */
   padding-top: 0.5em;
   cursor: initial;
 }
