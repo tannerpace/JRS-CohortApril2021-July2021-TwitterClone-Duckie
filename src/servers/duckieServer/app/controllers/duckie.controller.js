@@ -97,13 +97,14 @@ exports.editUserInfo = (req, res) => {
   let screenName = req.body.screenName;
   let bio = req.body.bio;
   let website = req.body.website;
+  let profilePic = req.body.profilePic;
 
   let query =
     "UPDATE users \
-    SET screenName = ?, bio = ?, website = ? \
+    SET screenName = ?, bio = ?, website = ?, profilePic = ? \
     WHERE id = ?;";
 
-  db.query(query, [screenName, bio, website, id], (err, results) => {
+  db.query(query, [screenName, bio, website, profilePic, id], (err, results) => {
     if (err) {
       console.error(err);
       res.status(500).send();

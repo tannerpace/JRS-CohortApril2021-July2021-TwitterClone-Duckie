@@ -13,8 +13,9 @@ CREATE TABLE `duckie`.`users` (
     birthDate Date not null,
     dateJoined Datetime not null DEFAULT (current_date()),
     quackCount int not null default 0,
-    -- profile pi img 
-    -- banner img
+    profilePic varchar(50), 
+    profileBanner varchar(50),
+    
     primary key (id)
 );
 
