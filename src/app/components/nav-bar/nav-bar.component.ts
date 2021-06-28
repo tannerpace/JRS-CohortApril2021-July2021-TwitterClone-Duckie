@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 
-
 @Component({
   selector: 'nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -13,6 +12,5 @@ export class NavBarComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
