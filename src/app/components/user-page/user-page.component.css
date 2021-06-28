@@ -67,8 +67,9 @@ h2 {
 .profile-pic {
   position: relative;
   top: calc(var(--top-height) * -1);
-  width: 130px;
-  height: 130px;
+  width: calc(100px + 6px);
+  height: calc(100px + 6px);
+  overflow: hidden;
   border-radius: 50%;
   display: flex;
   align-items: center;

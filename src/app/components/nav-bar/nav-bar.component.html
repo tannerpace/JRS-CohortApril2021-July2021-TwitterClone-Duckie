@@ -71,11 +71,7 @@
 
     <!-- Profile -->
     <li class="nav-item">
-      <a
-        routerLink="{{ user.userName }}"
-        title="Profile"
-        class="nav-link"
-      >
+      <a routerLink="{{user.userName}}" title="Profile" class="nav-link">
         <svg
           aria-hidden="true"
           focusable="false"
@@ -141,7 +137,7 @@
     <!-- Log-out -->
     <li class="nav-item">
       <a href="" title="logout" class="nav-link">
-        <img src="user . profilePic" alt="Profile Pic" />
+        <img src="../../../assets/images/profilePics/{{user.profilePic}}" alt="Profile Pic" />
         <span class="link-text">Log Out</span>
       </a>
     </li>

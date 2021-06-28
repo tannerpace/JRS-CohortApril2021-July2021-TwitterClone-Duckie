@@ -13,11 +13,21 @@ export class EditUserFormComponent implements OnInit {
 
   @Input() user: User;
 
+  profilePics: any[];
+  showProfilePics: boolean;
+
+  selectedProfilePic: string;
+
   constructor(private userService: UserService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.user = this.userService.getActiveUser();
+    this.showProfilePics = false;
+    this.profilePics = [];
+    for(let i = 1; i <= 10; i++) {
+      this.profilePics.push(i);
+    }
+    this.selectedProfilePic = this.user.profilePic;
   }
 
   onSubmit() {
@@ -32,5 +42,40 @@ export class EditUserFormComponent implements OnInit {
   }
   cancel() {
     this.router.navigate([this.user.userName])
+  }
+
+  deleteUser() {
+    // delete active user
+    console.log("delete button clicked");
+    console.log(this.user.id)
+    this.userService.deleteUser(this.user.id,)
+      .subscribe(data => { }, error => { });
+  }
+
+  deleteCheck() {
+    if(confirm("Are you sure you want to delete your account?")) {
+      // delete here
+      console.log("deleting account")
+      this.deleteUser();
+    }
+  }
+
+  togglePicSelect() {
+    this.showProfilePics = !this.showProfilePics;
+  }
+
+  profilePicCancel() {
+    this.selectedProfilePic = this.user.profilePic;
+    this.togglePicSelect();
+  }
+
+  profilePicClicked(imgFileName: string) {
+    // "select" this image
+    this.selectedProfilePic = imgFileName;
+  }
+
+  profilePicConfirm() {
+    this.togglePicSelect();
+    this.user.profilePic = this.selectedProfilePic;
   }
 }
