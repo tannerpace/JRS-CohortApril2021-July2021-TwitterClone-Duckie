@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'new-quack-form',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewQuackFormComponent implements OnInit {
 
+  quackBody: string = "";
+  @Input() user: User;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+
+  submitQuack(){
+    //adds new quack to database 
   }
 
 }
