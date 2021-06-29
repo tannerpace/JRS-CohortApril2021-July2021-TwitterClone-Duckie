@@ -104,15 +104,19 @@ exports.editUserInfo = (req, res) => {
     SET screenName = ?, bio = ?, website = ?, profilePic = ? \
     WHERE id = ?;";
 
-  db.query(query, [screenName, bio, website, profilePic, id], (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send();
-      return;
-    } else {
-      res.send(results[0]);
+  db.query(
+    query,
+    [screenName, bio, website, profilePic, id],
+    (err, results) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send();
+        return;
+      } else {
+        res.send(results[0]);
+      }
     }
-  });
+  );
 };
 
 exports.deleteUser = (req, res) => {
@@ -160,27 +164,30 @@ exports.login = (req, res) => {
 
 exports.createQuack = (req, res) => {
   //takes an object with userId and quack paramaters
-  let user = req.body.id;
+  const userId = req.body.userId;
+  const quackBody = req.body.quackBody;
+
   let countQuery = "select * FROM `duckie`.`users` where id=?";
-  db.query(countQuery, [user], (err, data, fields) => {
+  console.log("recieved quack request");
+  db.query(countQuery, [userId], (err, data, fields) => {
     if (err) {
       res.status(500).send({ err, message: "unable to get user" });
     } else if (data.length == 0) {
       res.status(200).send({ data, message: "there was a problem" });
     } else {
       let quackCount = data[0].quackCount + 1;
-      let quack = req.body.quack;
-      let query =
-        "INSERT INTO `duckie`.`quacks`(`body`,`userId`) \
-            VALUES(?,?);";
 
-      db.query(query, [quack, user], (err, data, fields) => {
+      let query =
+        "INSERT INTO `duckie`.`quacks` (`body`,`userId`) \
+      VALUES (?,?);";
+
+      db.query(query, [quackBody, userId], (err, data, fields) => {
         if (err) {
           res.status(500).send({ message: "error adding quack" });
         } else {
           let addQuery =
             "UPDATE `duckie`.`users` SET `quackCount` = ? WHERE `id` = ?";
-          db.query(addQuery, [quackCount, user], (err, data, fields) => {
+          db.query(addQuery, [quackCount, userId], (err, data, fields) => {
             if (err) {
               res
                 .status(500)
@@ -194,6 +201,7 @@ exports.createQuack = (req, res) => {
     }
   });
 };
+
 exports.addRepost = (req, res) => {
   //needs userId, and quackId
   console.log(req.body);
@@ -504,27 +512,28 @@ exports.deleteQuack = (req, res) => {
   });
 };
 
-exports.getFollowingQuacks = (req, res) => {//Given an id will return an array of quacks from who they follow
-  let id = req.body.uId
-  let query = "SELECT *  FROM `follows`, `quacks` WHERE `quacks`.`userId` = `follows`.`followingId`"
+exports.getFollowingQuacks = (req, res) => {
+  //Given an id will return an array of quacks from who they follow
+  let id = req.body.uId;
+  let query =
+    "SELECT *  FROM `follows`, `quacks` WHERE `quacks`.`userId` = `follows`.`followingId`";
   db.query(query, (err, dta, fields) => {
-      if (err) {
-          res.status(500).send({ err, message: "unable to get following" })
-      } else if (dta.length == 0) {
-          res.status(200).send({ message: "no following" })
-      } {
-          let quacks = []
-          console.log(dta)
-          for (let i = 0; i < dta.length; i++) {
-              if (dta[i].followerId == id) {
-                  quacks.push(dta[i])
-              }
-          }
-          res.status(200).send(quacks)
+    if (err) {
+      res.status(500).send({ err, message: "unable to get following" });
+    } else if (dta.length == 0) {
+      res.status(200).send({ message: "no following" });
+    } else {
+      let quacks = [];
+      console.log(dta);
+      for (let i = 0; i < dta.length; i++) {
+        if (dta[i].followerId == id) {
+          quacks.push(dta[i]);
+        }
       }
-
-  })
-}
+      res.status(200).send(quacks);
+    }
+  });
+};
 
 exports.getFollowersUser = (req, res) => {
   //returns array of a certain Id's followers
@@ -643,5 +652,5 @@ exports.unfollowUser = (req, res) => {
       res.send("User unfollowed successfully");
       return;
     }
-  })
+  });
 };
