@@ -31,8 +31,8 @@ export class QuackApiService {
   likeQuack(id: number): Observable<any> {
     let user = this.userService.getActiveUser();
     let body = {
-      quackid: id,
-      uid: user.id,
+      qId: id,
+      uId: user.id,
     };
     return this.http.put(`${this.baseURL}/api/quack/like`, body);
   }
