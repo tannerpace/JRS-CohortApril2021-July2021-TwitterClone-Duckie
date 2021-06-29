@@ -12,9 +12,9 @@ Tasks to do for the Duckie project:
     b) CSS for profile page
     c) use Input for profile page so that the page generates
             based on some user
-            @Input user: User;
-    d) define routes to navigate to a user via the routing module
-    e) if the page is of the logged in user - display an 'edit profile' option
+            @Input user: User; ✅
+    d) define routes to navigate to a user via the routing module ✅
+    e) if the page is of the logged in user - display an 'edit profile' option 
 
 2. Create a nav bar with nav icons
     a) home - link to your feed
@@ -45,18 +45,19 @@ Tasks to do for the Duckie project:
         13) get all followed by user id
         14) get all following by user id
 
-        15) login user
+        15) login user ✅
 
 4. Implement a way for a user to login
-    a) make login page
-    b) make login form
+    a) make login page ✅
+    b) make login form ✅
+    c) make create-user form ✅
 
 5. Implement a way to create a new account/user
     **** depends on task 4.b ****
-    a) add an option to create new user instead of signing in
+    a) add an option to create new user instead of signing in ✅
 
 6. Create a 'quack card' component to display one tweet/quack
-    a) show tweet body
+    a) show tweet body 
     b) show user info
     c) have like button
     d) have RT button
@@ -70,7 +71,7 @@ Tasks to do for the Duckie project:
 8. Implement a way to RT and Like other tweets
     *** See tast 6.c and 6.d ***
 
-9. Implement a way to create a new tweet/quack
+9. Implement a way to create a new tweet/quack 
     a) create a compose tweet component
     b) add a form to insert text(/images)
     c) add button to submit tweet
@@ -78,9 +79,10 @@ Tasks to do for the Duckie project:
 10. Implement a way to edit user information
     *** Depends on tast 1.e ***
     a) create a component that will display the user's
-        info in a form that you can edit and click save/apply
-        1) edit screen Name, pics, bio, and website
+        info in a form that you can edit and click save/apply ✅
+        1) edit screen Name, pics, bio, and website ✅
         2) CANNOT edit password, user name, birthday, or date joined
+        3) Add guard to the page to only allow access if the used being edited is signed in
 
 11. search bar - if time permits
     a) big input box to type in. When you press enter
@@ -116,3 +118,20 @@ List of services
                 by liked
                 by 'reply by' - all replies of one user
                 by media - by user
+
+
+TODO: 
+fix things
+    SQL queries can be better
+    login input use angular directives
+        DO NOT use html.getElementById etc. there is an integrated what to do that
+    
+for Blake:
+    write SQL insert queries to create a bunch of dummy data
+        multiple users
+        multiple tweets
+        likes
+        reposts
+        follows
+        comments
+        etc.
