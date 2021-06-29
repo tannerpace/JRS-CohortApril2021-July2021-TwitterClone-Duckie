@@ -9,12 +9,15 @@ import { DuckieMainPageComponent } from './components/duckie-main-page/duckie-ma
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { LoginPageComponent } from './components/login/login-page/login-page.component';
 import { LoginFormComponent } from './components/login/login-form/login-form.component';
-import { EditUserFormComponent } from './components/edit-user-form/edit-user-form.component';
-import { NewQuackFormComponent } from './components/new-quack-form/new-quack-form.component';
+import { EditUserFormComponent } from './components/edit-user/edit-user-form/edit-user-form.component';
+import { NewQuackFormComponent } from './components/compose/new-quack-form/new-quack-form.component';
 import { QuackFeedComponent } from './components/quack-feed/quack-feed.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { NewQuackPageComponent } from './components/new-quack-page/new-quack-page.component';
+import { NewQuackPageComponent } from './components/compose/new-quack-page/new-quack-page.component';
 import { CreateUserFormComponent } from './components/login/create-user-form/create-user-form.component';
+import { EditUserPageComponent } from './components/edit-user/edit-user-page/edit-user-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { QuackCardComponent } from './components/quack-card/quack-card.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { CreateUserFormComponent } from './components/login/create-user-form/cre
     NewQuackFormComponent,
     QuackFeedComponent,
     NavBarComponent,
-    NewQuackPageComponent
+    NewQuackPageComponent,
+    EditUserPageComponent,
+    NotFoundComponent,
+    QuackCardComponent
   ],
   imports: [
     BrowserModule,

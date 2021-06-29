@@ -1,60 +1,104 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpService } from './http.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   private baseURL: string;
-  public activeUser:User;
+  public activeUser: User;
 
   public newActiveUser$: Subject<User> = new Subject<User>();
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.baseURL = HttpService.SERVER_URL;
   }
 
-  loginUser() {
-
+  public loginUser(userName: string, password: string) {
+    let body = {
+      userName: userName,
+      password: password,
+    };
+    return this.http.post(`${this.baseURL}/api/user/login`, body);
   }
 
-  setActiveUser(user: User){
-    this.activeUser = user;
-    this.newActiveUser$.next(this.activeUser);
+  public isValid() {
+    return JSON.parse(localStorage.getItem('activeUser')) != null;
   }
 
-  getActiveUser(): User {
-    return this.activeUser
+  public getActiveUser(): User {
+    let user: User = JSON.parse(localStorage.getItem('activeUser'));
+    if (user) {
+      // logged in so return the user
+      return user;
+    }
+    return null;
   }
 
-  getUserById(id: number) {
-
+  public setActiveUser(user: User) {
+    localStorage.setItem('activeUser', JSON.stringify(user));
+    this.newActiveUser$.next(user);
   }
 
-  getUserByUserName(userName: string) {
-
+  updateActiveUser() {
+    console.log(this.getActiveUser().id);
+    this.getUserById(this.getActiveUser().id).subscribe(
+      (data) => {
+        localStorage.setItem('activeUser', JSON.stringify(data));
+      },
+      (error) => {
+        console.error('error updating user data in local storage', error);
+      }
+    );
   }
 
-  createNewUser(newUser: User) {
-
+  public logoutActiveUser() {
+    localStorage.removeItem('activeUser');
   }
 
-  editUserById(id: number, updatedUserData: User) {
-
+  public getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.baseURL}/api/user/id/${id}`);
   }
 
-  deleteUser(user: User) {
-
+  public getUserByUserName(userName: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/api/user/${userName}`);
   }
 
-  getUsersFollowedBy(user: User) {
-
+  public createNewUser(newUser: User): Observable<any> {
+    return this.http.post(`${this.baseURL}/api/user`, newUser);
   }
 
-  getAllUsersFollowing(user: User) {
-
+  public editUserInfo(id: number, updatedUserData: User): Observable<any> {
+    return this.http.put(`${this.baseURL}/api/user/${id}`, updatedUserData);
   }
-};
+
+  public deleteUser(id: number) {
+    return this.http.delete(`${this.baseURL}/api/user/${id}`);
+  }
+
+  public getUsersFollowedBy(user: User) {}
+
+  public getAllUsersFollowing(user: User) {}
+
+  public followUser(followerUser: User, userToFollow: User) {
+    let followerId = followerUser.id;
+    let userToFollowId = userToFollow.id;
+
+    return this.http.post(
+      `${this.baseURL}/api/${followerId}/follow/${userToFollowId}`,
+      null
+    );
+  }
+
+  public unfollowUser(followerUser: User, userToUnfollow: User) {
+    let followerId = followerUser.id;
+    let userToUnfollowId = userToUnfollow.id;
+
+    return this.http.delete(
+      `${this.baseURL}/api/${followerId}/unfollow/${userToUnfollowId}`
+    );
+  }
+}

@@ -1,36 +1,53 @@
 .container {
-  position: relative;
-  margin-top: 0;
+  --top-height: 65px;
+  overflow-y: scroll;
+  height: calc(100% - var(--top-height));
+  border-right: var(--border);
 }
 
 .container > * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .top-bar {
   display: flex;
-  width: 100%;
-  --top-height: 65px;
+  flex-direction: row;
+  align-content: center;
   height: var(--top-height);
   position: sticky;
   background: white;
-  border: var(--border);
+  border-bottom: var(--border);
+  border-right: var(--border);
   padding-left: 1em;
   padding-bottom: 0.5em;
   top: 0;
-  z-index: 1000; /* keeps the header in front of profile pic*/
 }
 
 .top-bar-contents {
   line-height: 5px;
 }
 
+.back-button {
+  width: 2em;
+  height: 2em;
+  fill: var(--blue);
+  margin-right: 1.5em;
+  margin-top: 1em;
+}
+
+.back-button:hover {
+  fill: #9cc5e7;
+  transition: 400ms ease;
+}
+
 h2 {
-  font-family: var(--text);
+  font-family: "concert one";
+  text-transform: uppercase;
+  color: var(--orange);
 }
 
 #quack-count {
-  font-family: var(--text);
+  font-family: var(--font);
   font-size: 1em;
   color: var(--grey-text);
 }
@@ -38,9 +55,8 @@ h2 {
 .banner {
   background-color: lightgray;
   width: 100%;
-  height: 200px;
+  height: 250px;
   padding-top: var(--top-height);
-  border: var(--border);
 }
 
 .profile-box {
@@ -59,28 +75,51 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .profile-pic {
   position: relative;
-  top: -65px;
-  width: 130px;
-  height: 130px;
+  top: calc(var(--top-height) * -1);
+  width: calc(150px + 6px);
+  height: calc(150px + 6px);
+  overflow: hidden;
   border-radius: 50%;
-  background-color: rgb(202, 34, 34);
   border: white solid 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--yellow);
+}
+
+.pic {
+  display: flex;
+  height: 100px;
+  width: 100px;
 }
 
 .screen-name {
-  font-family: var(--text);
+  font-family: var(--font);
   font-size: 20px;
   line-height: 24px;
+}
+
+.edit-button button {
+  border: var(--blue) solid 2px;
+  color: var(--blue);
+  padding: 0.25em 1em;
+  border-radius: 1.5em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  cursor: pointer;
 }
 
 .user-name,
 .bio,
 .user-info {
-  font-family: var(--text);
+  font-family: var(--font);
   font-size: 15px;
   line-height: 24px;
 }
@@ -90,6 +129,10 @@ h2 {
   color: var(--grey-text);
 }
 
+.user-info a {
+  text-decoration: none;
+}
+
 .bio {
   flex-wrap: wrap;
   padding: 0.5em;
@@ -97,19 +140,35 @@ h2 {
 
 .link-bar {
   position: sticky;
-  top: 65px;
-  font-family: var(--text);
+  top: 0;
+  font-family: var(--font);
   display: flex;
+  justify-content: space-around;
   flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: space-around;
-  font-size: large;
-  padding: 1em;
+  font-size: medium;
   border-bottom: var(--border);
+  border-top: var(--border);
   background-color: white;
 }
 
-.link-bar { 
-    background-color: rgb(255, 247, 158);
+.link-bar a {
+  text-align: center;
+  padding: 0.75em;
+  flex-grow: 1;
+  color: var(--grey-text);
+  text-decoration: none;
+  border-bottom: 4px solid transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
 
+.link-bar a:hover {
+  background-color: var(--yellow);
+  border-bottom: var(--orange) solid 4px;
+  color: var(--blue);
+}
+
+button:hover {
+  background: #c8e5fc;
 }

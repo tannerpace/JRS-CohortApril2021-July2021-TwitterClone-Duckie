@@ -1,0 +1,112 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 2em 3em;
+  border: orange solid 3px;
+  width: fit-content;
+  border-radius: 2em;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.profile-pic {
+  display:flex;
+  width: 4em;
+  height: 4em;
+  border-radius: 3em;
+  justify-content: center;
+  background-color: var(--yellow);
+  border: var(--orange) solid 3px;
+}
+
+img{
+  width:3em;
+  height:3em;
+  align-self: center;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.top-bar-text {
+  margin-left: 1em;
+}
+
+#profile-name {
+  color:var(--orange);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 2em;
+  margin:0;
+
+}
+
+#quack-count {
+  color: var(--grey-text);
+  font-size: 1.25em;
+  margin: 0;
+  margin-top:.3em;
+}
+
+.quack-body {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  padding-top: 1em;
+}
+
+textarea {
+  font-family: Helvetica;
+  font-size: 18pt;
+  resize: none;
+  border: none;
+  border-bottom: var(--grey-text) solid 1px;
+  padding:0.5em;
+  cursor: initial;
+}
+
+.under-textarea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1em;
+  width: 500px;
+}
+
+.char-count {
+  margin-top: 0.1em;
+  font-size: 1.25em;
+  color: var(--grey-text);
+  display:flex;
+  justify-content: flex-end;
+ 
+}
+
+.img {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+svg {
+  fill: var(--blue);
+}
+
+.quack-button {
+  border: var(--blue) solid 3px;
+  color: var(--blue);
+  padding: 0.25em 1em;
+  border-radius: 1.5em;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.25em;
+  cursor: pointer;
+}
+
+.quack-button:hover {
+  background-color: var(--yellow);
+  color: orange;
+  transition: 300ms ease-in;
+}

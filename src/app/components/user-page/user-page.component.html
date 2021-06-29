@@ -1,28 +1,58 @@
-<div class="container">
-  <div class="top-bar">
-    <div class="top-bar-contents">
-      <h2>user.screenName</h2>
-      <p id="quack-count">user.quackCount Quacks</p>
-    </div>
+<div class="top-bar">
+  <div (click)="goBack()" class="back-button">
+    <a routerLink="home" title="Go Back">
+        <svg
+        aria-hidden="true"
+        focusable="false"
+        data-prefix="far"
+        data-icon="arrow-alt-circle-left"
+        class="svg-inline--fa fa-arrow-alt-circle-left fa-w-16"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+      >
+        <path
+          d="M8 256c0 137 111 248 248 248s248-111 248-248S393 8 256 8 8 119 8 256zm448 0c0 110.5-89.5 200-200 200S56 366.5 56 256 145.5 56 256 56s200 89.5 200 200zm-72-20v40c0 6.6-5.4 12-12 12H256v67c0 10.7-12.9 16-20.5 8.5l-99-99c-4.7-4.7-4.7-12.3 0-17l99-99c7.6-7.6 20.5-2.2 20.5 8.5v67h116c6.6 0 12 5.4 12 12z"
+        ></path>
+      </svg>
+    </a>
   </div>
-
+  <div class="top-bar-contents">
+   
+    <h2>{{ user.screenName }}</h2>
+    <p id="quack-count">{{ user.quackCount }} Quacks</p>
+  </div>
+</div>
+<div class="container">
   <div class="banner">{{ user.banner }}</div>
   <div class="profile-box">
     <div class="profile-edit">
-      <div class="profile-pic">{{ user.profilePic }}</div>
+      <div class="profile-pic">
+        <a routerLink="user/:username" class="pic">
+          <img src="../../../assets/images/profilePics/{{ user.profilePic }}" />
+        </a>
+      </div>
       <div class="edit-button">
-        <button>edit profile</button>
+        <a routerLink="edit">
+          <button>Edit Profile</button>
+        </a>
+      </div>
+      <div class="follow-button" *ngIf="user.userName != activeUser.userName">
+        <button type="button" (click)="followClicked()">Follow</button>
+      </div>
+      <div class="unfollow-button" *ngIf="user.userName != activeUser.userName">
+        <button type="button" (click)="unfollowClicked()">Unfollow</button>
       </div>
     </div>
 
     <div>
-      <div class="screen-name">user.screenName</div>
-      <div class="user-name">@user.userName</div>
-      <div class="bio">user.bio</div>
+      <div class="screen-name">{{ user.screenName }}</div>
+      <div class="user-name">@{{ user.userName }}</div>
+      <div class="bio">{{ user.bio }}</div>
       <div class="user-info">
-        <a href="user.website"> 🔗user.website</a>
-        <div>🎈user.birthDate</div>
-        <div>🗓user.dateJoined</div>
+        <a href="{{ user.website }}"> 🔗{{ user.website }}</a>
+        <div>🎈{{ user.birthDate }}</div>
+        <div>🗓{{ user.dateJoined }}</div>
 
         <div class="following_followers"></div>
       </div>
@@ -30,10 +60,10 @@
   </div>
 
   <div class="link-bar">
-    <a  href="url">Quacks</a>
-    <a  href="url">Tweets & Replies</a>
-    <a  href="url">Media</a>
-    <a  href="url">Likes</a>
+    <a href="url"> Quacks</a>
+    <a href="url">Quacks & Replies</a>
+    <a href="url">Media</a>
+    <a href="url">Likes</a>
   </div>
 
   <!-- <div *ngFor="let quack of user; let i = index"

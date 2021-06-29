@@ -1,13 +1,9 @@
 <div class="row">
   <div class="column left">
-    <nav-bar></nav-bar>
+    <nav-bar [user]="user"></nav-bar>
   </div>
   <div class="column right">
-    <user-page></user-page>
+    <router-outlet></router-outlet>
     <!-- will be either user-page or quack feed -->
   </div>
 </div>
-
-
-<button type="button"
-        (click)="buttonClicked()">CLICK ME</button>

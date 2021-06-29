@@ -8,8 +8,8 @@ Tasks to do for the Duckie project:
         iii) implement comment
 
 1. Create a 'home' page - the page of 'your' profile
-    a) design HTML of profile page
-    b) CSS for profile page
+    a) design HTML of profile page ✅
+    b) CSS for profile page ✅
     c) use Input for profile page so that the page generates
             based on some user
             @Input user: User; ✅
@@ -17,33 +17,33 @@ Tasks to do for the Duckie project:
     e) if the page is of the logged in user - display an 'edit profile' option 
 
 2. Create a nav bar with nav icons
-    a) home - link to your feed
-    b) search/explore - if time permits
+    a) home - link to your feed ✅
+    b) search/explore - if time permits ✅
     c) messages - if time permits - unlikely
-    d) profile - link to your profile with your tweets
-    e) compose - link to create a new tweet
-    f) log out
+    d) profile - link to your profile with your tweets ✅
+    e) compose - link to create a new tweet ✅
+    f) log out ✅
 
 3. Implement a SQL Rest API
     a) create base level server that listens on port 8080 ✅
     b) add multiple request routes
-        1) get tweets by user
+        1) get tweets by user ✅
         2) get comments by user
-        3) get likes by user
+        3) get likes by user ✅
         4) get all followed tweets by user
         
-        5) get user
-        6) edit user (put)
-        7) delete user
-        8) create user
+        5) get user ✅
+        6) edit user (put) ✅
+        7) delete user ✅
+        8) create user ✅
 
-        9) create tweet
-        10) delete tweet
-        11) get tweet ??? - maybe
-        12) 'edit' tweet - increment like count or rt count
+        9) create tweet ✅
+        10) delete tweet ✅
+        11) get tweet ??? - maybe ✅
+        12) 'edit' tweet - increment like count or rt count ✅
 
-        13) get all followed by user id
-        14) get all following by user id
+        13) get all followed-users by user id 
+        14) get all following-users by user id
 
         15) login user ✅
 

@@ -1,11 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+
 :root {
-    --grey-text: rgb(110, 118, 125);
-    --text: helvetica;
     --border:rgb(230, 230, 230) solid 1px;
+
+    --font: helvetica;
+    --grey-text: rgb(110, 118, 125);
+    --blue:#024089;
+    --ltblue:#9cc5e7;
+    --yellow:#fef6b7;
+    --orange:#fda300;
 }
 
 body{
     margin: 0;
+    font-family: var(--font);
+}
+
+.blue-box {
+  box-shadow: 12px 12px 2px 1px var(--ltblue);
 }

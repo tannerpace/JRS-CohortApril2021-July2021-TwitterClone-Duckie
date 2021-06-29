@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'duckie-main-page',
@@ -7,13 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./duckie-main-page.component.css'],
 })
 export class DuckieMainPageComponent implements OnInit {
-  constructor(private router: Router) {}
+  user: User;
 
-  ngOnInit(): void {}
+  constructor(private userService: UserService) {}
 
-  buttonClicked() {
-    let user = { username: 'blake', screenName: 'screen name' };
-    console.log('clicked');
-    this.router.navigate(['/user', user.username]);
+  ngOnInit(): void {
+    this.user = this.userService.getActiveUser();
   }
 }
