@@ -21,7 +21,13 @@ export class CreateUserFormComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.user = { userName: '', password: '' }
+    this.user = { 
+      userName: '', 
+      password: '',
+      bio: '',
+      website: '',
+      profilePic: 'profile' + Math.floor(Math.random() * 10) +  '.png'
+     }
     this.user = new User(this.user);
   }
 
