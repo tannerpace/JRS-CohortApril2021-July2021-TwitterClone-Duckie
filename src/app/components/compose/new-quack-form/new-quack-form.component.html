@@ -1,17 +1,22 @@
 <div class="wrapper blue-box">
   <div class="top-bar">
     <div class="profile-pic">
-      <img src="{{ user.profilePic }}" alt="profile pic" />
+      <img
+        src="../../../../assets/images/profilePics/{{ user.profilePic }}"
+        alt="profile pic"
+      />
     </div>
     <div class="top-bar-text">
-      <p id="profile-name">{{ user.userName }}</p>
-      <p id="quack-count">{{ user.quackCount }}</p>
+      <p id="profile-name" style="font-family: concert one">
+        {{ user.userName }}
+      </p>
+      <p id="quack-count">{{ user.quackCount }} Quacks</p>
     </div>
   </div>
 
   <div class="quack-body">
     <textarea
-      [(ngModel)]="quackBody"
+      [(ngModel)]="quack.body"
       placeholder="What's Quackin?"
       id="quack"
       name="quack"
@@ -20,7 +25,7 @@
       maxlength="140"
     ></textarea>
     <div>
-      <p class="char-count">{{ quackBody.length }}/140</p>
+      <p class="char-count">{{ quack.body.length }}/140</p>
     </div>
   </div>
   <div class="under-textarea">
