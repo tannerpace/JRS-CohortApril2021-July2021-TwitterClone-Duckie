@@ -4,26 +4,48 @@
 
 .left {
   z-index: 1;
-  float: left;
-  width: 7em;
+  width: 6em;
   border-right:var(--border);
-
+  position: fixed;
+  top: 0;
+  left: 0;
   
+  transition: width .4s ease;
 }
 
 .right {
-  padding-left: 7em;
-  
+  padding-left: 6em;
+  border: solid green 1px;
 }
 
 .left:hover {
   width: 16em; 
-  background-color: #e1e3e7;
-  transition: 400ms ease;
-  
  }
 
 .left:hover ~ .right {
   padding-left: 16em;
   
 } 
+
+
+@media screen and (max-width: 700px)  {
+  .left {
+    width: 100vw;
+    height: 6em;
+    top: unset;
+    bottom: 0;
+    transition: none;
+  }
+
+  .left:hover {
+    width: 100vw;
+  }
+
+  .right {
+    padding-left: 0;
+  }
+
+  .left:hover ~ .right {
+    padding-left: 0;
+  }
+}
