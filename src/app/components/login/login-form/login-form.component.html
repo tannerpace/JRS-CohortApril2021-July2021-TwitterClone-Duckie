@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <!-- TODO add #form -> copy from budget calculator to make this an actual ng form -->
     <form #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm)">
         <input type="text" placeholder="username" [(ngModel)]="userName" name="username" required>
@@ -9,6 +9,7 @@
         <input type="submit" class="button" [disabled]="!itemForm.valid">
 
         <br>
-        <button class="one" type="button" (click)="toggleForm()">Create User</button>
+        <p>Not Signed Up?</p>
+        <button class="one" type="button" (click)="toggleForm()">Create Account</button>
     </form>
 </div>
