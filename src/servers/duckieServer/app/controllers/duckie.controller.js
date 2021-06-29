@@ -424,7 +424,7 @@ exports.addLike = (req, res) => {
 
 exports.getQuacksByUser = (req, res) => {
   let user = req.body.uId;
-  let query = "select * from `duckie`.`quacks` WHERE (userId=?)";
+  let query = "select * from `duckie`.`quacks` WHERE (userId=?) order by dateAndTime desc";
   db.query(query, [user], (err, data) => {
     if (err) {
       res.status(500).send({ err, message: "error getting quacks" });
@@ -516,7 +516,7 @@ exports.getFollowingQuacks = (req, res) => {
   //Given an id will return an array of quacks from who they follow
   let id = req.body.uId;
   let query =
-    "SELECT *  FROM `follows`, `quacks` WHERE `quacks`.`userId` = `follows`.`followingId`";
+    "SELECT *  FROM `follows`, `quacks` WHERE `quacks`.`userId` = `follows`.`followingId` order by dateAndTime desc";
   db.query(query, (err, dta, fields) => {
     if (err) {
       res.status(500).send({ err, message: "unable to get following" });

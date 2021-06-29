@@ -1,0 +1,41 @@
+.quackContainer{
+     border: 2px solid  #ced8b8;
+     margin-left: .5em;
+     border-radius: .2em;
+}
+.like:hover{
+     cursor: pointer;
+     background-color: var(--yellow);
+     color: orange;
+     transition: 300ms ease-in;  
+}
+svg{
+     width:1em;
+     height:1em;
+     padding:0;
+     margin:0
+}
+
+
+.userName{
+font-weight: bolder;
+}
+.repost{
+     padding:0;
+     margin:0;
+
+}
+.like{
+     padding:0;
+     margin:0
+}
+
+.atName{
+     font-weight: lighter;
+     color:slategray;
+     font-family: Helvetica;
+
+}
+.body{
+font-family: Helvetica;
+}
