@@ -393,9 +393,9 @@ exports.addLike = (req, res) => {
                 .status(500)
                 .send({ err, message: "could not update like count" });
             } else {
-              let thridQuery =
+              let thirdQuery =
                 "INSERT INTO `duckie`.`likes` (`userId`, `quackId`) VALUES (?,?);";
-              db.query(thridQuery, [uId, qId], (err, data, fields) => {
+              db.query(thirdQuery, [uId, qId], (err, data, fields) => {
                 if (err) {
                   res
                     .status(500)
@@ -535,7 +535,7 @@ exports.getFollowersUser = (req, res) => {
     if (err) {
       res.status(500).send({ err, message: "unable to get followers" });
     } else if (dta.length == 0) {
-      res.status(200).send({ mesage: "no followers" });
+      res.status(200).send({ message: "no followers" });
     } else {
       let followers = [];
       let stop = dta.length;
