@@ -504,35 +504,27 @@ exports.deleteQuack = (req, res) => {
   });
 };
 
-exports.getFollowingQuacks = (req, res) => {
-  //Given an id will return an array of quacks from who they follow
-  let id = req.body.uId;
-  let query = "SELECT * FROM duckie.follows WHERE followerId=?;";
-  db.query(query, [id], (err, dta, fields) => {
-    if (err) {
-      res.status(500).send({ err, message: "unable to get following" });
-    } else if (dta.length == 0) {
-      res.status(200).send({ message: "no following" });
-    }
-    {
-      let quacks = [];
-      let stop = dta.length;
-      let otherQuery = "select * from `quacks` WHERE `userId`=?";
-      for (let i = 0; i < stop; i++) {
-        db.query(otherQuery, [dta[i].followingId], (err, data, fields) => {
-          if (err) {
-            res.status(500).send({ err, message: "could not get quacks" });
-          } else {
-            quacks.push(data);
+exports.getFollowingQuacks = (req, res) => {//Given an id will return an array of quacks from who they follow
+  let id = req.body.uId
+  let query = "SELECT *  FROM `follows`, `quacks` WHERE `quacks`.`userId` = `follows`.`followingId`"
+  db.query(query, (err, dta, fields) => {
+      if (err) {
+          res.status(500).send({ err, message: "unable to get following" })
+      } else if (dta.length == 0) {
+          res.status(200).send({ message: "no following" })
+      } {
+          let quacks = []
+          console.log(dta)
+          for (let i = 0; i < dta.length; i++) {
+              if (dta[i].followerId == id) {
+                  quacks.push(dta[i])
+              }
           }
-          if (quacks.length == stop) {
-            res.send(quacks);
-          }
-        });
+          res.status(200).send(quacks)
       }
-    }
-  });
-};
+
+  })
+}
 
 exports.getFollowersUser = (req, res) => {
   //returns array of a certain Id's followers

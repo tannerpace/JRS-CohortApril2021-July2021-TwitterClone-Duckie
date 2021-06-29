@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { Location } from '@angular/common'
+import { QuackApiService } from 'src/app/services/quack-api.service';
 
 @Component({
   selector: 'user-page',
@@ -13,11 +14,13 @@ export class UserPageComponent implements OnInit {
   
   @Input() user: User;
   public activeUser: User;
+  quacks;
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private quackAPi: QuackApiService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +39,12 @@ export class UserPageComponent implements OnInit {
         this.activeUser = this.userService.getActiveUser();
       }
     );
+    this.quackAPi.getQuacksByUser(this.user.id).subscribe((res)=>{
+      this.quacks=res
+    },(err)=>{
+      console.log(err)
+    })
+
   }
 
   followClicked() {
