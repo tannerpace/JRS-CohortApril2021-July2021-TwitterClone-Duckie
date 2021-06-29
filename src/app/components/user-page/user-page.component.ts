@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'user-page',
@@ -15,7 +16,8 @@ export class UserPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -48,5 +50,9 @@ export class UserPageComponent implements OnInit {
     console.log('clicked unfollow button', this.activeUser);
     this.userService.unfollowUser(this.activeUser, this.user)
     .subscribe(data => {}, error => {});
+  }
+
+  goBack(){
+    this.location.back();
   }
 }

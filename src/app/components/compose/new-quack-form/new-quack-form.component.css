@@ -6,15 +6,23 @@
   width: fit-content;
   border-radius: 2em;
   font-family: Arial, Helvetica, sans-serif;
-  box-shadow: 12px 12px 2px 1px var(--ltblue);
+
 }
 
 .profile-pic {
+  display:flex;
   width: 4em;
   height: 4em;
   border-radius: 3em;
+  justify-content: center;
   background-color: var(--yellow);
   border: var(--orange) solid 3px;
+}
+
+img{
+  width:3em;
+  height:3em;
+  align-self: center;
 }
 
 .top-bar {
@@ -23,21 +31,23 @@
 }
 
 .top-bar-text {
-  margin-left: 0.5em;
+  margin-left: 1em;
 }
 
 #profile-name {
-  color: black;
+  color:var(--orange);
   font-weight: bold;
-  font-size: 1.5em;
-  margin: 0;
+  text-transform: uppercase;
+  font-size: 2em;
+  margin:0;
+
 }
 
 #quack-count {
   color: var(--grey-text);
-
   font-size: 1.25em;
   margin: 0;
+  margin-top:.3em;
 }
 
 .quack-body {
@@ -53,8 +63,7 @@ textarea {
   resize: none;
   border: none;
   border-bottom: var(--grey-text) solid 1px;
-  /* border-top: var(--grey-text) solid 1px; */
-  padding-top: 0.5em;
+  padding:0.5em;
   cursor: initial;
 }
 
@@ -70,7 +79,9 @@ textarea {
   margin-top: 0.1em;
   font-size: 1.25em;
   color: var(--grey-text);
-  align-self: flex-end;
+  display:flex;
+  justify-content: flex-end;
+ 
 }
 
 .img {

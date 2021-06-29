@@ -6,20 +6,24 @@
   z-index: 1;
   float: left;
   width: 7em;
-  border-right:var(--border)
+  border-right:var(--border);
+
+  
 }
 
 .right {
-  padding-left: 7em; 
-  width: 50%;
-  border-top: none;
+  padding-left: 7em;
   
 }
 
 .left:hover {
-  width: 16em;
-}
+  width: 16em; 
+  background-color: #e1e3e7;
+  transition: 400ms ease;
+  
+ }
 
 .left:hover ~ .right {
   padding-left: 16em;
-}
+  
+} 
