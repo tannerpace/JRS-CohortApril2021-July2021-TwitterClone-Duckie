@@ -10,13 +10,13 @@ import { QuackApiService } from 'src/app/services/quack-api.service';
 export class QuackCardComponent implements OnInit {
 
   @Input() quack;
-  screenName
+  otherUser
 
   constructor(private quackApi: QuackApiService) { }
 
   ngOnInit(): void {
     this.quackApi.getUserById(this.quack.userId).subscribe((response) => {
-      this.screenName = response
+      this.otherUser = response
     })
   }
 
@@ -34,6 +34,10 @@ export class QuackCardComponent implements OnInit {
     }, (err) => {
       console.log(err)
     })
+  }
+
+  reply(){
+
   }
 
 }

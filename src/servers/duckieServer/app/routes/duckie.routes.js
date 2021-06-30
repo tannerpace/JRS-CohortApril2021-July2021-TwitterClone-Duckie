@@ -23,7 +23,7 @@ module.exports = (app) => {
   app.delete("/api/quack/:id", duckie.deleteQuack);
 
   app.post("/api/quack/reply", duckie.quackReply);
-  app.post("/api/followedquacks", duckie.getFollowingQuacks);
+  app.get("/api/followedquacks/:id", duckie.getFollowingQuacks);
   app.post("/api/following", duckie.getFollowingUser);
   app.post("/api/followers", duckie.getFollowersUser);
 

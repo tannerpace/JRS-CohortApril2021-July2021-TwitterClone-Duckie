@@ -3,12 +3,7 @@
   font-size: 18pt;
 }
 
-.root {
-  width: 100%;
-  height: fit-content;
-  position: relative;
-  background-color: white;
-}
+
 
 label {
   display: inline-block;
@@ -87,6 +82,10 @@ button:hover {
   justify-content: center;
   align-items: center;
   margin: 1em;
+}
+
+.profile-select{
+  background-color: rgb(255, 255, 255);
 }
 
 .profile-option:hover,
