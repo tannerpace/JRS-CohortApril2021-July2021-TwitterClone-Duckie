@@ -322,9 +322,8 @@ exports.quackReply = (req, res) => {
 };
 exports.getQuacksByUser = (req, res) => {
   let quacks = [];
-  let user = req.body.uId;
-  let query =
-    "SELECT * FROM `quacks`, `users` WHERE `quacks`.`userId` = `users`.`id`";
+  let user = req.params.id;
+  let query = "SELECT * FROM `quacks`, `users` WHERE `quacks`.`userId` = `users`.`id`";
   db.query(query, [user], (err, data) => {
     if (err) {
       res.status(500).send({ err, message: "error getting quacks" });
@@ -374,7 +373,7 @@ exports.getLikes = (req, res) => {
 
 exports.getReposts = (req, res) => {
   //get reposts by user; returns array of reposted quacks
-  let uId = req.body.uId; //user id
+  let uId = req.params.id; //user id
 
   let query = "select * from `reposts` WHERE `userId`=?;";
 
@@ -456,23 +455,11 @@ exports.addLike = (req, res) => {
   });
 };
 
-exports.getQuacksByUser = (req, res) => {
-  let user = req.body.uId;
-  let query = "select * from `duckie`.`quacks` WHERE (userId=?) order by dateAndTime desc";
-  db.query(query, [user], (err, data) => {
-    if (err) {
-      res.status(500).send({ err, message: "error getting quacks" });
-    } else if (data.length == 0) {
-      res.status(200).send({ mesage: "user has no Quacks" });
-    } else {
-      res.status(200).send(data);
-    }
-  });
-};
+
 
 exports.getLikes = (req, res) => {
   //get likes by user; returns array of liked quacks
-  let uId = req.body.uId; //user id
+  let uId = req.params.id; //user id
 
   let query = "select * from `likes` WHERE `userId`=?;";
 
@@ -548,7 +535,7 @@ exports.deleteQuack = (req, res) => {
 
 exports.getFollowingQuacks = (req, res) => {
   //Given an id will return an array of quacks from who they follow
-  let id = req.body.uId;
+  let id = req.params.id;
   let query =
     "SELECT *  FROM `follows`, `quacks` WHERE `quacks`.`userId` = `follows`.`followingId` order by dateAndTime desc";
   db.query(query, (err, dta, fields) => {

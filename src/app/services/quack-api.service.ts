@@ -44,23 +44,19 @@ export class QuackApiService {
   }
 
   getQuacksByUser(id: number) {
-    let body = {
-      uId: id,
-    };
-    return this.http.post(`${this.baseURL}/api/getQuacks`, body);
+  
+    return this.http.get(`${this.baseURL}/api/getQuacks/${id}`);
   }
 
   getLikedQuacksByUser(user) {
-    let body = {
-      uId: user.id,
-    };
-    return this.http.post(`${this.baseURL}/api/getlikes`, body);
+    
+     let uId= user.id
+    return this.http.get(`${this.baseURL}/api/getlikes/${uId}`);
   }
   getFollowedQuacks(): Observable<any> {
-    let body = {
-      uId: this.userService.getActiveUser().id,
-    };
-    return this.http.post(`${this.baseURL}/api/followedquacks`, body);
+   let   uId= this.userService.getActiveUser().id
+  
+    return this.http.get(`${this.baseURL}/api/followedquacks/${uId}`);
   }
   getUserById(id) {
     return this.http.get(`${this.baseURL}/api/user/id/${id}"`);

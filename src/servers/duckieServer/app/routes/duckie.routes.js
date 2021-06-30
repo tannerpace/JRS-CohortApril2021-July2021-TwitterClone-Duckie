@@ -12,16 +12,16 @@ module.exports = (app) => {
 
   app.post("/api/user/login", duckie.login);
 
-  app.post("/api/getQuacks", duckie.getQuacksByUser);
-  app.post("/api/getqb", duckie.getReposts);
-  app.post("/api/getlikes", duckie.getLikes);
+  app.get("/api/getQuacks/:id", duckie.getQuacksByUser);
+  app.get("/api/getqb/:id", duckie.getReposts);
+  app.get("/api/getlikes/:id", duckie.getLikes);
   app.post("/api/quack/", duckie.createQuack);
   app.put("/api/quack/like", duckie.addLike);
   app.put("/api/quack/repost", duckie.addRepost);
   app.delete("/api/quack/:id", duckie.deleteQuack);
 
   app.post("/api/quack/reply", duckie.quackReply);
-  app.post("/api/followedquacks", duckie.getFollowingQuacks);
+  app.get("/api/followedquacks/:id", duckie.getFollowingQuacks);
   app.post("/api/following", duckie.getFollowingUser);
   app.post("/api/followers", duckie.getFollowersUser);
 
