@@ -36,4 +36,8 @@ export class QuackCardComponent implements OnInit {
     })
   }
 
+  reply(){
+
+  }
+
 }
