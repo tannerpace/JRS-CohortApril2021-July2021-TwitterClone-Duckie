@@ -3,7 +3,7 @@
   width: 100%;
   font-family: "Concert One";
   text-transform: uppercase;
-  background-color: #ced8b8;
+  background-color: #cee2d4;
 }
 
 ul {
@@ -18,7 +18,8 @@ li {
 }
 
 li:hover {
-  background-color: rgb(189, 101, 120);
+  background-color: #ec4700
+  
 }
 
 .nav-link {
@@ -36,6 +37,32 @@ li:hover {
   height: calc(var(--iconSize));
 }
 
+  .profile-container {
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    background-color: var(--yellow);
+    border: var(--orange) solid 2px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+
+  }
+
+  #profile-pic {
+    padding-left: .80em;
+    padding-top: 1em;
+    
+  
+  }
+
+  #profile-pic img{
+    height: 50px;
+    width: 50px;
+    display:flex;
+    align-self: center;
+    }
+
 svg {
   fill: var(--blue);
   width: calc(var(--iconSize) - var(--iconPadding));
@@ -47,14 +74,15 @@ svg {
 }
 
 .link-text {
-  width: 10em;
+  font-size: 1em;
   height: 100%;
+  width: fit-content;
   opacity: 0;
   left: 6em;
-
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
+
 }
 
 .navbar:hover .link-text {
@@ -69,18 +97,6 @@ p {
   opacity: inherit;
   font-size: 2em;
   transition: opacity 0.1s;
-}
-
-.profile-container {
-  width: 4em;
-  height: 4em;
-  border-radius: 50%;
-  background-color: var(--yellow);
-  border: var(--orange) solid 2px;
-  
-  display: flex;
-  justify-content: center;
-  align-content: center;
 }
 
 img {
@@ -99,5 +115,11 @@ img {
 
   ul > * {
     width: var(--iconSize);
+  }
+
+  #profile-pic{
+    padding-top: 1em;
+    padding-left: 1em;
+
   }
 }
