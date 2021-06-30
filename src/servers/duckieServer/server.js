@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 require("./app/models/index")
 
 require("./app/routes/duckie.routes")(app);
+require("./app/routes/quacks.routes")(app);
+require("./app/routes/users.routes")(app);
 
 // set port, listen for requests
 const PORT = 8080;
