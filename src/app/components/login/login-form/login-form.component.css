@@ -10,4 +10,5 @@
     width: 60%;
     border: 3px solid var(--orange);
     padding: 10px;
+    border-radius: 1em;
   }

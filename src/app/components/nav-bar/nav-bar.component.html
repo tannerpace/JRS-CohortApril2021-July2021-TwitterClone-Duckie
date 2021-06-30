@@ -98,7 +98,7 @@
     </li>
 
     <!-- Log-out -->
-    <li class="nav-item" (click)="logout()">
+    <li *ngIf="user" class="nav-item" (click)="logout()">
       <a title="logout" class="profile-pic nav-link">
         <div class="profile-container">
           <img src="../../../assets/images/profilePics/{{user.profilePic}}" alt="Profile Pic" />
