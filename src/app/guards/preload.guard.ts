@@ -29,7 +29,6 @@ export class PreloadGuard implements Resolve<any> {
             },
             (error) => {
               console.log("ERROR: there was an error.");
-              this.router.navigate(['/not_found'])
             }
           )
         );

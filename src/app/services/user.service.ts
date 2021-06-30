@@ -44,7 +44,6 @@ export class UserService {
   }
 
   updateActiveUser() {
-    console.log(this.getActiveUser().id);
     this.getUserById(this.getActiveUser().id).subscribe(
       (data) => {
         localStorage.setItem('activeUser', JSON.stringify(data));

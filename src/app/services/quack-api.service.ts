@@ -44,7 +44,7 @@ export class QuackApiService {
   }
 
   getQuacksByUser(userName: string) {
-    return this.http.get(`${this.baseURL}/api/${userName}/quacks`);
+    return this.http.get(`${this.baseURL}/api/quacks/${userName}`);
   }
 
   getQuacksAndRepliesByUser(userName: string) {

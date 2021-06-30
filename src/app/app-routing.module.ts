@@ -10,6 +10,7 @@ import { QuackFeedComponent } from './components/quack-feed/quack-feed.component
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ForceLoginGuard } from './guards/force-login.guard';
 import { AuthUserGuard } from './guards/auth-user.guard';
+import { QuacksPreloadGuard } from './guards/quacks-preload.guard';
 
 const routes: Routes = [
   // childern used because it parents the main page to all children
@@ -20,7 +21,12 @@ const routes: Routes = [
     {path: "home", component: QuackFeedComponent},
     {path: "compose", component: NewQuackPageComponent},
     {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
-    {path: ":username", component: UserPageComponent, resolve: [PreloadGuard]},
+    {path: ":username", component: UserPageComponent, resolve: [PreloadGuard], children: [
+      {path: "", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
+      {path: "replies", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
+      {path: "media", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
+      {path: "likes", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]}
+    ]},
     {path: ":username/edit", component: EditUserPageComponent, resolve: [PreloadGuard], canActivate: [AuthUserGuard]},
   ]},
   {path: "**", redirectTo: "not_found"}

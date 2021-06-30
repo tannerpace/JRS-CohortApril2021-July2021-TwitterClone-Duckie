@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { Location } from '@angular/common'
-import { QuackApiService } from 'src/app/services/quack-api.service';
 
 @Component({
   selector: 'user-page',
@@ -20,7 +19,7 @@ export class UserPageComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private location: Location,
-    private quackAPi: QuackApiService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +27,6 @@ export class UserPageComponent implements OnInit {
       (data) => {
         if (data[0]) {
           this.user = data[0];
-          console.log(data[0]);
         } else {
           this.user = null;
         }
@@ -39,29 +37,25 @@ export class UserPageComponent implements OnInit {
         this.activeUser = this.userService.getActiveUser();
       }
     );
-    this.quackAPi.getQuacksByUser(this.user.id).subscribe((res)=>{
-      this.quacks=res
-    },(err)=>{
-      console.log(err)
-    })
-
   }
 
   followClicked() {
     // follow a user
-    console.log('clicked follow button', this.activeUser);
     this.userService.followUser(this.activeUser, this.user)
     .subscribe(data => {}, error => {});
   }
 
   unfollowClicked() {
     // unfollow a user
-    console.log('clicked unfollow button', this.activeUser);
     this.userService.unfollowUser(this.activeUser, this.user)
     .subscribe(data => {}, error => {});
   }
 
   goBack(){
     this.location.back();
+  }
+
+  changeFeedToQuacks() {
+    this.router.navigate([this.user.userName]);
   }
 }

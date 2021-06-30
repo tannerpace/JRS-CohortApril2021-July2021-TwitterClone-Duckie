@@ -51,6 +51,7 @@ export class LoginFormComponent implements OnInit {
 
         //user is the user object returned from the DB
         let activeUser = new User(user);
+
         this.userService.setActiveUser(activeUser);
         this.router.navigate(['/home']);
       },
