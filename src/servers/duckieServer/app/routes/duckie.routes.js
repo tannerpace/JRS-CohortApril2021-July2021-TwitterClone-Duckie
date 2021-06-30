@@ -12,9 +12,11 @@ module.exports = (app) => {
 
   app.post("/api/user/login", duckie.login);
 
-  app.post("/api/getQuacks", duckie.getQuacksByUser);
-  app.post("/api/getqb", duckie.getReposts);
-  app.post("/api/getlikes", duckie.getLikes);
+  app.get("/api/quacks/:userName", duckie.getQuacksByUser);
+  // app.get("/api/replies/:userName", duckie.getQuacksAndRepliesByUser);
+  app.get("/api/reposts/:userName", duckie.getReposts);
+  app.get("/api/likes/:userName", duckie.getLikes);
+
   app.post("/api/quack/", duckie.createQuack);
   app.put("/api/quack/like", duckie.addLike);
   app.put("/api/quack/repost", duckie.addRepost);

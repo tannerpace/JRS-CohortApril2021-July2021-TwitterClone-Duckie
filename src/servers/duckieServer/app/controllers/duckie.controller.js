@@ -287,22 +287,23 @@ exports.quackReply = (req, res) => {
   });
 };
 exports.getQuacksByUser = (req, res) => {
-  let quacks = [];
-  let user = req.body.uId;
+  let userName = req.params.userName;
   let query =
-    "SELECT * FROM `quacks`, `users` WHERE `quacks`.`userId` = `users`.`id`";
-  db.query(query, [user], (err, data) => {
+    "SELECT quacks.id, quacks.body, users.userName, \
+        users.screenName, quacks.dateAndTime, quacks.repostCount, \
+        quacks.likeCount, users.profilePic, quacks.replyTo \
+      FROM quacks \
+    INNER JOIN users \
+      ON quacks.userId = users.id \
+    WHERE users.userName = ?";
+  db.query(query, [userName], (err, data) => {
     if (err) {
-      res.status(500).send({ err, message: "error getting quacks" });
+      res.status(500).send({ error: err, message: "error getting quacks" });
     } else if (data.length == 0) {
-      res.status(200).send({ mesage: "user has no Quacks" });
+      console.log(data)
+      res.status(200).send({ message: "user has no Quacks" });
     } else {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].userId == user) {
-          quacks.push(data[i]);
-        }
-      }
-      res.status(200).send(quacks);
+      res.status(200).send(data);
     }
   });
 };
@@ -418,20 +419,6 @@ exports.addLike = (req, res) => {
       });
     } else {
       res.status(200).send({ message: "already liked" });
-    }
-  });
-};
-
-exports.getQuacksByUser = (req, res) => {
-  let user = req.body.uId;
-  let query = "select * from `duckie`.`quacks` WHERE (userId=?)";
-  db.query(query, [user], (err, data) => {
-    if (err) {
-      res.status(500).send({ err, message: "error getting quacks" });
-    } else if (data.length == 0) {
-      res.status(200).send({ mesage: "user has no Quacks" });
-    } else {
-      res.status(200).send(data);
     }
   });
 };

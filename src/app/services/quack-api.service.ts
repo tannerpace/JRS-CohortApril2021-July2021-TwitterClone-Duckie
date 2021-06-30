@@ -46,28 +46,26 @@ export class QuackApiService {
     return this.http.put(`${this.baseURL}/api/quack/repost`, body);
   }
 
-  getQuacksByUser(id: number) {
-    let body = {
-      uId: id,
-    };
-    return this.http.post(`${this.baseURL}/api/getQuacks`, body);
+  getQuacksByUser(userName: string) {
+    return this.http.get(`${this.baseURL}/api/${userName}/quacks`);
   }
 
-  getLikedQuacksByUser(user) {
-    let body = {
-      uId: user.id,
-    };
-    return this.http.post(`${this.baseURL}/api/getlikes`, body);
+  getQuacksAndRepliesByUser(userName: string) {
+    return null;
   }
-  getFollowedQuacks(): Observable<any> {
-    let body = {
-      uId: this.userService.getActiveUser().id,
-    };
-    return this.http.post(`${this.baseURL}/api/followedquacks`, body);
+
+  // getMediaQuacksByUser(userName: string) {
+
+  // }
+
+  getLikedQuacksByUser(userName: string) {
+    return this.http.get(`${this.baseURL}/api/${userName}/likes`);
   }
-  getUserById(id) {
-    return this.http.get(`${this.baseURL}/api/user/id/${id}"`);
+
+  getFollowedQuacks(userName: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/api/quacks/following/${userName}`);
   }
+
   replyQuack(data) {
     let body = {
       qId: '',
@@ -77,10 +75,7 @@ export class QuackApiService {
     this.http.post(`${this.baseURL}/api/quack/reply`, body);
   }
 
-  getFollowersUsersByUser(user) {
-    let body = {
-      uId: user.id,
-    };
-    return this.http.post(`${this.baseURL}/api/followers`, body);
+  getFollowersOfUser(id: number) {
+    return this.http.get(`${this.baseURL}/api/followers/${id}`);
   }
 }
