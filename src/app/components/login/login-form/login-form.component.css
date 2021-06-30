@@ -1,14 +1,16 @@
 .root {
-    width: 100%;
-    height: fit-content;
-    position: relative;
-    background-color: white;
-  }
+  font-family: Helvetica;
+  width: 100%;
+  height: fit-content;
+  position: relative;
+  background-color: white;
+}
 
-  .container{
-    margin: auto;
-    width: 60%;
-    border: 3px solid var(--orange);
-    padding: 10px;
-    border-radius: 1em;
-  }
+.container {
+  border: 2px solid #ced8b8;
+  margin-left: 0.5em;
+  border-radius: 0.2em;
+  margin: auto;
+  width: 60%;
+  border-radius: 1em;
+}

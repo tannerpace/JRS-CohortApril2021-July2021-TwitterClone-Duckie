@@ -1,37 +1,50 @@
 <div class="root" *ngIf="user">
 
-    <img src="../../../../assets/images/profilePics/{{user.profilePic}}">
-    <button type="button" (click)="togglePicSelect()">Change Profile Picture</button>
-    <br>
 
-    <label for="screenName">Screen Name:</label>
-    <input type="text" class="form-control" name="screenName" [(ngModel)]="user.screenName" required>
-    <br>
-
-    <label for="bio" class="bio">Bio:</label>
-    <textarea placeholder="Describe yourself here..." type="text" id="bio" class="form-control bio" name="bio"
-        [(ngModel)]="user.bio" hint="Update Your bio" required></textarea>
-    <br>
-
-    <label for="website">Website:</label>
-    <input type="text" class="form-control" id="website" name="website" [(ngModel)]="user.website" required>
-    <br>
-
-    <div id="buttonParent">
-        
-        <button (click)="deleteCheck()" class="deleteButton">delete</button>
-        <button (click)="cancel()" class="cancelButton">Cancel</button>
-        <button (click)="onSubmit()" class="submitButton">Update Profile</button>
-  
-       
-    </div>
-
-
-    <div class="profile-select" *ngIf="showProfilePics">
-        <div [ngClass]="{'profile-option': true, 'selected': selectedProfilePic == 'profile' + i + '.png'}" (click)="profilePicClicked('profile' + i + '.png')" *ngFor="let profilePic of profilePics; index as i">
-            <img src="../../../../assets/images/profilePics/profile{{i}}.png">
+    <div>
+        <div *ngIf="delOption">
+            <h1>Hello {{user.userName}}</h1>
         </div>
-        <button type="button" (click)="profilePicCancel()">Cancel</button>
-        <button type="button" (click)="profilePicConfirm()">Confirm</button>
+        <img src="../../../../assets/images/profilePics/{{user.profilePic}}">
+        <h3 *ngIf="delOption">Do you want to remove your account?</h3>
+        <button *ngIf="delOption" (click)="cancel()" class="cancel">Cancel</button>
+        <button *ngIf="delOption" (click)="deleteCheck()" class="deleteButton">Delete</button>
+    </div>
+    <div *ngIf="!delOption">
+        <button type="button" (click)="togglePicSelect()">Profile Picture</button>
+        <br>
+
+        <label for="screenName">Screen Name:</label>
+        <input type="text" class="form-control" name="screenName" [(ngModel)]="user.screenName" required>
+        <br>
+
+        <label for="bio" class="bio">Bio:</label>
+        <textarea placeholder="Describe yourself here..." type="text" id="bio" class="form-control bio" name="bio"
+            [(ngModel)]="user.bio" hint="Update Your bio" required></textarea>
+        <br>
+
+        <label for="website">Website:</label>
+        <input type="text" class="form-control" id="website" name="website" [(ngModel)]="user.website" required>
+        <br>
+
+        <div id="buttonParent">
+
+            <button (click)="deleteOption()" class="deleteCheck">account</button>
+            <button (click)="cancel()" class="cancel">Cancel</button>
+            <button (click)="onSubmit()" class="submitButton">Save</button>
+
+
+        </div>
+        <button *ngIf="delOption" (click)="deleteCheck()" class="deleteButton">Delete</button>
+
+
+        <div class="profile-select" *ngIf="showProfilePics">
+            <div [ngClass]="{'profile-option': true, 'selected': selectedProfilePic == 'profile' + i + '.png'}"
+                (click)="profilePicClicked('profile' + i + '.png')" *ngFor="let profilePic of profilePics; index as i">
+                <img src="../../../../assets/images/profilePics/profile{{i}}.png">
+            </div>
+            <button type="button" (click)="profilePicCancel()" class="cancel">Cancel</button>
+            <button type="button" (click)="profilePicConfirm()">Confirm</button>
+        </div>
     </div>
 </div>
