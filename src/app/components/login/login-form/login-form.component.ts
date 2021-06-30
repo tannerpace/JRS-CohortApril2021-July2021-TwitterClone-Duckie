@@ -49,13 +49,10 @@ export class LoginFormComponent implements OnInit {
         // do something later
         console.log(user);
 
-        //user[0] is the user object returned from the DB
+        //user is the user object returned from the DB
         let activeUser = new User(user);
-
-        console.log('why is this like this: ', user);
-        console.log('setting active user from login: ', activeUser);
         this.userService.setActiveUser(activeUser);
-        this.router.navigate(['']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.error('ERROR loggin in: ', error);
