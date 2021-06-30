@@ -53,7 +53,7 @@ export class LoginFormComponent implements OnInit {
         let activeUser = new User(user);
 
         this.userService.setActiveUser(activeUser);
-        this.router.navigate(['']);
+        this.router.navigate(['/home']);
       },
       (error) => {
         console.error('ERROR loggin in: ', error);

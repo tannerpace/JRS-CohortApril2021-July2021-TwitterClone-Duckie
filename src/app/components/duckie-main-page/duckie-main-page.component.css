@@ -15,15 +15,14 @@
 
 .right {
   padding-left: 6em;
-  border: solid green 1px;
 }
 
 .left:hover {
-  width: 16em; 
+  width: 17em; 
  }
 
 .left:hover ~ .right {
-  padding-left: 16em;
+  padding-left: 17em;
   
 } 
 

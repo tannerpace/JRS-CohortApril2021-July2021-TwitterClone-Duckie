@@ -1,3 +1,5 @@
+
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -109,4 +111,16 @@ svg {
   background-color: var(--yellow);
   color: orange;
   transition: 300ms ease-in;
+}
+
+@media screen and (max-width: 700px)  {
+  .wrapper{
+      width: auto;
+      padding: 1em;
+      margin-right: .5em;
+  }
+  
+  .quack-body, .under-textarea{
+   width: auto;
+  };
 }
