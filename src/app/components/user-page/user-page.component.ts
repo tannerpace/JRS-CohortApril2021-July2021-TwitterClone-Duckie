@@ -28,7 +28,6 @@ export class UserPageComponent implements OnInit {
       (data) => {
         if (data[0]) {
           this.user = data[0];
-          console.log(data[0]);
         } else {
           this.user = null;
         }
@@ -39,24 +38,16 @@ export class UserPageComponent implements OnInit {
         this.activeUser = this.userService.getActiveUser();
       }
     );
-    this.quackAPi.getQuacksByUser(this.user.id).subscribe((res)=>{
-      this.quacks=res
-    },(err)=>{
-      console.log(err)
-    })
-
   }
 
   followClicked() {
     // follow a user
-    console.log('clicked follow button', this.activeUser);
     this.userService.followUser(this.activeUser, this.user)
     .subscribe(data => {}, error => {});
   }
 
   unfollowClicked() {
     // unfollow a user
-    console.log('clicked unfollow button', this.activeUser);
     this.userService.unfollowUser(this.activeUser, this.user)
     .subscribe(data => {}, error => {});
   }

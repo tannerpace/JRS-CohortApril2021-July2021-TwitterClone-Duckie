@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Quack } from 'src/app/models/quack.model';
 import { QuackApiService } from 'src/app/services/quack-api.service';
 
@@ -9,18 +10,22 @@ import { QuackApiService } from 'src/app/services/quack-api.service';
 })
 export class QuackFeedComponent implements OnInit {
 
-  public quacks;
+  public quacks: Quack[] = [];
 
-  constructor(private quackApi: QuackApiService) { }
+  constructor(private quackApi: QuackApiService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
- this.quackApi.getFollowedQuacks().subscribe((response)=>{
-   this.quacks=response
- },(err)=>{
-   console.log(err)
- })
-
-
+    this.route.data.subscribe(
+      (data) => {
+        this.quacks = data[0];
+        console.log(data[0])
+      },
+      (error) => {
+        console.error("ERROR retrieving quacks. ", error);
+        this.quacks = [];
+      }
+    );
   }
 
 }
