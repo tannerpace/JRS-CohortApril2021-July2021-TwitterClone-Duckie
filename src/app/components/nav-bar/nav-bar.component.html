@@ -1,5 +1,7 @@
 <nav class="navbar">
   <ul class="logged-in">
+
+    <!-- logo -->
     <li class="logo nav-item">
       <a routerLink="home"
          title="home"
@@ -147,10 +149,12 @@
     </li>
 
     <!-- Log-out -->
-    <li class="nav-item">
+   
+    <li  *ngIf= 'user' class="nav-item">
       <a href=""
          title="logout"
-         class="profile-pic nav-link">
+         class="nav-link"
+         id="profile-pic">
         <div class="profile-container">
           <img src="../../../assets/images/profilePics/{{user.profilePic}}"
                alt="Profile Pic" />
@@ -160,5 +164,6 @@
         </span>
       </a>
     </li>
+  
   </ul>
 </nav>
