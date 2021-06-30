@@ -16,11 +16,8 @@ export class QuackApiService {
     this.baseURL = HttpService.SERVER_URL;
   }
 
-  createQuack(quackBody: string, userId: number): Observable<any> {
-    let body = {
-      userId: userId,
-      quackBody: quackBody,
-    };
+  createQuack(body): Observable<any> {
+   
     return this.http.post(`${this.baseURL}/api/quack`, body);
   }
 
@@ -68,15 +65,6 @@ export class QuackApiService {
   getUserById(id) {
     return this.http.get(`${this.baseURL}/api/user/id/${id}"`);
   }
-  replyQuack(data) {
-    let body = {
-      qId: '',
-      uId: '',
-      text: '',
-    };
-    this.http.post(`${this.baseURL}/api/quack/reply`, body);
-  }
-
   getFollowersUsersByUser(user) {
     let body = {
       uId: user.id,

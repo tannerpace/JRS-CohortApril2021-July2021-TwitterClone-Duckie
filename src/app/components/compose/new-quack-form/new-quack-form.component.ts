@@ -36,7 +36,12 @@ export class NewQuackFormComponent implements OnInit {
       console.log('No Quack Entered');
       return;
     }
-    this.quackApiService.createQuack(this.quack.body, this.user.id).subscribe(
+    let body={
+      userId: this.user.id,
+      quackBody: this.quack.body,
+      qId: null
+    }
+    this.quackApiService.createQuack(body).subscribe(
       (response) => {
         this.userService.updateActiveUser();
         this.reRoutePage();
