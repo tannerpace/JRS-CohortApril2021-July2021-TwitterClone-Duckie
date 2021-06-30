@@ -16,6 +16,7 @@ export class EditUserFormComponent implements OnInit {
   showProfilePics: boolean;
 
   selectedProfilePic: string;
+  delOption:boolean = false;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -82,5 +83,8 @@ export class EditUserFormComponent implements OnInit {
   profilePicConfirm() {
     this.togglePicSelect();
     this.user.profilePic = this.selectedProfilePic;
+  }
+  deleteOption(){
+    this.delOption = !this.delOption
   }
 }
