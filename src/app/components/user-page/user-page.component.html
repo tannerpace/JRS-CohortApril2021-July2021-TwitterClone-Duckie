@@ -65,10 +65,10 @@
   </div>
 
   <div class="link-bar">
-    <a href="url"> Quacks</a>
-    <a href="url">Quacks & Replies</a>
-    <a href="url">Media</a>
-    <a href="url">Likes</a>
+    <a (click)="changeFeedToQuacks()"> Quacks</a>
+    <a routerLink="replies">Quacks & Replies</a>
+    <a routerLink="media">Media</a>
+    <a routerLink="likes">Likes</a>
   </div>
 
   <quack-feed></quack-feed>

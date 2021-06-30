@@ -22,7 +22,10 @@ const routes: Routes = [
     {path: "compose", component: NewQuackPageComponent},
     {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
     {path: ":username", component: UserPageComponent, resolve: [PreloadGuard], children: [
-      {path: "", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]}
+      {path: "", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
+      {path: "replies", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
+      {path: "media", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
+      {path: "likes", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]}
     ]},
     {path: ":username/edit", component: EditUserPageComponent, resolve: [PreloadGuard], canActivate: [AuthUserGuard]},
   ]},

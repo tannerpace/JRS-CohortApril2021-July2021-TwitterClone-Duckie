@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { Location } from '@angular/common'
-import { QuackApiService } from 'src/app/services/quack-api.service';
 
 @Component({
   selector: 'user-page',
@@ -20,7 +19,7 @@ export class UserPageComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private location: Location,
-    private quackAPi: QuackApiService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -54,5 +53,9 @@ export class UserPageComponent implements OnInit {
 
   goBack(){
     this.location.back();
+  }
+
+  changeFeedToQuacks() {
+    this.router.navigate([this.user.userName]);
   }
 }
