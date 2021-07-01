@@ -15,9 +15,10 @@ export class EditUserPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(
       (data) => {
-        if (data[0]) {
-          this.user = data[0];
-          console.log(data[0]);
+        console.log(data)
+        if (data.user) {
+          this.user = data.user;
+          console.log(data.user);
         } else {
           this.user = null;
         }
