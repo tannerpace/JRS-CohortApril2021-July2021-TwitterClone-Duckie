@@ -1,49 +1,55 @@
-*{
-     font-family: Helvetica;
-}
-.quackContainer{
-     border: 2px solid  #ced8b8;
-     margin-left: .5em;
-     border-radius: .2em;
-     margin-right:.5em;
-}
-.like:hover{
-     cursor: pointer;
-     
-     fill:red;
-     transition: 300ms ease-in;  
-}
-.reply:hover{
-     cursor: pointer;
-}
-.repost:hover{
-     fill:var(--orange);
-     cursor: pointer;
-}
-svg{
-     width:1em;
-     height:1em;
-     padding:0;
-    
-}
-.userName{
-font-weight: bolder;
-}
-.repost{
-     padding:0;
-     margin-left: 50%;
-     margin-right: 30%;
-}
-.like{
-     padding:0;
-     margin:0;
-     float: right;
-     margin-right:1px;
+* {
+  font-family: Helvetica;
 }
 
-.atName{
-     font-weight: lighter;
-     color:slategray;
-     font-family: Helvetica;
-
+.quackContainer {
+  border: 2px solid #ced8b8;
+  margin-left: 0.5em;
+  border-radius: 0.2em;
+  margin-right: 0.5em;
 }
+
+.like:hover {
+  cursor: pointer;
+  fill: red;
+  transition: 300ms ease-in;
+}
+
+.reply:hover {
+  cursor: pointer;
+}
+
+.repost:hover {
+  fill: var(--orange);
+  cursor: pointer;
+}
+
+svg {
+  width: 1em;
+  height: 1em;
+  padding: 0;
+}
+
+.userName {
+  font-weight: bolder;
+}
+
+.repost {
+  padding: 0;
+  margin-left: 50%;
+  margin-right: 30%;
+}
+
+.like {
+  padding: 0;
+  margin: 0;
+  float: right;
+  margin-right: 1px;
+}
+
+.atName {
+  font-weight: lighter;
+  color: slategray;
+  font-family: Helvetica;
+}
+

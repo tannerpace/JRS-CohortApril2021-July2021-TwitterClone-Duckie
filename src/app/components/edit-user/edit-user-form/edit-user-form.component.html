@@ -10,6 +10,7 @@
         <button *ngIf="delOption" (click)="cancel()" class="cancel">Cancel</button>
         <button *ngIf="delOption" (click)="deleteCheck()" class="deleteButton">Delete</button>
     </div>
+    
     <div *ngIf="!delOption">
         <button type="button" (click)="togglePicSelect()">Profile Picture</button>
         <br>
@@ -28,16 +29,13 @@
         <br>
 
         <div id="buttonParent">
-
             <button (click)="deleteOption()" class="deleteCheck">account</button>
             <button (click)="cancel()" class="cancel">Cancel</button>
             <button (click)="onSubmit()" class="submitButton">Save</button>
-
-
         </div>
+
         <button *ngIf="delOption" (click)="deleteCheck()" class="deleteButton">Delete</button>
-
-
+        
         <div class="profile-select" *ngIf="showProfilePics">
             <div [ngClass]="{'profile-option': true, 'selected': selectedProfilePic == 'profile' + i + '.png'}"
                 (click)="profilePicClicked('profile' + i + '.png')" *ngFor="let profilePic of profilePics; index as i">

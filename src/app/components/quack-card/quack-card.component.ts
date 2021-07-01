@@ -10,15 +10,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class QuackCardComponent implements OnInit {
 
-  @Input() quack;
-  otherUser
+  @Input() quack:Quack;
+  
 
   constructor(private quackApi: QuackApiService,
     private userService:UserService) { }
 
   ngOnInit(): void {
     this.userService.getUserById(this.quack.userId).subscribe((response) => {
-      this.otherUser = response
+      // this.otherUser = response
     })
   }
 
