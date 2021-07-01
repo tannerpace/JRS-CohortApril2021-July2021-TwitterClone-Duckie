@@ -9,7 +9,7 @@ exports.getQuacksByUser = (req, res) => {
           FROM quacks \
         INNER JOIN users \
           ON quacks.userId = users.id \
-        WHERE users.userName = ?";
+        WHERE users.userName = ? and quacks.replyTo is null";
   db.query(query, [userName], (err, data) => {
     if (err) {
       res.status(500).send({ error: err, message: "error getting quacks" });
@@ -21,6 +21,17 @@ exports.getQuacksByUser = (req, res) => {
     }
   });
 };
+exports.getQuacksandRepliesByUser = (req, res) => {
+  let userName = req.params.id
+  let query= "SELECT * FROM duckie.quacks where userId= ?"
+db.query(query,[userName], (err,data)=>{
+  if (err){
+    res.status(500).send({err, mesage:"problem gettin quacks"})
+  }else {
+    res.status(200).send(data)
+  }
+})
+}
 
 exports.getLikes = (req, res) => {
   //get likes by user; returns array of liked quacks
@@ -42,7 +53,7 @@ exports.getLikes = (req, res) => {
           if (err) {
             res.status(500).send({ err, message: "could not get quacks" });
           } else {
-            quacks.push(data);
+            quacks.push(data[0]);
           }
           if (quacks.length == stop) {
             res.send(quacks);
@@ -56,7 +67,7 @@ exports.getLikes = (req, res) => {
 exports.getReposts = (req, res) => {
   //get reposts by user; returns array of reposted quacks
   let uId = req.params.id; //user id
-
+console.log(uId)
   let query = "select * from `reposts` WHERE `userId`=?;";
 
   db.query(query, [uId], (err, dta, fields) => {
@@ -73,7 +84,7 @@ exports.getReposts = (req, res) => {
           if (err) {
             res.status(500).send({ err, message: "could not get quacks" });
           } else {
-            quacks.push(data);
+            quacks.push(data[0]);
           }
           if (quacks.length == stop) {
             res.send(quacks);
@@ -84,32 +95,48 @@ exports.getReposts = (req, res) => {
   });
 };
 
-exports.getFollowingQuacks = (req, res) => {
-  //Given an id will return an array of quacks from who they follow
+exports.getFeedQuacks = (req, res) => {//gets followed quacks and Users quacks 
   let id = req.params.id;
+  quacks = [];
   let query =
-    "SELECT *  FROM `follows`, `quacks` WHERE `quacks`.`userId` = `follows`.`followingId` order by dateAndTime desc";
-  db.query(query, (err, dta, fields) => {
+
+    "SELECT  distinct quacks.id FROM `follows`, `quacks` WHERE `quacks`.`userId` = `follows`.`followingId` or quacks.userId=? ";
+  db.query(query, [id], (err, dta, fields) => {
     if (err) {
       res.status(500).send({ err, message: "unable to get following" });
     } else if (dta.length == 0) {
       res.status(200).send({ message: "no following" });
     } else {
-      let quacks = [];
-      console.log(dta);
       for (let i = 0; i < dta.length; i++) {
-        if (dta[i].followerId == id) {
-          quacks.push(dta[i]);
-        }
+        let query =
+          "SELECT quacks.id, quacks.body, users.userName, \
+                users.screenName, quacks.dateAndTime, quacks.repostCount, \
+                quacks.likeCount, users.profilePic, quacks.replyTo \
+              FROM quacks \
+            INNER JOIN users \
+              ON quacks.userId = users.id \
+            WHERE quacks.id = ?";
+        db.query(query, [dta[i].id], (err, data) => {
+          if (err) {
+            // res.status(500).send({ error: err, message: "error getting quacks" });
+          } else if (data.length == 0) {
+            console.log(data);
+            // res.status(200).send({ message: "user has no Quacks" });
+          } else {
+            quacks.push(data[0])
+          } if (quacks.length == dta.length - 1) {
+            res.status(200).send(quacks)
+          }
+
+
+        });
       }
-      res.status(200).send(quacks);
+
     }
   });
 };
 
-exports.getQuacksAndRepliesByUser = (req, res) => {
-    res.send();
-};
+
 
 exports.createQuack = (req, res) => {
   //takes an object with userId and quack paramaters
@@ -234,40 +261,6 @@ exports.addRepost = (req, res) => {
   });
 };
 
-exports.quackReply = (req, res) => {
-  let qId = req.body.qId;
-  let uId = req.body.uId;
-  let text = req.body.text;
-  let query =
-    "INSERT INTO `duckie`.`quacks` (`body`, `userId`, `replyTo`) VALUES (?,?,?);";
-  db.query(query, [text, uId, qId], (err, data) => {
-    if (err) {
-      res.status(500).send(err, { message: "error quacking reply" });
-    } else {
-      let countQuery = "select * FROM `duckie`.`users` where id=?";
-      db.query(countQuery, [uId], (err, data, fields) => {
-        if (err) {
-          res.status(500).send({ err, message: "unable to get user" });
-        } else if (data.length == 0) {
-          res.status(200).send({ data, message: "there was a problem" });
-        } else {
-          let quackCount = data[0].quackCount + 1;
-          let addQuery =
-            "UPDATE `duckie`.`users` SET `quackCount` = ? WHERE `id` = ?";
-          db.query(addQuery, [quackCount, uId], (err, data, fields) => {
-            if (err) {
-              res
-                .status(500)
-                .send({ err, mesage: "unable to add quack count" });
-            } else {
-              res.status(200).send(data);
-            }
-          });
-        }
-      });
-    }
-  });
-};
 
 exports.addLike = (req, res) => {
   //needs userId, and quackId
@@ -323,17 +316,26 @@ exports.addLike = (req, res) => {
   });
 };
 
-exports.deleteQuack = (req, res) => {
+exports.deleteQuack = (req, res) => {//done
   // delete Quack by id
   const id = req.params.id;
 
-  let query = "DELETE FROM `duckie`.`quacks` WHERE `id` = ?;";
-  db.query(query, [id], (data, err, fields) => {
-    if (err.affectedRows == 0) {
+  let query = "SET foreign_key_checks = 0;"
+  let secondQuery = "delete from duckie.quacks where id=?;"
+  let thirdQuery = "set foreign_key_checks=1;"
+  db.query(query, (err, data, fields) => {
+    if (err) {
       res.status(500).send({ err, message: "no quack with id " + id });
     } else {
-      res.status(200).send(data);
-      console.log(err, data);
+      db.query(secondQuery, [id], (err, data) => {
+        if (err) {
+          res.status(500).send(err)
+        } else {
+          db.query(thirdQuery, (err, data) => {
+            res.status(200).send("yay")
+          })
+        }
+      })
     }
   });
 };
