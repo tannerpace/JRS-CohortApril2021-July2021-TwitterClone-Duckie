@@ -59,8 +59,8 @@ export class QuackApiService {
     return this.http.get(`${this.baseURL}/api/${userName}/likes`);
   }
 
-  getFeedQuacks(userName: string): Observable<any> {
-    return this.http.get(`${this.baseURL}/api/feedquacks/${userName}`);
+  getFollowedQuacks(userName: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/api/quacks/following/${userName}`);
   }
 
   replyQuack(data) {
