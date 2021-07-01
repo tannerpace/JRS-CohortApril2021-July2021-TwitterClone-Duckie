@@ -1,9 +1,8 @@
 module.exports = (app) => {
 
 const quacks = require("../controllers/quacks.controller")
-
 app.get("/api/quacks/:userName", quacks.getQuacksByUser);
-app.get("/api/replies/:userName", quacks.getQuacksAndRepliesByUser);
+app.get("/api/replies/:id", quacks.getQuacksandRepliesByUser);
 // app.get("/api/media/:userName", quacks.getMediaByUser);
 app.get("/api/reposts/:userName", quacks.getReposts);
 app.get("/api/likes/:userName", quacks.getLikes);
