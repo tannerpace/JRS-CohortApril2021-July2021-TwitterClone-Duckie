@@ -20,6 +20,7 @@ import { QuackCardComponent } from './components/quack-card/quack-card.component
 import { ProfilePicComponent } from './components/profile-pic/profile-pic.component';
 import { QuackFeedComponent } from './components/quack-feed/quack-feed.component';
 import { ReplyPageComponent } from './components/reply-page/reply-page.component';
+import { CreditsComponent } from './components/credits/credits.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ReplyPageComponent } from './components/reply-page/reply-page.component
     QuackCardComponent,
     ProfilePicComponent,
     ReplyPageComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserModule, 
