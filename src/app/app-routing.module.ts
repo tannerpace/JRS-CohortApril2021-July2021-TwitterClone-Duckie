@@ -10,7 +10,7 @@ import { QuackFeedComponent } from './components/quack-feed/quack-feed.component
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ForceLoginGuard } from './guards/force-login.guard';
 import { AuthUserGuard } from './guards/auth-user.guard';
-import { QuacksPreloadGuard } from './guards/quacks-preload.guard';
+import { PreloadQuackGuard } from './guards/preload-quack.guard';
 
 const routes: Routes = [
   // childern used because it parents the main page to all children
@@ -20,14 +20,16 @@ const routes: Routes = [
   {path: "", component: DuckieMainPageComponent, canActivate: [ForceLoginGuard], children: [
     {path: "home", component: QuackFeedComponent},
     {path: "compose", component: NewQuackPageComponent},
+    {path: "reply/:id", component: NewQuackPageComponent, resolve: {quack: PreloadQuackGuard}},
+    // {path: "reply", component: ReplyToQuackPageComponent},
     {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
-    {path: ":username", component: UserPageComponent, resolve: [PreloadGuard], children: [
-      {path: "", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
-      {path: "replies", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
-      {path: "media", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]},
-      {path: "likes", component: QuackFeedComponent, resolve: [QuacksPreloadGuard]}
+    {path: ":userName", component: UserPageComponent, resolve: {user: PreloadGuard}, children: [
+      {path: "", component: QuackFeedComponent},
+      {path: "replies", component: QuackFeedComponent},
+      {path: "media", component: QuackFeedComponent},
+      {path: "likes", component: QuackFeedComponent}
     ]},
-    {path: ":username/edit", component: EditUserPageComponent, resolve: [PreloadGuard], canActivate: [AuthUserGuard]},
+    {path: ":username/edit", component: EditUserPageComponent, resolve: { user: PreloadGuard}, canActivate: [AuthUserGuard]},
   ]},
   {path: "**", redirectTo: "not_found"}
 ];
