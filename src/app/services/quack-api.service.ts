@@ -48,7 +48,7 @@ export class QuackApiService {
   }
 
   getQuacksAndRepliesByUser(userName: string) {
-    return null;
+    return this.http.get(`${this.baseURL}/api/quackandreply${userName}`)
   }
 
   // getMediaQuacksByUser(userName: string) {
@@ -59,8 +59,8 @@ export class QuackApiService {
     return this.http.get(`${this.baseURL}/api/${userName}/likes`);
   }
 
-  getFeedQuacks(id:number): Observable<any> {
-    return this.http.get(`${this.baseURL}/api/feedquacks/${id}`);
+  getFeedQuacks(userName: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/api/feedquacks/${userName}`);
   }
 
   replyQuack(data) {
