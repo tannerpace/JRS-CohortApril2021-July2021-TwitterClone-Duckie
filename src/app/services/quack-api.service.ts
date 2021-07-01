@@ -16,6 +16,10 @@ export class QuackApiService {
     this.baseURL = HttpService.SERVER_URL;
   }
 
+  getQuackById(id: number) {
+    return this.http.get(`${this.baseURL}/api/quack/${id}`);
+  }
+
   createQuack(body): Observable<any> {//ready
    
     return this.http.post(`${this.baseURL}/api/quack`, body);

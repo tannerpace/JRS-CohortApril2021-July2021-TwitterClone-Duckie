@@ -9,11 +9,12 @@ module.exports = (app) => {
     app.get("/api/quacks/following/:userName", quacks.getFollowingQuacks);
 
     app.post("/api/quack/", quacks.createQuack);
-    app.post("/api/quack/reply/:id", quacks.quackReply);
+    // app.post("/api/quack/reply/:id", quacks.quackReply);
 
     app.put("/api/quack/like", quacks.addLike);
     app.put("/api/quack/repost", quacks.addRepost);
 
+    app.get("/api/quack/:id", quacks.getQuackById);
     app.delete("/api/quack/:id", quacks.deleteQuack);
 
 }

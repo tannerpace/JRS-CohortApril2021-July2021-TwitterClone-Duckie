@@ -1,5 +1,30 @@
 const db = require("../models/index");
 
+exports.getQuackById = (req, res) => {
+
+    const id = req.params.id;
+    const query =
+        "SELECT quacks.id, quacks.body, users.userName, \
+            users.screenName, quacks.dateAndTime, quacks.repostCount, \
+            quacks.likeCount, users.profilePic, quacks.replyTo \
+            FROM quacks \
+        INNER JOIN users \
+            ON quacks.userId = users.id \
+        WHERE quacks.id = ?;"
+
+    db.query(query, [id], (err, results) => {
+        if (err) {
+            res.status(500).send({ error: err, message: "error getting quack" });
+        } else if (results.length == 0) {
+            console.log(results);
+            res.status(409).send({ message: "Quack not found" });
+        } else {
+            console.log(results);
+            res.send(results[0]);
+        }
+    });
+};
+
 exports.getQuacksByUser = (req, res) => {
     let userName = req.params.userName;
     let query =
@@ -96,7 +121,7 @@ exports.getReposts = (req, res) => {
     });
 };
 
-exports.getFeedQuacks = (req, res) => { //gets followed quacks and Users quacks 
+exports.getFollowingQuacks = (req, res) => { //gets followed quacks and Users quacks 
     let id = req.params.id;
     quacks = [];
     let query =
