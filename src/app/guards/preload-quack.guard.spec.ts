@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QuacksPreloadGuard } from './quacks-preload.guard';
+import { PreloadQuackGuard } from './preload-quack.guard';
 
-describe('QuacksPreloadGuard', () => {
-  let guard: QuacksPreloadGuard;
+describe('PreloadQuackGuard', () => {
+  let guard: PreloadQuackGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(QuacksPreloadGuard);
+    guard = TestBed.inject(PreloadQuackGuard);
   });
 
   it('should be created', () => {
