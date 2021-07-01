@@ -18,14 +18,15 @@ export class PreloadGuard implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
     ): Observable<any> {
-      const username = route.paramMap.get('username')
+      const userName = route.paramMap.get('userName')
       const baseUrl = HttpService.SERVER_URL;
       
-      return this.http.get(`${baseUrl}/api/user/${username}`)
+      return this.http.get(`${baseUrl}/api/user/${userName}`)
         .pipe(
           tap( // Log the result or error
             (data) => {
               //do nothing with data
+              console.log(data)
             },
             (error) => {
               console.log("ERROR: there was an error.");

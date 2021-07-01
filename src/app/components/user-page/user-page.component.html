@@ -71,5 +71,7 @@
     <a routerLink="likes">Likes</a>
   </div>
 
-  <quack-feed></quack-feed>
+  <quack-feed [quacks]="quackList"
+              [user]="user"
+              [feedType]="1"></quack-feed>
 </div>

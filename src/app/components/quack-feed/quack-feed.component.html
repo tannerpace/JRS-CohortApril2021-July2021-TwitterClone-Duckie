@@ -1,4 +1,6 @@
 <p>quack-feed works!</p>
 
-<quack-card *ngFor="let quack of quacks"
-            [quack]="quack"></quack-card>
+<ng-container *ngIf="quacks">
+    <quack-card *ngFor="let quack of quacks"
+                [quack]="quack"></quack-card>
+</ng-container>
