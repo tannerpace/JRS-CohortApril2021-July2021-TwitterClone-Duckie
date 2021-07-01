@@ -83,19 +83,12 @@ h2 {
 .profile-pic {
   position: relative;
   top: calc(var(--top-height) * -1);
-  width: calc(150px + 6px);
-  height: calc(150px + 6px);
+  width: calc(150px + 7px);
+  height: calc(150px + 7px);
   overflow: hidden;
-  border-radius: 50%;
-  border: white solid 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--yellow);
 }
 
 .pic {
-  display: flex;
   height: 100px;
   width: 100px;
 }
