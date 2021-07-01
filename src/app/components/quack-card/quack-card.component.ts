@@ -17,9 +17,6 @@ export class QuackCardComponent implements OnInit {
     private userService:UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUserById(this.quack.userId).subscribe((response) => {
-      // this.otherUser = response
-    })
   }
 
   addRepost() {

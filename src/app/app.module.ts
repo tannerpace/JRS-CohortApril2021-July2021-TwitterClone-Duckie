@@ -19,6 +19,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { QuackCardComponent } from './components/quack-card/quack-card.component';
 import { ProfilePicComponent } from './components/profile-pic/profile-pic.component';
 import { QuackFeedComponent } from './components/quack-feed/quack-feed.component';
+import { ReplyPageComponent } from './components/reply-page/reply-page.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +37,13 @@ import { QuackFeedComponent } from './components/quack-feed/quack-feed.component
     EditUserPageComponent,
     NotFoundComponent,
     QuackCardComponent,
-    ProfilePicComponent
+    ProfilePicComponent,
+    ReplyPageComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
+    BrowserModule, 
+    AppRoutingModule, 
+    FormsModule, 
     HttpClientModule
   ],
   providers: [],

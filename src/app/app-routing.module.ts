@@ -11,6 +11,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ForceLoginGuard } from './guards/force-login.guard';
 import { AuthUserGuard } from './guards/auth-user.guard';
 import { PreloadQuackGuard } from './guards/preload-quack.guard';
+import { ReplyPageComponent } from './components/reply-page/reply-page.component';
 
 const routes: Routes = [
   // childern used because it parents the main page to all children
@@ -20,8 +21,7 @@ const routes: Routes = [
   {path: "", component: DuckieMainPageComponent, canActivate: [ForceLoginGuard], children: [
     {path: "home", component: QuackFeedComponent},
     {path: "compose", component: NewQuackPageComponent},
-    {path: "reply/:id", component: NewQuackPageComponent, resolve: {quack: PreloadQuackGuard}},
-    // {path: "reply", component: ReplyToQuackPageComponent},
+    {path: "reply/:id", component: ReplyPageComponent, resolve: {quack: PreloadQuackGuard}},
     {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
     {path: ":userName", component: UserPageComponent, resolve: {user: PreloadGuard}, children: [
       {path: "", component: QuackFeedComponent},

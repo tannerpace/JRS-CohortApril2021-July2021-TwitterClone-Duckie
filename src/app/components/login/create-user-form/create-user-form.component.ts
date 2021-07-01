@@ -59,12 +59,12 @@ export class CreateUserFormComponent implements OnInit {
             if(!data) {
               console.log("ERROR Create User Faild")
             }
-            console.log(data)
-            console.log("New User Created Successfully")
+            console.log("New User Created Successfully");
+            this.userService.setActiveUser(data);
 
           },
           error => {
-            console.error("ERROR logging in: ", error)
+            console.error("ERROR creating user: ", error)
           }
         );
     }

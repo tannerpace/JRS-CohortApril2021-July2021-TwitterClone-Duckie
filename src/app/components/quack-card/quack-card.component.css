@@ -53,3 +53,7 @@ svg {
   font-family: Helvetica;
 }
 
+.profile-pic {
+  display: inline-block;
+  width: 50px;
+}
