@@ -24,7 +24,6 @@ export class NewQuackFormComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.userService.getActiveUser();
     this.quack = new Quack({ userId: this.user.id, body: '' });
-    console.log(this.user);
   }
 
   reRoutePage() {
@@ -33,7 +32,6 @@ export class NewQuackFormComponent implements OnInit {
 
   submitQuack() {
     if (this.quack.body == '') {
-      console.log('No Quack Entered');
       return;
     }
     let body={

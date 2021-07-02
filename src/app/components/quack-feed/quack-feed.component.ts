@@ -15,13 +15,9 @@ export class QuackFeedComponent implements OnInit {
   @Input() user: User; // who is looking at this feed? the active user?
   @Input() feedType: number; // defined in FEED_TYPES enum
 
-  constructor(private route: ActivatedRoute,
-    private quackApiService: QuackApiService) { }
+  constructor(private quackApiService: QuackApiService) { }
 
   ngOnInit(): void {
-
-    console.log(this.route)
-    console.log(this.route.paramMap);
 
     var userName = this.user.userName;
     
@@ -42,7 +38,7 @@ export class QuackFeedComponent implements OnInit {
               this.quacks = data;
             },
             (error) => {
-              console.log("ERROR: there was an error.");
+              console.error("ERROR: there was an error getting quacks: ", error);
               this.quacks = [];
             }
         );
@@ -56,7 +52,7 @@ export class QuackFeedComponent implements OnInit {
               this.quacks = data;
             },
             (error) => {
-              console.log("ERROR: there was an error.");
+              console.error("ERROR: there was an error getting quacks: ", error);
               this.quacks = [];
             }
         );
@@ -69,7 +65,7 @@ export class QuackFeedComponent implements OnInit {
               this.quacks = data;
             },
             (error) => {
-              console.log("ERROR: there was an error.");
+              console.error("ERROR: there was an error getting quacks: ", error);
               this.quacks = [];
             }
         );
@@ -84,13 +80,13 @@ export class QuackFeedComponent implements OnInit {
               this.quacks = data;
             },
             (error) => {
-              console.log("ERROR: there was an error.");
+              console.error("ERROR: there was an error getting quacks: ", error);
               this.quacks = [];
             }
         );
         break;
       default:
-        console.log("preforming default")
+        console.warn("WARNING: there was an problem getting quacks");
         this.quacks = [];
         break;
     }

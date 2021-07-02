@@ -27,11 +27,10 @@ export class QuackCardComponent implements OnInit {
     })
   }
   addLike() {
-    console.log(this.quack)
     this.quackApi.likeQuack(this.quack.id).subscribe((response) => {
       window.location.reload()
     }, (err) => {
-      console.log(err)
+      console.error("ERROR - Could not like quack: ", err)
     })
   }
 

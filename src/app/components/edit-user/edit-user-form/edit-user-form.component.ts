@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -32,7 +31,6 @@ export class EditUserFormComponent implements OnInit {
   onSubmit() {
     this.userService.editUserInfo(this.user.id, this.user).subscribe(
       (data) => {
-        console.log('Updating local storage user data');
         this.userService.updateActiveUser();
         this.router.navigate([this.user.userName]);
       },
@@ -49,19 +47,17 @@ export class EditUserFormComponent implements OnInit {
   }
 
   deleteUser() {
-    // delete active user
-    console.log('delete button clicked');
-    console.log(this.user.id);
+    // delete the user
     this.userService.deleteUser(this.user.id).subscribe(
-      (data) => {},
+      (data) => {
+        this.router.navigate(["login"]);
+      },
       (error) => {}
     );
   }
 
   deleteCheck() {
     if (confirm('Are you sure you want to delete your account?')) {
-      // delete here
-      console.log('deleting account');
       this.deleteUser();
     }
   }

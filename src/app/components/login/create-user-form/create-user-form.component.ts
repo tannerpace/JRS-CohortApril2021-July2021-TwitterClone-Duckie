@@ -39,9 +39,6 @@ export class CreateUserFormComponent implements OnInit {
 
     // /^[a-zA-Z0-9_.]*$/.test(this.username)
     // console.log(/^[a-zA-Z0-9_.]*$/.test("!@#%"))
-
-    console.log("creating user start")
-
     if (this.user.password != this.confirmedPassword) {
       console.log("password mismatch")
       return;
@@ -51,13 +48,11 @@ export class CreateUserFormComponent implements OnInit {
       return;
     } else {
 
-      console.log("user form validated")
-
       this.userService.createNewUser(this.user)
         .subscribe(
           data => {
             if(!data) {
-              console.log("ERROR Create User Faild")
+              console.log("ERROR Create User Failed")
             }
             console.log("New User Created Successfully");
             this.userService.setActiveUser(data);

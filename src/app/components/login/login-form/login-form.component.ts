@@ -36,7 +36,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log('login form submitted');
     this.userService.loginUser(this.userName, this.password).subscribe(
       (user) => {
         if (!user) {
@@ -46,8 +45,6 @@ export class LoginFormComponent implements OnInit {
           return;
         }
         console.log('login successful');
-        // do something later
-        console.log(user);
 
         //user is the user object returned from the DB
         let activeUser = new User(user);

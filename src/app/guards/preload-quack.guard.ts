@@ -24,10 +24,9 @@ export class PreloadQuackGuard implements Resolve<any> {
           tap( // Log the result or error
             (data) => {
               //do nothing with data
-              console.log(data)
             },
             (error) => {
-              console.log("ERROR: there was an error.");
+              console.error("ERROR: there was an error retrieving a quack: ", error);
             }
           )
         );

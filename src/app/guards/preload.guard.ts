@@ -23,7 +23,6 @@ export class PreloadGuard implements Resolve<any> {
           tap( // Log the result or error
             (data) => {
               //do nothing with data
-              console.log(data)
             },
             (error) => {
               console.error("ERROR: there was an error: ", error);
