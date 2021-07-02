@@ -51,8 +51,8 @@ export class QuackApiService {
     return this.http.get(`${this.baseURL}/api/quacks/${userName}`);
   }
 
-  getQuacksAndRepliesByUser(userName: string) {
-    return this.http.get(`${this.baseURL}/api/quackandreply${userName}`)
+  getQuacksAndRepliesByUser(id) {
+    return this.http.get(`${this.baseURL}/api/replies/${id}`)
   }
 
   // getMediaQuacksByUser(userName: string) {

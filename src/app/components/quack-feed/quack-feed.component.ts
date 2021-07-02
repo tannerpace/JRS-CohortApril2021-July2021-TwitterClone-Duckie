@@ -13,14 +13,14 @@ import { UserService } from 'src/app/services/user.service';
 export class QuackFeedComponent implements OnInit {
 
   @Input() quacks: Quack[] | any = [];
-  user: User; // who is looking at this feed? the active user?
+  @Input() user: User; // who is looking at this feed? the active user?
   @Input() feedType: number; // defined in FEED_TYPES enum
 
   constructor(private quackApiService: QuackApiService, private userService: UserService) { }
 
   ngOnInit(): void {
     
-   this.user=this.userService.getActiveUser()
+   
 
 
     var userName = this.user.userName;
@@ -62,11 +62,12 @@ export class QuackFeedComponent implements OnInit {
           );
         break;
       case FEED_TYPES.REPLIES:
-        this.quackApiService.getQuacksAndRepliesByUser(userName)
+        this.quackApiService.getQuacksAndRepliesByUser(this.user.id)
           .subscribe(
             // Log the result or error
             (data) => {
               this.quacks = data;
+              console.log(data)
             },
             (error) => {
               console.error("ERROR: there was an error getting quacks: ", error);

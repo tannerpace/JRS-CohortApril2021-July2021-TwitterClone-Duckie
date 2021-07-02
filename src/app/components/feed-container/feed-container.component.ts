@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-feed-container',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+  user
 quackList=[]
   ngOnInit(): void {
+    this.user=this.userService.getActiveUser()
   }
 
 }
