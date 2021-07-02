@@ -1,120 +1,127 @@
 * {
-  font-family: var(--font);
-  font-size: 18pt;
-  
-  
-}
-.root{
-  width: 80%
+    font-family: var(--font);
+    font-size: 18pt;
 }
 
-
+.root {
+    width: 80%
+}
 
 label {
-  display: inline-block;
-  margin: 0 10px 0 0;
-  text-align: right;
-  width: 160px;
+    display: inline-block;
+    margin: 0 10px 0 0;
+    text-align: right;
+    width: 160px;
 }
 
 input,
 textarea {
-  width: calc(100% - 200px);
-  font-size: 18pt;
-  padding: 0.25em 0.5em;
-  margin-top: 0.5em;
+    width: calc(100% - 200px);
+    font-size: 18pt;
+    padding: 0.25em 0.5em;
+    margin-top: 0.5em;
 }
 
 label.bio {
-  transform: translateY(-4.5em);
+    transform: translateY(-4.5em);
 }
 
 .bio {
-  margin-bottom: -0.2em;
+    margin-bottom: -0.2em;
 }
 
 textarea {
-  height: 5em;
+    height: 5em;
 }
 
 button {
-  border: var(--blue) solid 2px;
-  color: var(--blue);
-  padding: 0.25em 1em;
-  border-radius: 1.5em;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  margin:1em;
+    border: var(--blue) solid 2px;
+    color: var(--blue);
+    padding: 0.25em 1em;
+    border-radius: 1.5em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    margin: 1em;
 }
 
 .submitButton {
-  margin:1em;
-  cursor: pointer;
+    margin: 1em;
+    cursor: pointer;
 }
 
 #buttonParent {
-  border-top: solid rgb(255, 255, 255) 1em;
-  padding-bottom: 2%;
+    border-top: solid rgb(255, 255, 255) 1em;
+    padding-bottom: 2%;
 }
 
 button:hover {
-  background-color: var(--yellow);
-  color: var(--blue);
+    background-color: var(--yellow);
+    color: var(--blue);
+}
+
+.profile-pic-display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile-container {
+    width: 5em;
+    height: 5em;
 }
 
 .profile-select {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: inherit;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .profile-option {
-  overflow: hidden;
-  width: calc(100px + 0.5em);
-  height: calc(100px + 0.5em);
-  border: solid var(--yellow) 0.25em;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1em;
+    overflow: hidden;
+    width: calc(100px + 0.5em);
+    height: calc(100px + 0.5em);
+    border: solid var(--yellow) 0.25em;
+    border-radius: 50%;
+    margin: 1em;
 }
 
-.profile-select{
-  background-color: rgb(255, 255, 255);
+.profile-select {
+    background-color: rgb(255, 255, 255);
 }
 
 .profile-option:hover,
 .selected {
-  border: solid var(--orange) 0.25em;
-  box-shadow: 0 0.1em 0.5em var(--orange);
-  cursor: pointer;
+    border: solid var(--orange) 0.25em;
+    box-shadow: 0 0.1em 0.5em var(--orange);
+    cursor: pointer;
 }
-.cancel{
-  
-  margin:1em;
+
+.cancel {
+    margin: 1em;
 }
+
 .cancel:hover {
-  background-color: var(--yellow);
-  color: var(--blue);
-  cursor: pointer;
+    background-color: var(--yellow);
+    color: var(--blue);
+    cursor: pointer;
 }
-.deleteCheck{
-  margin:1em;
-  
+
+.deleteCheck {
+    margin: 1em;
 }
+
 .deleteCheck:hover {
-  background-color: var(--yellow);
-  color: var(--blue);
-  cursor: pointer;
+    background-color: var(--yellow);
+    color: var(--blue);
+    cursor: pointer;
 }

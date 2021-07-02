@@ -1,18 +1,18 @@
 <div class="root" *ngIf="user">
+    <h1>Edit {{user.userName}}</h1>
 
+    <div class="profile-pic-display">
 
-    <div>
-        <div *ngIf="delOption">
-            <h1>Hello {{user.userName}}</h1>
+        <div class="profile-container">
+            <profile-pic [user]="user"></profile-pic>
         </div>
-        <profile-pic [user]="user" class="profile" style="border: solid 1px black;"></profile-pic>
-        <h3 *ngIf="delOption">Do you want to remove your account?</h3>
-        <button *ngIf="delOption" (click)="cancel()" class="cancel">Cancel</button>
-        <button *ngIf="delOption" (click)="deleteCheck()" class="deleteButton">Delete</button>
+
+        <button type="button" style="height: 2em;" (click)="togglePicSelect()">Change Profile Picture</button>
     </div>
 
+
+
     <div *ngIf="!delOption">
-        <button type="button" (click)="togglePicSelect()">Profile Picture</button>
         <br>
 
         <label for="screenName">Screen Name:</label>
@@ -42,5 +42,10 @@
             <button type="button" (click)="profilePicCancel()" class="cancel">Cancel</button>
             <button type="button" (click)="profilePicConfirm()">Confirm</button>
         </div>
+    </div>
+    <div *ngIf="delOption">
+        <h3>Do you want to remove your account?</h3>
+        <button (click)="cancel()" class="cancel">Cancel</button>
+        <button (click)="deleteCheck()" class="deleteButton">Delete</button>
     </div>
 </div>
