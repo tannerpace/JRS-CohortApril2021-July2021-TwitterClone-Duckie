@@ -2,7 +2,7 @@
   --top-height: 65px;
   overflow-y: scroll;
   height: calc(100% - var(--top-height));
-  width:75%;
+  
   border-right: var(--border);
 }
 
@@ -15,12 +15,11 @@
   flex-direction: row;
   align-content: center;
   height: var(--top-height);
-  width: calc(75% - 1em);
   position: sticky;
   background: white;
   border-bottom: var(--border);
   border-right: var(--border);
-  padding-left: 4em;
+  padding-left: 1em;
   padding-bottom: 0.5em;
   top: 0;
 }
@@ -33,13 +32,13 @@
   width: 2em;
   height: 2em;
   fill: var(--blue);
-  margin-right: 1.5em;
+  margin-right: 1em;
   margin-top: 1em;
+  
 }
 
 .back-button:hover {
   fill: #9cc5e7;
-  transition: 400ms ease;
 }
 
 h2 {
@@ -83,14 +82,9 @@ h2 {
 .profile-pic {
   position: relative;
   top: calc(var(--top-height) * -1);
-  width: calc(150px + 7px);
-  height: calc(150px + 7px);
+  width: calc(150px + 6px);
+  height: calc(150px + 6px);
   overflow: hidden;
-}
-
-.pic {
-  height: 100px;
-  width: 100px;
 }
 
 .screen-name {
