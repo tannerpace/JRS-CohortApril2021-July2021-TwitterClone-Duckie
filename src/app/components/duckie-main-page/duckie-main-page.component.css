@@ -1,50 +1,51 @@
+.root {
+    width: 100vw;
+    height: 100vh;
+}
+
 .column {
-  height: 100vh;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .left {
-  z-index: 1;
-  width: 6em;
-  border-right:var(--border);
-  position: fixed;
-  top: 0;
-  left: 0;
-  
-  transition: width .4s ease;
+    z-index: 1;
+    width: 6em;
+    border-right: var(--border);
+    transition: width .4s ease;
 }
 
 .right {
-  padding-left: 6em;
+    padding-left: 6em;
+    width: calc(100% - 6em);
 }
 
 .left:hover {
-  width: 17em; 
- }
+    width: 17em;
+}
 
-.left:hover ~ .right {
-  padding-left: 17em;
-  
-} 
+.left:hover~.right {
+    padding-left: 17em;
+    width: calc(100% - 17em);
+}
 
-
-@media screen and (max-width: 700px)  {
-  .left {
-    width: 100vw;
-    height: 6em;
-    top: unset;
-    bottom: 0;
-    transition: none;
-  }
-
-  .left:hover {
-    width: 100vw;
-  }
-
-  .right {
-    padding-left: 0;
-  }
-
-  .left:hover ~ .right {
-    padding-left: 0;
-  }
+@media screen and (max-width: 700px) {
+    .left {
+        width: 100vw;
+        height: 6em;
+        top: unset;
+        bottom: 0;
+        transition: none;
+    }
+    .left:hover {
+        width: 100vw;
+    }
+    .right {
+        padding-left: 0;
+    }
+    .left:hover~.right {
+        padding-left: 0;
+    }
 }

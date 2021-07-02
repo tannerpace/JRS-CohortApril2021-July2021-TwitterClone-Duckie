@@ -1,13 +1,71 @@
-/* TODO: make the div look nice */
-.root {
-    width: 100%;
-    height: fit-content;
-    position: relative;
-    background-color: white;
-  }
+
   .container{
-    margin: auto;
-    width: 60%;
-    border: 3px solid var(--orange);
-    padding: 10px;
+    border: 2px solid var(--orange);
+    margin-left: 0.5em;
+    border-radius: 0.2em;
+    padding: 2em;
+    margin: 1em;
+    border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    background-color: var(--yellow);
+    width: 100%;
+
   }
+
+  form{
+    display: flex;
+    flex-direction: column;
+  }
+
+  input{
+    width: 300px;
+    height: 2em;
+    font-size: 12pt;
+    margin-top: 1em;
+    padding-left: .5em;
+    display: flex;
+    border: 2px solid var(--orange);
+  }
+
+  .submit{
+    display: block;
+    width: 150px;
+    text-align: center;
+    border-radius: 5em;
+    margin-bottom: 1em;
+    border: solid 2px var(--blue);
+  }
+
+  .login{
+    text-align: center;
+  }
+
+  h1{
+    font-family: "concert one";
+    color: var(--orange);
+    font-weight: bold;
+    font-size: 30pt;
+    align-self: flex-end;
+    margin: 0;
+    padding-left: 0;
+    
+  }
+  
+  hr{
+    width:317px;
+    text-align:left;
+    margin-left:0; 
+    
+  }
+  .top-bar{
+    display: flex;
+    flex-direction: row;
+    align-content: flex-end;
+    margin-left: 1em;
+    min-width: 450px;
+    margin-top:1em;
+  }
+  
+
+ 
