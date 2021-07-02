@@ -2,6 +2,6 @@
     <input (keyup)="searchUsers($event)" type="text" class="form-control" placeholder="Search" aria-label="Searchbox"
         aria-describedby="basic-addon1">
 
-    <div class="under-textarea">User Name:{{results.userName}}<br>Screen Name:{{results.screenName}}<br>Bio:
-        {{results.bio}}</div>
+    <users-list [users]="results"></users-list> 
+     
 </div>
