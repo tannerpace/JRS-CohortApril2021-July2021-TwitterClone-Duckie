@@ -11,17 +11,20 @@ import { Quack } from 'src/app/models/quack.model';
   styleUrls: ['./user-page.component.css'],
 })
 export class UserPageComponent implements OnInit {
-  
-  @Input() user: User;
+
+ user: User;
   public activeUser: User;
   public quackList: Quack[];
+  feedType=1
+  justQuacks;
+  repliesToo;
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
     private location: Location,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(
@@ -39,25 +42,42 @@ export class UserPageComponent implements OnInit {
       }
     );
     this.quackList = [];
+   this.justQuacks=true
+   console.log(this.user)
+  }
+  ngOnChanges(){
+    this.feedType=1
+
   }
 
   followClicked() {
     // follow a user
     this.userService.followUser(this.activeUser, this.user)
-    .subscribe(data => {}, error => {});
+      .subscribe(data => { }, error => { });
   }
 
   unfollowClicked() {
     // unfollow a user
     this.userService.unfollowUser(this.activeUser, this.user)
-    .subscribe(data => {}, error => {});
+      .subscribe(data => { }, error => { });
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
 
   changeFeedToQuacks() {
     this.router.navigate([this.user.userName]);
+    this.justQuacks=true
+    this.repliesToo=false
+    this.feedType=1
+    console.log(this.user)
+
   }
+  changeFeedToReply() {
+    this.feedType = 2
+    this.justQuacks=false
+    this.repliesToo=true
+  }
+
 }

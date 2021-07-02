@@ -49,7 +49,7 @@ exports.getQuacksByUser = (req, res) => {
 
 exports.getQuacksandRepliesByUser = (req, res) => {
     let userName = req.params.id
-    let query = "SELECT * FROM duckie.quacks where userId= ?"
+    let query = "SELECT * FROM users,quacks where userId= ?"
     db.query(query, [userName], (err, data) => {
         if (err) {
             res.status(500).send({ err, mesage: "problem gettin quacks" })
