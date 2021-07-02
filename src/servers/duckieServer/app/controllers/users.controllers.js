@@ -162,7 +162,7 @@ exports.searchUsers = (req, res) => {
 
   search = '%' + req.params.search + '%'
 
-  var searchusers = `SELECT * FROM users WHERE (userName LIKE '%${search}%' OR screenName LIKE '%${search}%' OR bio LIKE '%${search}%' OR website LIKE '%${search}%')`
+  var searchusers = `SELECT * FROM users WHERE (userName LIKE ? OR screenName LIKE ? OR bio LIKE ? OR website LIKE ?)`
 
   db.query(searchusers, [search, search, search, search], function (err, results) {
     if (err) {
