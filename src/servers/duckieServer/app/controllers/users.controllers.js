@@ -168,9 +168,6 @@ exports.searchUsers = (req, res) => {
     if (err) {
       res.send(err)
     } else {
-      console.log("no error")
-      console.log(results)
-
       res.send(results)
     }
   })

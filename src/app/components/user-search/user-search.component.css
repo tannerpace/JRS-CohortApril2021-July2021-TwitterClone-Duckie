@@ -10,6 +10,7 @@
   border: var(--blue) solid 0.5em;
   border-radius: 2em;
   background-color: whitesmoke;
+  margin: auto;
 }
 
 input {
