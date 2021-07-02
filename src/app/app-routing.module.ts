@@ -33,7 +33,7 @@ const routes: Routes = [
       {path: "media", component: QuackFeedComponent},
       {path: "likes", component: QuackFeedComponent}
     ]},
-    {path: ":username/edit", component: EditUserPageComponent, resolve: { user: PreloadGuard}, canActivate: [AuthUserGuard]},
+    {path: ":userName/edit", component: EditUserPageComponent, resolve: { user: PreloadGuard}, canActivate: [AuthUserGuard]},
   ]},
   {path: "**", redirectTo: "not_found"}
 ];

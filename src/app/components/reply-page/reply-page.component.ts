@@ -18,7 +18,6 @@ export class ReplyPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(
       (data) => {
-        console.log(data)
         this.quack = data.quack;
       },
       (error) => {

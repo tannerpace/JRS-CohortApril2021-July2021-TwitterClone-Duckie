@@ -15,8 +15,8 @@ export class NavBarComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.user);
   }
+  
   logout() {
     this.userService.logoutActiveUser()
     alert("You successfully logged out!")
