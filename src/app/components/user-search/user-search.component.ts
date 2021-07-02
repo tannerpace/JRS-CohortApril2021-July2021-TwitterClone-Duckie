@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserSearchComponent implements OnInit {
   users: any;
-  results:any;
+  results: any;
 
   constructor(private userService: UserService) { }
   search: String;
@@ -30,9 +30,10 @@ export class UserSearchComponent implements OnInit {
         console.log(err);
         console.log("error")
       })
-  
-  this.results = this.users;
-return this.results;  }
+
+    this.results = this.users;
+    return this.results;
+  }
 };
 
 

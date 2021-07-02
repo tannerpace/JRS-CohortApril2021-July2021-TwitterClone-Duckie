@@ -21,12 +21,20 @@ input {
   cursor: initial;
   background-color: whitesmoke;
   border: var(--blue) solid 2px;
-  
 }
 
-textarea{
-  background-color: rgb(184, 177, 177);
+textarea {
+  background-color: rgb(225, 215, 215);
+}
 
+.under-textarea {
+  border-top: solid gray 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #cee2d4;
+  border-radius: 0% 0% 1em 1em;
+  color: #024089;
 }
 
 @media screen and (max-width: 700px) {
@@ -36,7 +44,7 @@ textarea{
     margin-right: 0.5em;
   }
 
-  input {
-    width: auto;
+  .under-textarea input {
+    width: fit-content;
   }
 }

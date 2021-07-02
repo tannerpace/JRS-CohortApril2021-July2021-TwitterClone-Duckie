@@ -1,5 +1,7 @@
 <div class="wrapper">
     <input (keyup)="searchUsers($event)" type="text" class="form-control" placeholder="Search" aria-label="Searchbox"
         aria-describedby="basic-addon1">
-        <textarea readonly>{{results.userName}}</textarea>
+
+    <div class="under-textarea">User Name:{{results.userName}}<br>Screen Name:{{results.screenName}}<br>Bio:
+        {{results.bio}}</div>
 </div>
