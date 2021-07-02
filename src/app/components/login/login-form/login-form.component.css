@@ -1,16 +1,82 @@
-.root {
-  font-family: Helvetica;
-  width: 100%;
-  height: fit-content;
-  position: relative;
-  background-color: white;
-}
 
 .container {
-  border: 2px solid #ced8b8;
+  border: 2px solid var(--orange);
   margin-left: 0.5em;
   border-radius: 0.2em;
-  margin: auto;
-  width: 60%;
+  padding: 2em;
+  margin: 1em;
   border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  background-color: var(--yellow);
+  width: 100%;
+
+}
+
+input{
+  width: 300px;
+  height: 2em;
+  font-size: 16pt;
+  margin-top: 1em;
+  padding-left: .5em;
+  display: flex;
+  border: 2px solid var(--orange);
+ 
+}
+
+.show{
+  height: fit-content;
+  width: fit-content;
+  font-size: 1em;
+  margin-top: .25em;
+}
+
+.submit{
+  display: block;
+  width: 150px;
+  text-align: center;
+  border-radius: 5em;
+  margin-left: 4em;
+  margin-bottom: 1em;
+  border: solid 2px var(--blue);
+}
+
+.create{
+  text-align: center;
+}
+
+.one{
+  width: 150px;
+  border-radius: 5em;
+  font-size: 16pt;
+  padding: .33em;
+  border: solid 2px var(--blue);
+}
+
+h1{
+  font-family: "concert one";
+  color: var(--orange);
+  font-weight: bold;
+  font-size: 30pt;
+  align-self: flex-end;
+  margin: 0;
+  padding-left: 0;
+  
+}
+
+hr{
+  width:317px;
+  text-align:left;
+  margin-left:0; 
+  
+}
+.top-bar{
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+  margin-left: 1em;
+  min-width: 450px;
+  margin-top:1em;
+  
+  
 }
