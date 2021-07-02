@@ -1,27 +1,24 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { HttpService } from '../services/http.service';
 
 import { tap } from 'rxjs/operators';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PreloadGuard implements Resolve<any> {
 
-  constructor(private http: HttpClient,
-    private router: Router) {}
+  constructor(private userService: UserService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
     ): Observable<any> {
       const userName = route.paramMap.get('userName')
-      const baseUrl = HttpService.SERVER_URL;
       
-      return this.http.get(`${baseUrl}/api/user/${userName}`)
+      return this.userService.getUserByUserName(userName)
         .pipe(
           tap( // Log the result or error
             (data) => {
@@ -29,7 +26,7 @@ export class PreloadGuard implements Resolve<any> {
               console.log(data)
             },
             (error) => {
-              console.log("ERROR: there was an error.");
+              console.error("ERROR: there was an error: ", error);
             }
           )
         );

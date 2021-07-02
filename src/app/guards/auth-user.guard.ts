@@ -15,18 +15,18 @@ export class AuthUserGuard implements CanActivate {
     route: ActivatedRouteSnapshot
   ): boolean {
 
-    const username = route.paramMap.get('username');
-    if (!this.isAuthenticated(username)) {
-      this.router.navigate([username]);
+    const userName = route.paramMap.get('userName');
+    if (!this.isAuthenticated(userName)) {
+      this.router.navigate([userName]);
       return false;
     } else {
       return true;
     }
   }
   
-  public isAuthenticated(username: string): boolean {
+  public isAuthenticated(userName: string): boolean {
     // the signed in user is allowed to access their own pages
-    return username == this.userService.getActiveUser().userName;
+    return userName == this.userService.getActiveUser().userName;
   }
   
 }

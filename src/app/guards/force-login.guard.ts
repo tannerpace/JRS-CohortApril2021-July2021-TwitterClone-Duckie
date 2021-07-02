@@ -11,7 +11,7 @@ export class ForceLoginGuard implements CanActivate {
   
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.userService.isValid()) {
-      console.log("force login validated")
+      console.log("log in validated")
       return true;
     } else {
       console.log("forcing login")
