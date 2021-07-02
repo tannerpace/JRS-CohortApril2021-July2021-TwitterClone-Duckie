@@ -5,12 +5,12 @@
         <div *ngIf="delOption">
             <h1>Hello {{user.userName}}</h1>
         </div>
-        <img src="../../../../assets/images/profilePics/{{user.profilePic}}">
+        <profile-pic [user]="user" class="profile" style="border: solid 1px black;"></profile-pic>
         <h3 *ngIf="delOption">Do you want to remove your account?</h3>
         <button *ngIf="delOption" (click)="cancel()" class="cancel">Cancel</button>
         <button *ngIf="delOption" (click)="deleteCheck()" class="deleteButton">Delete</button>
     </div>
-    
+
     <div *ngIf="!delOption">
         <button type="button" (click)="togglePicSelect()">Profile Picture</button>
         <br>
@@ -20,8 +20,7 @@
         <br>
 
         <label for="bio" class="bio">Bio:</label>
-        <textarea placeholder="Describe yourself here..." type="text" id="bio" class="form-control bio" name="bio"
-            [(ngModel)]="user.bio" hint="Update Your bio" required></textarea>
+        <textarea placeholder="Describe yourself here..." type="text" id="bio" class="form-control bio" name="bio" [(ngModel)]="user.bio" hint="Update Your bio" required></textarea>
         <br>
 
         <label for="website">Website:</label>
@@ -35,12 +34,11 @@
         </div>
 
         <button *ngIf="delOption" (click)="deleteCheck()" class="deleteButton">Delete</button>
-        
+
         <div class="profile-select" *ngIf="showProfilePics">
-            <div [ngClass]="{'profile-option': true, 'selected': selectedProfilePic == 'profile' + i + '.png'}"
-                (click)="profilePicClicked('profile' + i + '.png')" *ngFor="let profilePic of profilePics; index as i">
-                <img src="../../../../assets/images/profilePics/profile{{i}}.png">
-            </div>
+            <profile-pic [ngClass]="{'profile-option': true, 'selected': selectedProfilePic == 'profile' + i + '.png'}" (click)="profilePicClicked('profile' + i + '.png')" *ngFor="let profilePic of profilePics; index as i" [user]="{profilePic: 'profile' + i + '.png'}">
+
+            </profile-pic>
             <button type="button" (click)="profilePicCancel()" class="cancel">Cancel</button>
             <button type="button" (click)="profilePicConfirm()">Confirm</button>
         </div>
