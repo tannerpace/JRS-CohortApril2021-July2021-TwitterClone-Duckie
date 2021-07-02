@@ -107,9 +107,8 @@ export class UserService {
   //route is
   ///api/search
   public searchUsers(data): Observable<any> {
-    return this.http.get(`${this.baseURL}/api/ + 'searchData?search='` + data).pipe(
-      catchError((error: HttpErrorResponse) => throwError(error))
-    )
+    return this.http.get(`${this.baseURL}/api/ + 'searchUsers?search='` + data)
+    
   }
 
 }
