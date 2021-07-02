@@ -14,6 +14,7 @@ import { PreloadQuackGuard } from './guards/preload-quack.guard';
 import { ReplyPageComponent } from './components/reply-page/reply-page.component';
 import { CreditsComponent } from './components/credits/credits.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
+import { FeedContainerComponent } from './components/feed-container/feed-container.component';
 
 const routes: Routes = [
   // childern used because it parents the main page to all children
@@ -21,17 +22,17 @@ const routes: Routes = [
     {path: "", component: LoginPageComponent}
   ]},
   {path: "", component: DuckieMainPageComponent, canActivate: [ForceLoginGuard], children: [
-    {path: "home", component: QuackFeedComponent},
+    {path: "home", component: FeedContainerComponent},
     {path: "compose", component: NewQuackPageComponent},
     {path: "credits", component: CreditsComponent},
     {path: "search", component: UserSearchComponent},
     {path: "reply/:id", component: ReplyPageComponent, resolve: {quack: PreloadQuackGuard}},
     {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
     {path: ":userName", component: UserPageComponent, resolve: {user: PreloadGuard}, children: [
-      {path: "", component: QuackFeedComponent},
-      {path: "replies", component: QuackFeedComponent},
-      {path: "media", component: QuackFeedComponent},
-      {path: "likes", component: QuackFeedComponent}
+      {path: "", component: FeedContainerComponent},
+      {path: "replies", component: FeedContainerComponent},
+      {path: "media", component: FeedContainerComponent},
+      {path: "likes", component: FeedContainerComponent}
     ]},
     {path: ":userName/edit", component: EditUserPageComponent, resolve: { user: PreloadGuard}, canActivate: [AuthUserGuard]},
   ]},
