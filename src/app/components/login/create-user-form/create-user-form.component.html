@@ -1,23 +1,24 @@
+
+<div class="top-bar">
+    <img src="../../../../assets/images/profilePics/profile2.png" alt="duckie-logo">
+    <h1>Create a Profile</h1>
+    </div>
+
 <div class="container">
     <form #itemForm="ngForm" (ngSubmit)="onSubmit(itemForm)">
-        <div>
+        
+        <input type="text" placeholder="Username" required name="username" [(ngModel)]="user.userName">
+        <input type="text" placeholder="Screen Name" required name="screenNname" [(ngModel)]="user.screenName">
+        <input type="date" id="Birth Date" required name="birthDate" [(ngModel)]="user.birthDate">
+        <input type="text" placeholder="Password" required  name="password" [(ngModel)]="user.password">
+        <input type="text" placeholder="Confirm Password" required name="confirmedPassword" [(ngModel)]="confirmedPassword">
+        <input class="submit" type="submit" [disabled]="!itemForm.valid">
 
-            <!-- TODO: add 'name' to all input tags -->
-            <!-- TODO: add an ngModel to all input tags -->
-            <!-- make all the inputs required -->
-            <input type="text" placeholder="Username" required name="username" [(ngModel)]="user.userName">
-            <input type="text" placeholder="Screen Name" required name="screenNname" [(ngModel)]="user.screenName">
-            <div>
-                <input type="date" id="Birth Date" required name="birthDate" [(ngModel)]="user.birthDate">
-            </div>
-            <input type="text" placeholder="Password" required  name="password" [(ngModel)]="user.password">
-            <input type="text" placeholder="Confirm Password" required name="confirmedPassword" [(ngModel)]="confirmedPassword">
-        </div>
+        <hr>
 
-        <input type="submit" [disabled]="!itemForm.valid">
-
-        <br>
+        <div class="login">
         <p>Already have an account?</p>
         <button type="button" (click)="toggleForm()">Go to login</button>
+    </div>
     </form>
 </div>
