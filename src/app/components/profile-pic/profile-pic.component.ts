@@ -17,6 +17,8 @@ export class ProfilePicComponent implements OnInit {
   }
 
   navToUser() {
-    this.router.navigate([this.user.userName]);
+    if(this.user.userName) {
+      this.router.navigate([this.user.userName]);
+    }
   }
 }

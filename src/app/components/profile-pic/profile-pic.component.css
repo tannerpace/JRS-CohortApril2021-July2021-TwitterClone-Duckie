@@ -1,19 +1,21 @@
 .root {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: solid 3px white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--yellow);
+    overflow: hidden;
+}
 
-  border-radius: 50%;
-  box-sizing: border-box;
-  
-  border: solid 3px white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--yellow);
-  overflow: hidden;
+.root:hover {
+    cursor: pointer;
 }
 
 img {
-  width: 80%;
-  height: 80%;
+    width: 80%;
+    height: 80%;
 }

@@ -1,1 +1,9 @@
 <p>users-list works!</p>
+
+<div *ngFor="let user of users" class="root">
+    <profile-pic class="profile" [user]="user"></profile-pic>
+    <span>{{user.screenName}} - <a [routerLink]="user.userName">@{{user.userName}}</a></span>
+
+    <button type="button" (click)="follow(user)">Follow</button>
+    <button type="button" (click)="unfollow(user)">Unfollow</button>
+</div>
