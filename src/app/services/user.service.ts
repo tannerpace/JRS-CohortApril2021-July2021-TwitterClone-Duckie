@@ -107,8 +107,9 @@ export class UserService {
   //route is
   ///api/search
   public searchUsers(data): Observable<any> {
-    return this.http.get(`${this.baseURL}/api/ + 'searchUsers?search='` + data)
-    
+
+    return this.http.get(`${this.baseURL}/api/users/search/${data}`)
+
   }
 
 }
