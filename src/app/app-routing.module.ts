@@ -13,6 +13,7 @@ import { AuthUserGuard } from './guards/auth-user.guard';
 import { PreloadQuackGuard } from './guards/preload-quack.guard';
 import { ReplyPageComponent } from './components/reply-page/reply-page.component';
 import { CreditsComponent } from './components/credits/credits.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
 
 const routes: Routes = [
   // childern used because it parents the main page to all children
@@ -23,6 +24,7 @@ const routes: Routes = [
     {path: "home", component: QuackFeedComponent},
     {path: "compose", component: NewQuackPageComponent},
     {path: "credits", component: CreditsComponent},
+    {path: "search", component: UserSearchComponent},
     {path: "reply/:id", component: ReplyPageComponent, resolve: {quack: PreloadQuackGuard}},
     {path: "not_found", component: NotFoundComponent}, // make 'notFoundPage'
     {path: ":userName", component: UserPageComponent, resolve: {user: PreloadGuard}, children: [

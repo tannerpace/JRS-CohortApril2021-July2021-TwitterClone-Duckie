@@ -67,13 +67,14 @@ export class QuackApiService {
     return this.http.get(`${this.baseURL}/api/quacks/following/${userName}`);
   }
 
-  replyQuack(data) {
+  replyQuack(id:number): Observable<any> {
     let body = {
       qId: '',
       uId: '',
       text: '',
+      replyTo:id
     };
-    this.http.post(`${this.baseURL}/api/quack/reply`, body);
+    return this.http.post(`${this.baseURL}/api/quack/reply`, body);
   }
 
   getFollowersOfUser(id: number) {

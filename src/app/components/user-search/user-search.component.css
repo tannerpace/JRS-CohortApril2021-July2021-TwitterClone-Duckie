@@ -1,0 +1,24 @@
+* {
+  font-family: Helvetica;
+}
+
+.wrapper {
+  border: 2px solid #ced8b8;
+  margin-left: 0.5em;
+  border-radius: 0.2em;
+  margin-right: 0.5em;
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: solid 3px white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--yellow);
+ 
+}
+
+#input {
+  height: 100px;
+}

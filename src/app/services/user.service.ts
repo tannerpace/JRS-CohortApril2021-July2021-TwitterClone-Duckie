@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { HttpService } from './http.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -78,9 +80,9 @@ export class UserService {
     return this.http.delete(`${this.baseURL}/api/user/${id}`);
   }
 
-  public getUsersFollowedBy(user: User) {}
+  public getUsersFollowedBy(user: User) { }
 
-  public getAllUsersFollowing(user: User) {}
+  public getAllUsersFollowing(user: User) { }
 
   public followUser(followerUser: User, userToFollow: User) {
     let followerId = followerUser.id;
@@ -100,4 +102,14 @@ export class UserService {
       `${this.baseURL}/api/${followerId}/unfollow/${userToUnfollowId}`
     );
   }
+
+
+  //route is
+  ///api/search
+  public searchUsers(data): Observable<any> {
+    return this.http.get(`${this.baseURL}/api/ + 'searchData?search='` + data).pipe(
+      catchError((error: HttpErrorResponse) => throwError(error))
+    )
+  }
+
 }

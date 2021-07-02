@@ -151,4 +151,23 @@ exports.createUser = async (req, res) => {
         }
       }
     });
+
+    exports.searchUsers = (res, res) => {
+
+      search = req.query.search
+      console.log(search)
+      var searchusers = `SELECT * FROM ducki.user WHERE (userName LIKE '%${search}%' OR screenName LIKE '%${search}%' OR bio LIKE '%${search}%' OR website LIKE '%${search}%')  `
+      searchValues = [search,search,search,search]
+      console.log(searchusers)
+      
+      db.query(searchusers, function (errQuery, resQuery) {
+        if (errQuery) {
+          res.send(errQuery)
+        } else {
+          res.send(resQuery)
+        }
+      })
+    };
+
+
   };

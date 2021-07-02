@@ -21,6 +21,7 @@ import { ProfilePicComponent } from './components/profile-pic/profile-pic.compon
 import { QuackFeedComponent } from './components/quack-feed/quack-feed.component';
 import { ReplyPageComponent } from './components/reply-page/reply-page.component';
 import { CreditsComponent } from './components/credits/credits.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CreditsComponent } from './components/credits/credits.component';
     QuackCardComponent,
     ProfilePicComponent,
     ReplyPageComponent,
-    CreditsComponent
+    CreditsComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule, 
