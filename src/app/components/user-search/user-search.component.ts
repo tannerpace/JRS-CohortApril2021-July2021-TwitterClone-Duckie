@@ -9,17 +9,16 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserSearchComponent implements OnInit {
   users: any;
+  results:any;
 
   constructor(private userService: UserService) { }
   search: String;
   ngOnInit(): void {
   }
   searchUsers(event) {
-
     this.search = event.target.value
-    console.log(this.search)
     this.userService.searchUsers(this.search).subscribe((res) => {
-
+      console.log(res)
       if (res) {
         this.users = res
         if (res.length === 0) {
@@ -31,7 +30,9 @@ export class UserSearchComponent implements OnInit {
         console.log(err);
         console.log("error")
       })
-  }
+  
+  this.results = this.users;
+return this.results;  }
 };
 
 

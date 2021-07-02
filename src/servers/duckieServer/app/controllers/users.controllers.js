@@ -160,17 +160,19 @@ exports.login = (req, res) => {
 
 exports.searchUsers = (req, res) => {
 
-  search = req.query.search
-  console.log(search)
-  var searchusers = `SELECT * FROM users WHERE (userName LIKE '%${search}%' OR screenName LIKE '%${search}%' OR bio LIKE '%${search}%' OR website LIKE '%${search}%')  `
-  searchValues = [search, search, search, search]
-  console.log(searchusers)
-
-  db.query(searchusers, function (errQuery, resQuery) {
-    if (errQuery) {
-      res.send(errQuery)
+  search = '%' + req.params.search + '%'
+  
+  var searchusers = `SELECT * FROM users WHERE (userName LIKE '%${search}%' OR screenName LIKE '%${search}%' OR bio LIKE '%${search}%' OR website LIKE '%${search}%')`
+  
+  db.query(searchusers, [search,search,search,search],function (err, results) {
+    if (err) {
+      res.send(err)
     } else {
-      res.send(resQuery)
+      console.log("no error")
+      console.log(results[0])
+
+       res.send(results[0])
     }
   })
 };
+
