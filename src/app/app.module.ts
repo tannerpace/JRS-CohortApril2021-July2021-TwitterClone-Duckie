@@ -23,6 +23,7 @@ import { ReplyPageComponent } from './components/reply-page/reply-page.component
 import { CreditsComponent } from './components/credits/credits.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { FeedContainerComponent } from './components/feed-container/feed-container.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FeedContainerComponent } from './components/feed-container/feed-contain
     ReplyPageComponent,
     CreditsComponent,
     UserSearchComponent,
-    FeedContainerComponent
+    FeedContainerComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule, 

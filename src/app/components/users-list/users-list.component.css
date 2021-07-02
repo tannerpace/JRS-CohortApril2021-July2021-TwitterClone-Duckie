@@ -1,0 +1,17 @@
+.root {
+    display: flex;
+    width: 90%;
+    height: 6em;
+    flex-direction: row;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: solid 1px var(--yellow);
+    margin: 1em;
+}
+
+.profile {
+    height: 5em;
+    width: 5em;
+    overflow: hidden;
+}
